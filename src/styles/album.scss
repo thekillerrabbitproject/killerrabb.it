@@ -1,0 +1,28 @@
+.album {
+  margin: 0 0 0 10px;
+  nav {
+    color: #666666;
+    font-size: 16px;
+    margin: 15px 0;
+    a:link, a:visited {
+      color: #666666;
+      &.active {
+        color: #FFFFFF;
+      }
+    }
+  }
+  h1 {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin: 15px 0 0 0;
+    background: #33323a;
+    padding: 40px 20px;
+  }
+
+  @media screen and (max-width: 800px) {
+    h1 {
+      font-size: 20px;
+    }
+    margin: 10px;
+  }
+}
