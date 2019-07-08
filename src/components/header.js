@@ -13,8 +13,11 @@ const Header = ({ siteTitle }) => (
       </h1>
       <nav>
         <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><a href="https://tkrp.net">Store</a></li>
           <li><a href="https://instagram.com/persocon">My Instagram</a></li>
-          {/* <li><Link to="/contact">Contact</Link></li> */}
+          <li><a href="https://tkrp.net/contact">Contact</a></li>
+          <li><a href="https://www.tkrp.net/i-want-to-shoot/">I Want to Shoot</a></li>
         </ul>
       </nav>
   </header>
