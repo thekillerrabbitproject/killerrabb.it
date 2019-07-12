@@ -38,5 +38,12 @@ module.exports = {
         sitemapSize: 5000
       }
     },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://killerrabb.it`,
+        stripQueryString: true,
+      },
+    },
   ],
 }
