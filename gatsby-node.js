@@ -1,4 +1,5 @@
 const path = require(`path`)
+const mangoSlugfy = require(`@mangocorporation/mango-slugfy`)
 
 exports.createPages = async ({ actions, graphql }) => {
   try {
@@ -17,7 +18,7 @@ exports.createPages = async ({ actions, graphql }) => {
   
     data.api.albums.forEach(({ id, title }) => {
       actions.createPage({
-        path: id,
+        path: mangoSlugfy(title),
         component: path.resolve(`./src/templates/album.js`),
         context: {
           albumId: id,

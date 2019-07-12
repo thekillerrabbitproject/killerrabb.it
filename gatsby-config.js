@@ -32,5 +32,11 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        sitemapSize: 5000
+      }
+    },
   ],
 }

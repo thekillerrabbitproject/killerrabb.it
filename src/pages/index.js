@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
+import mangoSlugfy from '@mangocorporation/mango-slugfy'
 
 
 import Layout from "../components/layout"
@@ -10,11 +11,11 @@ const IndexPage = ({ data }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
       <article key={album.id}>
-        <Link to={`/${album.id}`}>
+        <Link to={`/${mangoSlugfy(album.title)}`}>
           <img className="photo" src={album.cover_photo_base_url} alt="" />
         </Link>
         <section>
-          <p><Link to={`/${album.id}`}>{album.title}</Link></p>
+          <p><Link to={`/${mangoSlugfy(album.title)}`}>{album.title}</Link></p>
         </section>
       </article>
     ));

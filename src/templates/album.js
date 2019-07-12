@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import mangoSlugfy from '@mangocorporation/mango-slugfy'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -26,7 +27,7 @@ const Album = ({ pageContext, data, location }) => {
     />
     <article className="album">
       <nav>
-        <Link to="/">Home</Link> / <Link className="active" to={`/${data.api.album[0].id}`}>{data.api.album[0].title}</Link>
+        <Link to="/">Home</Link> / <Link className="active" to={`/${mangoSlugfy(data.api.album[0].title)}`}>{data.api.album[0].title}</Link>
       </nav>
       <h1>{data.api.album[0].title}</h1>
       {getGallery()}
