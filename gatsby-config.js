@@ -26,7 +26,7 @@ module.exports = {
       resolve: `gatsby-source-graphql`,
       options: {
         fieldName: `api`,
-        url: TKRP_GRAPHQL_API,
+        url: process.env.TKRP_GRAPHQL_API,
         typeName: `persocon`,
       },
     },
