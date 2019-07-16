@@ -33,7 +33,6 @@ query API_AlbumQuery($albumId: String!) {
     album(id: $albumId) {
       id
       title
-      cover_photo_base_url
       photos {
         id
         description
