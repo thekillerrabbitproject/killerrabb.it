@@ -7,7 +7,10 @@
   "dependencies": {
     "@mangocorporation/mango-slugfy": "^1.0.2",
     "gatsby": "^2.10.4",
+<<<<<<< HEAD
     "gatsby-awesome-pagination": "^0.3.4",
+=======
+>>>>>>> Implement image download and use with responsive magic
     "gatsby-image": "^2.2.6",
     "gatsby-plugin-canonical-urls": "^2.1.2",
     "gatsby-plugin-manifest": "^2.2.0",
