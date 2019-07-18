@@ -2,6 +2,22 @@ const path = require(`path`)
 const mangoSlugfy = require(`@mangocorporation/mango-slugfy`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
+const paginationPath = (page, totalPages) => {
+  if (page === 0) {
+    return '/'; 
+  } else if (page < 0 || page >= totalPages) {
+    return ''
+  } else {
+    return `/${page + 1}`
+  }
+}
+exports.onCreatePage = async ({ page, actions }) => {
+  // just kill the page and replace with the one created later with limit and all
+  if (page.componentPath === `${__dirname}/src/pages/index.js`) {
+    actions.deletePage(page);
+  }
+};
+
 exports.createPages = async ({ actions, graphql }) => {
   try {
     const { data } = await graphql(`
@@ -29,8 +45,28 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     `)
-  
-    data.api.albums.forEach(({ id, title }) => {
+
+    const {albums} = data.api;
+
+    const posts = albums;
+    const postsPerPage = 3;
+    const numPages = Math.ceil(posts.length / postsPerPage);
+    Array.from({ length: numPages }).forEach((_, i) => {
+      actions.createPage({
+        path: paginationPath(i, numPages),
+        component: path.resolve("./src/templates/list.js"),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+          prevPath: paginationPath(i - 1, numPages),
+          nextPath: paginationPath(i + 1, numPages)
+        },
+      });
+    });
+
+    albums.forEach(({ id, title }) => {
       actions.createPage({
         path: mangoSlugfy(title),
         component: path.resolve(`./src/templates/album.js`),

@@ -18,7 +18,7 @@ type Photo {
 type Query {
   album(id: String): [Album]
   total_albums: TotalAlbum
-  albums(start: Int, total: Int, order: String): [Album]
+  albums(skip: Int, limit: Int, order: String): [Album]
 }
 
 type TotalAlbum {

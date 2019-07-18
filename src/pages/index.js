@@ -8,45 +8,11 @@ import Img from 'gatsby-image'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({ data }) => {
-  const getAlbums = () => {
-    return data.api.albums.map(album => (
-      <article key={album.id}>
-        <Link to={`/${mangoSlugfy(album.title)}`}>
-          <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" />
-        </Link>
-        <section>
-          <p><Link to={`/${mangoSlugfy(album.title)}`}>{album.title}</Link></p>
-        </section>
-      </article>
-    ));
-  };
-
+const IndexPage = () => {
   return (<Layout>
     <SEO title="Home" />
-    {getAlbums()}
+    <p>This page will be deleted on `gatsby-node.js`</p>
   </Layout>)
 }
-
-export const query = graphql`
-query API_ListQuery {
-  api {
-    albums(order: "DESC") {
-      id
-      title
-      cover_photo_base_url
-      order
-      cover_photo {
-        absolutePath
-        childImageSharp {
-          fluid(quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
-          }
-        }
-      }
-    }
-  }
-}`
-
 
 export default IndexPage

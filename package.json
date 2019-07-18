@@ -7,6 +7,7 @@
   "dependencies": {
     "@mangocorporation/mango-slugfy": "^1.0.2",
     "gatsby": "^2.10.4",
+    "gatsby-awesome-pagination": "^0.3.4",
     "gatsby-image": "^2.2.6",
     "gatsby-plugin-canonical-urls": "^2.1.2",
     "gatsby-plugin-manifest": "^2.2.0",
@@ -40,7 +41,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "prebuild": "rm -rf ./public/* && rm -rf .cache/*",
+    "prebuild": "gatsby clean*",
     "deploy": "rsync -r --delete-after --quiet -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP"
   },
   "browserslist": [
