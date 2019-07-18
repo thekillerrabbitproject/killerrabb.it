@@ -1,6 +1,6 @@
 .nav {
   display: grid;
-  grid-template-columns: [Prev] 50% [Next] 50%;
+  grid-template-columns: [Prev] 33% [Pages] 33% [Next] 33%;
   .nav--item__prev {
     grid-column: Prev;
   }
@@ -8,7 +8,12 @@
     grid-column: Next;
     text-align: right;
   }
-  a {
+  span {
+    grid-column: Pages;
+    text-align: center;
+    color: #FFF;
+  }
+  a, span {
     padding: 10px 0;
     @media screen and (max-width: 800px) {
       padding: 20px 10px;

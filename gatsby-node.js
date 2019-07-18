@@ -11,12 +11,6 @@ const paginationPath = (page, totalPages) => {
     return `/${page + 1}`
   }
 }
-exports.onCreatePage = async ({ page, actions }) => {
-  // just kill the page and replace with the one created later with limit and all
-  if (page.componentPath === `${__dirname}/src/pages/index.js`) {
-    actions.deletePage(page);
-  }
-};
 
 exports.createPages = async ({ actions, graphql }) => {
   try {

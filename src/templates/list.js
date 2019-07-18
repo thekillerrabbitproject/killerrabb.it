@@ -25,7 +25,7 @@ const IndexPage = ({ data, pageContext }) => {
   };
 
   const getPagination = () => {
-    const { prevPath, nextPath } = pageContext;
+    const { prevPath, nextPath, currentPage, numPages } = pageContext;
     return (
         <nav className="nav">
           {prevPath ? (
@@ -33,6 +33,7 @@ const IndexPage = ({ data, pageContext }) => {
               Previous
             </Link>
           ) : null}
+          <span>{currentPage} / {numPages}</span>
           {nextPath ? (
             <Link to={nextPath} className="nav--item__next">
               Next
