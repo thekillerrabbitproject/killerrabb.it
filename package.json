@@ -41,7 +41,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "prebuild": "gatsby clean*",
+    "prebuild": "gatsby clean",
     "deploy": "rsync -r --delete-after --quiet -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP"
   },
   "browserslist": [
