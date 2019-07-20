@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
 import mangoSlugfy from '@mangocorporation/mango-slugfy'
+import Img from 'gatsby-image'
 
 
 import Layout from "../components/layout"
@@ -12,7 +13,7 @@ const IndexPage = ({ data }) => {
     return data.api.albums.map(album => (
       <article key={album.id}>
         <Link to={`/${mangoSlugfy(album.title)}`}>
-          <img className="photo" src={album.cover_photo_base_url} alt="" />
+          <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" />
         </Link>
         <section>
           <p><Link to={`/${mangoSlugfy(album.title)}`}>{album.title}</Link></p>
@@ -20,29 +21,29 @@ const IndexPage = ({ data }) => {
       </article>
     ));
   };
-  const getMetaLinks = () => {
-    return data.api.albums.slice(0, 3).map((album) => (
-      {
-        rel: "preload",
-        href: album.cover_photo_base_url,
-        as: "image",
-      }
-    )).filter(i =>i);
-  };
+
   return (<Layout>
-    <SEO title="Home" metaLinks={getMetaLinks()} />
+    <SEO title="Home" />
     {getAlbums()}
   </Layout>)
 }
 
 export const query = graphql`
-query ListQuery {
+query API_ListQuery {
   api {
     albums(order: "DESC") {
       id
       title
       cover_photo_base_url
       order
+      cover_photo {
+        absolutePath
+        childImageSharp {
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp_noBase64
+          }
+        }
+      }
     }
   }
 }`

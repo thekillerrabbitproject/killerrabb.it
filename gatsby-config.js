@@ -19,15 +19,16 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-graphql`,
       options: {
+        typeName: `API`,
         fieldName: `api`,
         url: process.env.TKRP_GRAPHQL_API,
-        typeName: `persocon`,
+        createSchema: async () => {
+          const sdl = fs.readFileSync(`${__dirname}/schema.sdl`).toString()
+          return buildSchema(sdl)
+        },
       },
     },
     `gatsby-plugin-sass`,
@@ -46,5 +47,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-webpack-size`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'listQuery',
+        imagePath: 'api.albums.photos.base_url',
+        name: 'banana'
+      },
+    }
   ],
 }

@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import mangoSlugfy from '@mangocorporation/mango-slugfy'
+import Img from "gatsby-image"
+
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,21 +11,11 @@ import "../styles/album.scss";
 
 const Album = ({ pageContext, data, location }) => {
   const getGallery = () => {
-    return data.api.album[0].photos.map((photo) => (<img className="photo" key={photo.id} src={photo.base_url} alt="" />));
-  }
-  const getMetaLinks = () => {
-    return data.api.album[0].photos.slice(0, 3).map((photo) => (
-      {
-        rel: "preload",
-        href: photo.base_url,
-        as: "image",
-      }
-    )).filter(i =>i);
+    return data.api.album[0].photos.map((photo) => (<Img className="photo" key={photo.id} fluid={photo.imageFile.childImageSharp.fluid} alt="" />));
   }
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
-      metaLinks={getMetaLinks()}
     />
     <article className="album">
       <nav>
@@ -36,7 +28,7 @@ const Album = ({ pageContext, data, location }) => {
 }
 
 export const query = graphql`
-query AlbumQuery($albumId: String!) {
+query API_AlbumQuery($albumId: String!) {
   api {
     album(id: $albumId) {
       id
@@ -46,6 +38,14 @@ query AlbumQuery($albumId: String!) {
         id
         description
         base_url
+        imageFile {
+          absolutePath
+          childImageSharp {
+            fluid(quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
+            }
+          }
+        }
       }
     }
   }

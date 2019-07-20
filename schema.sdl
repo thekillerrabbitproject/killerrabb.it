@@ -1,0 +1,26 @@
+type Album {
+  id: String
+  title: String
+  cover_photo_base_url: String
+  media_items_count: Int
+  order: Int
+  photos: [Photo]
+}
+
+type Photo {
+  id: String
+  description: String
+  base_url: String
+  album_id: String
+  order: Int
+}
+
+type Query {
+  album(id: String): [Album]
+  total_albums: TotalAlbum
+  albums(start: Int, total: Int, order: String): [Album]
+}
+
+type TotalAlbum {
+  total: String
+}
