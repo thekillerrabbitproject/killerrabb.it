@@ -2,6 +2,8 @@
 
 ## Install deps
 
+export TKRP_GRAPHQL_API="your graphql server"
+
 `npm install`
 
 ## Develop
@@ -19,3 +21,11 @@ go to `http://localhost:8000`
 `npm run serve`
 
 go to `http://localhost:9000`
+
+## Deploy
+
+You need to have the credentials set
+
+`export SSH_TKRP="your ssh server"`
+
+`npm run deploy`

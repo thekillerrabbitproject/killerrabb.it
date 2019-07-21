@@ -41,7 +41,7 @@
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "prebuild": "gatsby clean",
-    "deploy": "rsync -r --delete-after --quiet -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP"
+    "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP"
   },
   "browserslist": [
     "last 1 version",
