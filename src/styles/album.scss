@@ -25,4 +25,21 @@
     }
     margin: 10px;
   }
+
+  article {
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    padding: 30px 20px;
+    background: #33323a;
+    a:link, a:visited {
+      color: rgb(250, 202, 207);
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 800px) {
+      margin: 0;
+      padding: 30px 10px;
+    }
+  }
 }

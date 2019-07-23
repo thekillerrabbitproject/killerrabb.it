@@ -5,6 +5,7 @@ type Album {
   media_items_count: Int
   order: Int
   photos: [Photo]
+  content: String
 }
 
 type Photo {

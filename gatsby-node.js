@@ -22,6 +22,7 @@ exports.createPages = async ({ actions, graphql }) => {
             title
             cover_photo_base_url
             order
+            content
             cover_photo {
               absolutePath
               childImageSharp {
