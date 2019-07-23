@@ -76,6 +76,12 @@ module.exports = {
         // Any invalid keyword or empty string defaults to `anonymous`
         crossOrigin: `use-credentials`,
       },
+    },
+    {
+      resolve: 'gatsby-plugin-zopfli',
+      options: {
+        extensions: ['css', 'html', 'js', 'svg']
+      }
     }
   ],
 }
