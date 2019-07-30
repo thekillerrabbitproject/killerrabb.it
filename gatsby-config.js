@@ -47,8 +47,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-webpack-size`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-remote-images`,
       options: {

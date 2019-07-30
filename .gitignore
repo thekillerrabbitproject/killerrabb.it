@@ -67,3 +67,5 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+.travis_deploy_key
+.travis_deploy_key.pub

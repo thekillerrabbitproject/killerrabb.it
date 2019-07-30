@@ -1,4 +1,4 @@
-# https://killerrabb.it
+# https://killerrabb.it [![Build Status](https://travis-ci.org/persocon/killerrabb.it.svg?branch=master)](https://travis-ci.org/persocon/killerrabb.it)
 
 ## Install deps
 
