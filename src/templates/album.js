@@ -45,6 +45,7 @@ query API_AlbumQuery($albumId: String!) {
       content
       cover_photo_base_url
       cover_photo {
+        ext
         absolutePath
         childImageSharp {
           fluid(quality: 100) {
@@ -57,6 +58,7 @@ query API_AlbumQuery($albumId: String!) {
         description
         base_url
         imageFile {
+          ext
           absolutePath
           childImageSharp {
             fluid(quality: 100) {

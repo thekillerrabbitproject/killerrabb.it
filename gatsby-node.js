@@ -17,13 +17,14 @@ exports.createPages = async ({ actions, graphql }) => {
     const { data } = await graphql(`
       query API_ListQuery {
         api {
-          albums(order: "DESC") {
+          albums(order: "ASC") {
             id
             title
             cover_photo_base_url
             order
             content
             cover_photo {
+              ext
               absolutePath
               childImageSharp {
                 fluid(quality: 100) {

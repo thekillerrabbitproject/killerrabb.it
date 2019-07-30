@@ -54,12 +54,13 @@ const IndexPage = ({ data, pageContext }) => {
 export const query = graphql`
 query API_ListQueryTMP($skip: Int!, $limit: Int!) {
   api {
-    albums(order: "DESC", skip: $skip, limit: $limit) {
+    albums(order: "ASC", skip: $skip, limit: $limit) {
       id
       title
       cover_photo_base_url
       order
       cover_photo {
+        ext
         absolutePath
         childImageSharp {
           fluid(quality: 100) {
