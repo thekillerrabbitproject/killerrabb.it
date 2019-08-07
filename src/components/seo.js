@@ -112,7 +112,7 @@ function SEO({ description, lang, meta, title, metaLinks }) {
       meta={[
         {
           name: `apple-mobile-web-app-capable`,
-          content: `true`,
+          content: `yes`,
         },
         {
           name: `apple-mobile-web-app-status-bar-style`,
