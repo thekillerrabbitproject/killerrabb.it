@@ -14,6 +14,7 @@ const Header = ({ siteTitle }) => (
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
+          <li><Link to="/presets">Lightroom Presets</Link></li>
           <li><a href="https://tkrp.net">Store</a></li>
           <li><a href="https://instagram.com/persocon">My Instagram</a></li>
           <li><a href="https://tkrp.net/contact">Contact</a></li>
