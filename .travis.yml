@@ -2,6 +2,8 @@
 language: node_js
 node_js:
   - 'node'
+bundler_args: --retry 3
+
 branches:
   only:
   - master
@@ -18,7 +20,7 @@ before_deploy:
 - ssh-add $TRAVIS_BUILD_DIR/.travis_deploy_key
 install:
 - npm install
-- npm run build
+- travis_retry npm run build
 deploy:
   provider: script
   skip_cleanup: true
