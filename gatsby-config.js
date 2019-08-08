@@ -87,6 +87,13 @@ module.exports = {
       options: {
         extensions: ['css', 'html', 'js', 'svg']
       }
-    }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `presets-images`,
+        path: `${__dirname}/src/images/presets`,
+      },
+    },
   ],
 }

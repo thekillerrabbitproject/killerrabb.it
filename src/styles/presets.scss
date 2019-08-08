@@ -1,5 +1,8 @@
 .presets {
   margin: 0 0 0 10px;
+  color: #FFFFFF;
+  padding: 30px 20px;
+  background: #33323a;
   h1 {
     color: #FFFFFF;
     font-size: 24px;
@@ -15,13 +18,14 @@
     margin: 10px;
   }
 
+  p {
+    margin: 10px 0;
+  }
+
   ul, aside {
-    color: #FFFFFF;
     font-size: 16px;
     line-height: 20px;
-    margin: 0;
-    padding: 30px 20px;
-    background: #33323a;
+    margin: 0 0 20px 0;
     li {
       list-style-type: disc;
       list-style-position: inside;
@@ -30,12 +34,10 @@
       color: rgb(250, 202, 207);
       text-decoration: underline;
     }
-    @media screen and (max-width: 800px) {
-      margin: 0;
-      padding: 30px 10px;
-    }
   }
-  aside ul {
-    padding: 10px 0;
+  aside {
+    font-size: 12px;
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
   }
 }
