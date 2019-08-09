@@ -1,0 +1,123 @@
+#___loader {
+  align-items: center;
+  background-color: #1b1c1e;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+#___loader img {
+  display: none;
+  width: 100%;
+}
+@media (max-device-width: 768px) {
+  #___loader img.fallback {
+    display: block;
+    width: 50%;
+  }
+}
+
+@media (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-iphone5 {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-iphone6 {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  #___loader img.loader-iphoneplus {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  #___loader img.loader-iphonex {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-iphonexr {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  #___loader img.loader-iphonexsmax {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-ipad {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-ipadpro1 {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-ipadpro3 {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}
+
+@media (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+  #___loader img.loader-ipadpro2 {
+    display: block;
+  }
+
+  #___loader img.fallback {
+    display: none;
+  }
+}

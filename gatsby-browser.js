@@ -4,4 +4,9 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-// You can delete this file if you're not using it
+// https://stackoverflow.com/questions/57188179/show-overlay-only-once-on-page-entrance-not-route-change-howto
+ exports.onInitialClientRender = () => {
+  setTimeout(function() {
+    document.getElementById("___loader").style.display = "none"
+  }, 500)
+}
