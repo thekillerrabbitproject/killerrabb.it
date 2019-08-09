@@ -1,7 +1,7 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import mangoSlugfy from '@mangocorporation/mango-slugfy'
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import Link from "gatsby-plugin-transition-link/AniLink"
 
 
 import ReactMarkdown from 'react-markdown'
@@ -26,7 +26,7 @@ const Album = ({ pageContext, data, location }) => {
     />
     <article className="album">
       <nav>
-        <Link to="/">Home</Link> / <Link className="active" to={`/${mangoSlugfy(data.api.album[0].title)}`}>{data.api.album[0].title}</Link>
+        <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link> / <span className="active">{data.api.album[0].title}</span>
       </nav>
       <h1>{data.api.album[0].title}</h1>
       {getCoverPhoto()}

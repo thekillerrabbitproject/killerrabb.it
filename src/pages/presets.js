@@ -30,7 +30,7 @@ const Presets = ({ data }) => (
 
 export const data = graphql`
 {
-  allFile(filter: {extension: {eq: "zip"}}, sort: {order: DESC, fields: birthTime}) {
+  allFile(filter: {extension: {eq: "zip"}}, sort: {order: DESC, fields: name}) {
     edges {
       node {
         publicURL

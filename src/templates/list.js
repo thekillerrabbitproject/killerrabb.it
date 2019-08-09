@@ -1,8 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import { graphql } from "gatsby"
 import mangoSlugfy from '@mangocorporation/mango-slugfy'
 import Img from 'gatsby-image'
+import Link from "gatsby-plugin-transition-link/AniLink";
 
 
 import Layout from "../components/layout"
@@ -14,7 +14,20 @@ const IndexPage = ({ data, pageContext }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
       <article key={album.id}>
-        <Link to={`/${mangoSlugfy(album.title)}`}>
+        <Link 
+          cover
+          direction="left"
+          bg={`
+            url(${album.cover_photo_base_url})
+            center / cover
+            no-repeat
+            fixed
+            padding-box
+            content-box
+            #1b1c1e
+          `}
+          to={`/${mangoSlugfy(album.title)}`}
+        >
           <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" />
         </Link>
         <section>
@@ -29,13 +42,13 @@ const IndexPage = ({ data, pageContext }) => {
     return (
         <nav className="nav">
           {prevPath ? (
-            <Link to={prevPath} className="nav--item__prev">
+            <Link cover direction="right" bg="#1b1c1e" to={prevPath} className="nav--item__prev">
               Previous
             </Link>
           ) : null}
           <span>{currentPage} / {numPages}</span>
           {nextPath ? (
-            <Link to={nextPath} className="nav--item__next">
+            <Link cover direction="left" bg="#1b1c1e" to={nextPath} className="nav--item__next">
               Next
             </Link>
           ) : null}

@@ -45,3 +45,27 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+
+.tl-wrapper--unmount {
+  /**
+  * this fixes an issue where the previous page on transition would still show
+  */
+  animation: 1s ease-out 0.2s normal fadeout;
+}
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    z-index: 0;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}

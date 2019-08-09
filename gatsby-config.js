@@ -95,5 +95,6 @@ module.exports = {
         path: `${__dirname}/src/images/presets`,
       },
     },
+    `gatsby-plugin-transition-link`,
   ],
 }
