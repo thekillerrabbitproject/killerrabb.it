@@ -6,7 +6,9 @@
 
 // https://stackoverflow.com/questions/57188179/show-overlay-only-once-on-page-entrance-not-route-change-howto
  exports.onInitialClientRender = () => {
-  setTimeout(function() {
-    document.getElementById("___loader").style.display = "none"
-  }, 500)
+  if (process.env.NODE_ENV === 'production') {
+    setTimeout(function() {
+      document.getElementById("___splashscreen").style.display = "none"
+    }, 500)
+  }
 }

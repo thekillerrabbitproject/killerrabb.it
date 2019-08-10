@@ -95,6 +95,13 @@ module.exports = {
         path: `${__dirname}/src/images/presets`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `splash-screen-images`,
+        path: `${__dirname}/src/images/splashscreen`,
+      },
+    },
     `gatsby-plugin-transition-link`,
   ],
 }

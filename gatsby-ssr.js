@@ -1,7 +1,10 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+const React = require('react')
+const {SplashScreen} = require('./src/components/splashscreen');
 
-// You can delete this file if you're not using it
+exports.onRenderBody = function({ setPreBodyComponents }) {
+  if (process.env.NODE_ENV === 'production') {
+    setPreBodyComponents([
+      React.createElement(SplashScreen),
+    ]);
+  }
+}

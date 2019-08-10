@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
 
 import iphone5_splash from './images/splashscreen/iphone5_splash.png';
 import iphone6_splash from './images/splashscreen/iphone6_splash.png';
@@ -24,35 +25,17 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
-        {/* styles.loader.css minified */}
-        <style>{`#___loader{align-items:center;background-color:#1b1c1e;display:flex;justify-content:center;position:absolute;left:0;top:0;right:0;bottom:0;z-index:100}#___loader img{display:none;width:100%}@media (max-device-width:768px){#___loader img.fallback{display:block;width:50%}}@media (device-width:320px) and (device-height:568px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-iphone5{display:block}#___loader img.fallback{display:none}}@media (device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-iphone6{display:block}#___loader img.fallback{display:none}}@media (device-width:621px) and (device-height:1104px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait){#___loader img.loader-iphoneplus{display:block}#___loader img.fallback{display:none}}@media (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait){#___loader img.loader-iphonex{display:block}#___loader img.fallback{display:none}}@media (device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-iphonexr{display:block}#___loader img.fallback{display:none}}@media (device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait){#___loader img.loader-iphonexsmax{display:block}#___loader img.fallback{display:none}}@media (device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-ipad{display:block}#___loader img.fallback{display:none}}@media (device-width:834px) and (device-height:1112px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-ipadpro1{display:block}#___loader img.fallback{display:none}}@media (device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-ipadpro3{display:block}#___loader img.fallback{display:none}}@media (device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___loader img.loader-ipadpro2{display:block}#___loader img.fallback{display:none}}`}
-        </style>
+        {/* styles splashscreen.scss minified */}
+        <style>{`#___splashscreen{align-items:center;background-color:#1b1c1e;display:flex;justify-content:center;position:absolute;left:0;top:0;right:0;bottom:0;z-index:100}#___splashscreen div{display:none!important;width:100%}@media (min-device-width:320px) and (max-device-width:768px){#___splashscreen .fallback{display:block!important}}@media (device-width:320px) and (device-height:568px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-iphone5{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-iphone6{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:621px) and (device-height:1104px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait){#___splashscreen .loader-iphoneplus{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait){#___splashscreen .loader-iphonex{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-iphonexr{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait){#___splashscreen .loader-iphonexsmax{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-ipad{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:834px) and (device-height:1112px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-ipadpro1{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-ipadpro3{display:block!important}#___splashscreen .fallback{display:none!important}}@media (device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait){#___splashscreen .loader-ipadpro2{display:block!important}#___splashscreen .fallback{display:none!important}}`}</style>
         <noscript>
           <style>{`
-            #___loader {
+            #___splashscreen {
               display: none;
             }
           `}</style>
         </noscript>
       </head>
       <body {...props.bodyAttributes}>
-      <div
-            key={`loader`}
-            id="___loader"
-        >
-          {/* TODO: refactor to use srcSet */}
-          <img src={icon} className="fallback" />
-          <img src={iphone5_splash} className="loader-iphone5" />
-          <img src={iphone6_splash} className="loader-iphone6" />
-          <img src={iphoneplus_splash} className="loader-iphoneplus" />
-          <img src={iphonex_splash} className="loader-iphonex" />
-          <img src={iphonexr_splash} className="loader-iphonexr" />
-          <img src={iphonexsmax_splash} className="loader-iphonexsmax" />
-          <img src={ipad_splash} className="loader-ipad" />
-          <img src={ipadpro1_splash} className="loader-ipadpro1" />
-          <img src={ipadpro3_splash} className="loader-ipadpro3" />
-          <img src={ipadpro2_splash} className="loader-ipadpro2" />
-        </div>
         {props.preBodyComponents}
         <noscript key="noscript" id="gatsby-noscript">
           This app works best with JavaScript enabled.
