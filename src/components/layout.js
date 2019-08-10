@@ -12,7 +12,7 @@ import "../styles/main.scss"
 
 import Header from "./header"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -26,13 +26,18 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <main>{children}</main>
+      <main className={className}>{children}</main>
     </>
   )
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+}
+
+Layout.defaultProps = {
+  className: '',
 }
 
 export default Layout

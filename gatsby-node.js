@@ -2,13 +2,13 @@ const path = require(`path`)
 const mangoSlugfy = require(`@mangocorporation/mango-slugfy`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
-const paginationPath = (page, totalPages) => {
+const paginationPath = (page, totalPages, prefix = `/`) => {
   if (page === 0) {
-    return '/'; 
+    return `${prefix}`; 
   } else if (page < 0 || page >= totalPages) {
     return ''
   } else {
-    return `/${page + 1}`
+    return `${prefix}${page + 1}`
   }
 }
 
@@ -47,6 +47,8 @@ exports.createPages = async ({ actions, graphql }) => {
     const posts = albums;
     const postsPerPage = 3;
     const numPages = Math.ceil(posts.length / postsPerPage);
+    const postsPerPageGrid = 9;
+    const numPagesGrid = Math.ceil(posts.length / postsPerPageGrid)
     Array.from({ length: numPages }).forEach((_, i) => {
       actions.createPage({
         path: paginationPath(i, numPages),
@@ -58,6 +60,21 @@ exports.createPages = async ({ actions, graphql }) => {
           currentPage: i + 1,
           prevPath: paginationPath(i - 1, numPages),
           nextPath: paginationPath(i + 1, numPages)
+        },
+      });
+    });
+
+    Array.from({ length: numPagesGrid }).forEach((_, i) => {
+      actions.createPage({
+        path: paginationPath(i, numPagesGrid, `/grid/`),
+        component: path.resolve("./src/templates/grid.js"),
+        context: {
+          limit: postsPerPageGrid,
+          skip: i * postsPerPageGrid,
+          numPages: numPagesGrid,
+          currentPage: i + 1,
+          prevPath: paginationPath(i - 1, numPagesGrid),
+          nextPath: paginationPath(i + 1, numPagesGrid)
         },
       });
     });

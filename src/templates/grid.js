@@ -11,7 +11,7 @@ import GridList from "../components/grid-list"
 
 import '../styles/nav.scss';
 
-const List = ({ data, pageContext }) => {
+const Grid = ({ data, pageContext }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
       <article key={album.id}>
@@ -29,7 +29,8 @@ const List = ({ data, pageContext }) => {
           `}
           to={`/${mangoSlugfy(album.title)}`}
         >
-          <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" />
+          <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" objectFit="cover"
+      objectPosition="50% 50%" />
         </Link>
         <section>
           <p><Link to={`/${mangoSlugfy(album.title)}`}>{album.title}</Link></p>
@@ -43,13 +44,13 @@ const List = ({ data, pageContext }) => {
     return (
         <nav className="nav">
           {prevPath ? (
-            <Link cover direction="right" bg="#1b1c1e" to={prevPath} className="nav--item__prev">
+            <Link cover direction="right" bg="#1b1c1e" to={`/grid/${prevPath}`} className="nav--item__prev">
               Previous
             </Link>
           ) : null}
           <span>{currentPage} / {numPages}</span>
           {nextPath ? (
-            <Link cover direction="left" bg="#1b1c1e" to={nextPath} className="nav--item__next">
+            <Link cover direction="left" bg="#1b1c1e" to={`/grid/${nextPath}`} className="nav--item__next">
               Next
             </Link>
           ) : null}
@@ -57,9 +58,9 @@ const List = ({ data, pageContext }) => {
     );
   };
 
-  return (<Layout>
+  return (<Layout className="grid">
     <SEO title="Home" />
-    <GridList active="list" />
+    <GridList active="grid" />
     {getPagination()}
     {getAlbums()}
     {getPagination()}
@@ -67,7 +68,7 @@ const List = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-query API_ListQueryTMP($skip: Int!, $limit: Int!) {
+query API_GridQueryTMP($skip: Int!, $limit: Int!) {
   api {
     albums(order: "ASC", skip: $skip, limit: $limit) {
       id
@@ -78,7 +79,7 @@ query API_ListQueryTMP($skip: Int!, $limit: Int!) {
         ext
         absolutePath
         childImageSharp {
-          fluid(quality: 100) {
+          fluid(quality: 100, cropFocus: ENTROPY, maxWidth: 330, maxHeight: 330, fit: COVER) {
             ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
@@ -88,4 +89,4 @@ query API_ListQueryTMP($skip: Int!, $limit: Int!) {
 }`
 
 
-export default List
+export default Grid

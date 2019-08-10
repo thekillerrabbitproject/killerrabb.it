@@ -1,6 +1,7 @@
 .nav {
   display: grid;
   grid-template-columns: [Prev] 33% [Pages] 33% [Next] 33%;
+  flex-basis: 100%;
   .nav--item__prev {
     grid-column: Prev;
   }
