@@ -79,7 +79,7 @@ query API_ListQueryTMP($skip: Int!, $limit: Int!) {
         absolutePath
         childImageSharp {
           fluid(quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

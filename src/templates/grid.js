@@ -32,9 +32,6 @@ const Grid = ({ data, pageContext }) => {
           <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" objectFit="cover"
       objectPosition="50% 50%" />
         </Link>
-        <section>
-          <p><Link to={`/${mangoSlugfy(album.title)}`}>{album.title}</Link></p>
-        </section>
       </article>
     ));
   };
@@ -80,7 +77,7 @@ query API_GridQueryTMP($skip: Int!, $limit: Int!) {
         absolutePath
         childImageSharp {
           fluid(quality: 100, cropFocus: ENTROPY, maxWidth: 330, maxHeight: 330, fit: COVER) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
