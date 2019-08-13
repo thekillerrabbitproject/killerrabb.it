@@ -85,6 +85,7 @@ exports.createPages = async ({ actions, graphql }) => {
         component: path.resolve(`./src/templates/album.js`),
         context: {
           albumId: id,
+          slugPath: mangoSlugfy(title),
         },
       })
     })

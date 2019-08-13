@@ -29,13 +29,27 @@ const Album = ({ pageContext, data, location }) => {
     }
     return <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link>
   }
+
+  const getShareButton = () => {
+    if (typeof navigator.share !== 'undefined') {
+      return <a href={`/${pageContext.slugPath}`} className="share" onClick={(e) => {
+        e.preventDefault();
+        navigator.share({
+          title: data.api.album[0].title,
+          text: data.api.album[0].title,
+          url: `/${pageContext.slugPath}`
+        }).catch(e => e); //silence catch
+      }}><Img fixed={data.shareIcon.childImageSharp.fixed} /></a>
+    }
+  }
+  console.log(pageContext)
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
     />
     <article className="album">
       <nav>
-        {getBackButton()} / <span className="active">{data.api.album[0].title}</span>
+        {getBackButton()} / <span className="active">{data.api.album[0].title}</span> {getShareButton()}
       </nav>
       <h1>{data.api.album[0].title}</h1>
       {getCoverPhoto()}
@@ -47,6 +61,13 @@ const Album = ({ pageContext, data, location }) => {
 
 export const query = graphql`
 query API_AlbumQuery($albumId: String!) {
+  shareIcon: file(relativePath: {eq: "share-icon.png"}) {
+    childImageSharp {
+      fixed(quality: 100, width: 20) {
+        ...GatsbyImageSharpFixed_withWebp
+      }
+    }
+  }
   api {
     album(id: $albumId) {
       id
