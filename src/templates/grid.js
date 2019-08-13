@@ -11,23 +11,14 @@ import GridList from "../components/grid-list"
 
 import '../styles/nav.scss';
 
-const Grid = ({ data, pageContext }) => {
+const Grid = ({ data, pageContext, location }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
       <article key={album.id}>
-        <Link 
-          cover
-          direction="left"
-          bg={`
-            url(${album.cover_photo_base_url})
-            center / cover
-            no-repeat
-            fixed
-            padding-box
-            content-box
-            #1b1c1e
-          `}
-          to={`/${mangoSlugfy(album.title)}`}
+        <Link cover direction="left" bg="#1b1c1e" to={`/${mangoSlugfy(album.title)}`}
+          state={{
+            prevPath: location.pathname,
+          }}
         >
           <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" objectFit="cover"
       objectPosition="50% 50%" />
@@ -41,13 +32,13 @@ const Grid = ({ data, pageContext }) => {
     return (
         <nav className="nav">
           {prevPath ? (
-            <Link cover direction="right" bg="#1b1c1e" to={`/grid/${prevPath}`} className="nav--item__prev">
+            <Link cover direction="right" bg="#1b1c1e" to={prevPath} className="nav--item__prev">
               Previous
             </Link>
           ) : null}
           <span>{currentPage} / {numPages}</span>
           {nextPath ? (
-            <Link cover direction="left" bg="#1b1c1e" to={`/grid/${nextPath}`} className="nav--item__next">
+            <Link cover direction="left" bg="#1b1c1e" to={nextPath} className="nav--item__next">
               Next
             </Link>
           ) : null}

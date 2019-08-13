@@ -73,8 +73,8 @@ exports.createPages = async ({ actions, graphql }) => {
           skip: i * postsPerPageGrid,
           numPages: numPagesGrid,
           currentPage: i + 1,
-          prevPath: paginationPath(i - 1, numPagesGrid),
-          nextPath: paginationPath(i + 1, numPagesGrid)
+          prevPath: paginationPath(i - 1, numPagesGrid, `/grid/`),
+          nextPath: paginationPath(i + 1, numPagesGrid, `/grid/`)
         },
       });
     });

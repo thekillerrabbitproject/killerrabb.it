@@ -11,23 +11,14 @@ import GridList from "../components/grid-list"
 
 import '../styles/nav.scss';
 
-const List = ({ data, pageContext }) => {
+const List = ({ data, pageContext, location }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
       <article key={album.id}>
-        <Link 
-          cover
-          direction="left"
-          bg={`
-            url(${album.cover_photo_base_url})
-            center / cover
-            no-repeat
-            fixed
-            padding-box
-            content-box
-            #1b1c1e
-          `}
-          to={`/${mangoSlugfy(album.title)}`}
+        <Link cover direction="left" bg="#1b1c1e" to={`/${mangoSlugfy(album.title)}`}
+        state={{
+          prevPath: location.pathname,
+        }}
         >
           <Img className="photo" fluid={album.cover_photo.childImageSharp.fluid} alt="" />
         </Link>

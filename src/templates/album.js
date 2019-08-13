@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Link from "gatsby-plugin-transition-link/AniLink"
+import { pathOr } from "ramda";
 
 
 import ReactMarkdown from 'react-markdown'
@@ -11,6 +12,7 @@ import SEO from "../components/seo"
 import "../styles/album.scss";
 
 const Album = ({ pageContext, data, location }) => {
+  const prevPath = pathOr(false, ['state', 'prevPath'], location);
   const getGallery = () => {
     return data.api.album[0].photos.map((photo) => (<Img className="photo" key={photo.id} fluid={photo.imageFile.childImageSharp.fluid} alt="" />));
   }
@@ -20,13 +22,20 @@ const Album = ({ pageContext, data, location }) => {
   const getContent = () => {
     return <article><ReactMarkdown source={data.api.album[0].content}/></article>
   }
+
+  const getBackButton = () => {
+    if (prevPath) {
+      return <Link cover direction="right" bg="#1b1c1e" to={prevPath}>Back</Link>
+    }
+    return <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link>
+  }
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
     />
     <article className="album">
       <nav>
-        <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link> / <span className="active">{data.api.album[0].title}</span>
+        {getBackButton()} / <span className="active">{data.api.album[0].title}</span>
       </nav>
       <h1>{data.api.album[0].title}</h1>
       {getCoverPhoto()}
