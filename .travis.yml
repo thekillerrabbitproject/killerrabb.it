@@ -8,17 +8,26 @@ bundler_args: --retry 3
 addons:
   ssh_known_hosts: $know_host
 
+
+# install
 before_install:
 - npm --version
-- npm i -g gatsby
+- npm i -g gatsby netlify-cli
+
+install:
+- npm install
+- travis_retry npm run build
+
+before_script:
+- netlify deploy -s $NETLIFY_SITE_ID -t $NETLIFY_ACCESS_TOKEN -p ./public
+
+
+# Deploy
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_fb7d1d12e848_key -iv $encrypted_fb7d1d12e848_iv -in .travis_deploy_key.enc -out .travis_deploy_key -d
 - eval "$(ssh-agent -s)"
 - chmod 600 $TRAVIS_BUILD_DIR/.travis_deploy_key
 - ssh-add $TRAVIS_BUILD_DIR/.travis_deploy_key
-install:
-- npm install
-- travis_retry npm run build
 deploy:
   provider: script
   skip_cleanup: true
