@@ -7,6 +7,7 @@ bundler_args: --retry 3
 
 addons:
   ssh_known_hosts: $know_host
+  chrome: stable
 
 
 # install
@@ -21,7 +22,7 @@ install:
 before_script:
 - netlify deploy --dir=./public --prod
 script:
-- npm run lh --perf=96 https://killerrabbit.netlify.com
+- npm run test:lighthouse
 
 
 # Deploy
