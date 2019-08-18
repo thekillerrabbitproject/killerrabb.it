@@ -32,6 +32,7 @@
     "react-markdown": "^4.1.0"
   },
   "devDependencies": {
+    "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
     "prettier": "^1.18.2"
   },
   "keywords": [
@@ -46,7 +47,8 @@
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "prebuild": "gatsby clean",
-    "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP"
+    "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP",
+    "lh": "lighthousebot"
   },
   "browserslist": [
     "last 1 version",

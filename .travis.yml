@@ -20,6 +20,8 @@ install:
 
 before_script:
 - netlify deploy --dir=./public --prod
+script:
+- npm run lh --perf=96 https://killerrabbit.netlify.com
 
 
 # Deploy
