@@ -19,7 +19,7 @@ install:
 - travis_retry npm run build
 
 before_script:
-- netlify deploy --dir=./public
+- netlify deploy --dir=./public --prod
 
 
 # Deploy
