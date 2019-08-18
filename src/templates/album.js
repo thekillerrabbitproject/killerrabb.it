@@ -45,9 +45,16 @@ const Album = ({ pageContext, data, location }) => {
       }
     }
   }
+  const getCard = () => {
+    return {
+      name: "twitter:image",
+      content: data.api.album[0].cover_photo_base_url,
+    }
+  }
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
+      meta={getCard()}
     />
     <article className="album">
       <nav>

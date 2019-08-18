@@ -48,8 +48,15 @@ const List = ({ data, pageContext, location }) => {
     );
   };
 
+  const getCard = () => {
+    return {
+      name: "twitter:image",
+      content: data.api.albums[0].cover_photo_base_url,
+    }
+  }
+
   return (<Layout>
-    <SEO title="Home" />
+    <SEO title="Home" meta={getCard()} />
     <GridList active="list" />
     {getPagination()}
     {getAlbums()}
