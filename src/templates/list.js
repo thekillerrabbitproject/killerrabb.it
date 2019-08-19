@@ -49,10 +49,10 @@ const List = ({ data, pageContext, location }) => {
   };
 
   const getCard = () => {
-    return {
+    return [{
       name: "twitter:image",
       content: data.api.albums[0].cover_photo_base_url,
-    }
+    }];
   }
 
   return (<Layout>
