@@ -11,6 +11,8 @@ import SEO from "../components/seo"
 
 import "../styles/album.scss";
 
+import {getCardImage} from '../utils';
+
 const Album = ({ pageContext, data, location }) => {
   const prevPath = pathOr(false, ['state', 'prevPath'], location);
   const getGallery = () => {
@@ -45,24 +47,11 @@ const Album = ({ pageContext, data, location }) => {
       }
     }
   }
-  const getCard = () => {
-    const albumCard = data.api.album[0].photos.slice(0, 5).map((photo, index) => ({
-      name: `twitter:image${index}`,
-      content: photo.base_url,
-    }));
-    return [
-      {
-        name: "twitter:image",
-        content: data.api.album[0].cover_photo_base_url,
-      },
-      ...albumCard,
-    ];
-  }
 
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
-      meta={getCard()}
+      meta={getCardImage(data.api.album[0].cover_photo_base_url)}
     />
     <article className="album">
       <nav>

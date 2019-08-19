@@ -11,6 +11,8 @@ import GridList from "../components/grid-list"
 
 import '../styles/nav.scss';
 
+import {getCardImage} from '../utils';
+
 const Grid = ({ data, pageContext, location }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
@@ -46,15 +48,8 @@ const Grid = ({ data, pageContext, location }) => {
     );
   };
 
-  const getCard = () => {
-    return {
-      name: "twitter:image",
-      content: data.api.albums[0].cover_photo_base_url,
-    }
-  }
-
   return (<Layout className="grid">
-    <SEO title="Home" meta={getCard()} />
+    <SEO title="Home Grid" meta={getCardImage(data.api.album[0].cover_photo_base_url)} />
     <GridList active="grid" />
     {getPagination()}
     {getAlbums()}
