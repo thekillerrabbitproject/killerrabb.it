@@ -49,7 +49,7 @@ const Grid = ({ data, pageContext, location }) => {
   };
 
   return (<Layout className="grid">
-    <SEO title="Home Grid" meta={getCardImage(data.api.album[0].cover_photo_base_url)} />
+    <SEO title="Home Grid" meta={getCardImage(data.api.albums[0].cover_photo_base_url)} />
     <GridList active="grid" />
     {getPagination()}
     {getAlbums()}

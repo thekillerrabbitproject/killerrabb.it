@@ -51,7 +51,7 @@ const List = ({ data, pageContext, location }) => {
   };
 
   return (<Layout>
-    <SEO title="Home" meta={getCardImage(data.api.album[0].cover_photo_base_url)} />
+    <SEO title="Home" meta={getCardImage(data.api.albums[0].cover_photo_base_url)} />
     <GridList active="list" />
     {getPagination()}
     {getAlbums()}
