@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import {pathOr} from 'ramda';
 import iphone5_splash from '../images/splashscreen/iphone5_splash.png';
 import iphone6_splash from '../images/splashscreen/iphone6_splash.png';
 import iphoneplus_splash from '../images/splashscreen/iphoneplus_splash.png';
@@ -35,7 +36,9 @@ function SEO({ description, lang, meta, title, metaLinks }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = pathOr(description, ['siteMetadata', 'description'], site);
+  const author = pathOr('', ['siteMetadata', 'author'], site);
+  const metaTitle = pathOr('', ['siteMetadata', 'title'], site);
 
   const getIphoneSplashScreen = () => {
     return [
@@ -108,7 +111,7 @@ function SEO({ description, lang, meta, title, metaLinks }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${metaTitle}`}
       meta={[
         {
           name: `apple-mobile-web-app-capable`,
@@ -140,7 +143,7 @@ function SEO({ description, lang, meta, title, metaLinks }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: author,
         },
         {
           name: `twitter:title`,

@@ -8,8 +8,7 @@ import Link from "gatsby-plugin-transition-link/AniLink";
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import GridList from "../components/grid-list"
-
-import '../styles/nav.scss';
+import Pagination from '../components/pagination';
 
 import {getCardImage} from '../utils';
 
@@ -31,31 +30,12 @@ const List = ({ data, pageContext, location }) => {
     ));
   };
 
-  const getPagination = () => {
-    const { prevPath, nextPath, currentPage, numPages } = pageContext;
-    return (
-        <nav className="nav">
-          {prevPath ? (
-            <Link cover direction="right" bg="#1b1c1e" to={prevPath} className="nav--item__prev">
-              Previous
-            </Link>
-          ) : null}
-          <span>{currentPage} / {numPages}</span>
-          {nextPath ? (
-            <Link cover direction="left" bg="#1b1c1e" to={nextPath} className="nav--item__next">
-              Next
-            </Link>
-          ) : null}
-        </nav>
-    );
-  };
-
   return (<Layout>
     <SEO title="Home" meta={getCardImage(data.api.albums[0].cover_photo_base_url)} />
     <GridList active="list" />
-    {getPagination()}
+    <Pagination {...pageContext} />
     {getAlbums()}
-    {getPagination()}
+    <Pagination {...pageContext} />
   </Layout>)
 }
 

@@ -4,7 +4,7 @@ const { buildSchema, buildClientSchema } = require("graphql")
 module.exports = {
   siteMetadata: {
     title: `The Killer-Rabbit Photography`,
-    description: `Pedro Costa Neves photography portfolio`,
+    description: `Pedro Costa Neves - Photography, Portfolio`,
     author: `@persocon`,
     siteUrl: 'https://killerrabb.it',
   },

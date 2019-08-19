@@ -8,6 +8,7 @@ import { pathOr } from "ramda";
 import ReactMarkdown from 'react-markdown'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ShareButton from '../components/share-button';
 
 import "../styles/album.scss";
 
@@ -32,21 +33,21 @@ const Album = ({ pageContext, data, location }) => {
     return <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link>
   }
 
-  const getShareButton = () => {
-    if (typeof window !== `undefined`) {
-      const share = pathOr(false, ['navigator', 'share'], window);
-      if (share) {
-        return <a href={`/${pageContext.slugPath}`} className="share" onClick={(e) => {
-          e.preventDefault();
-          navigator.share({
-            title: data.api.album[0].title,
-            text: data.api.album[0].title,
-            url: `/${pageContext.slugPath}`
-          }).catch(e => e); //silence catch
-        }}><Img fixed={data.shareIcon.childImageSharp.fixed} /></a>
-      }
-    }
-  }
+  // const getShareButton = () => {
+  //   if (typeof window !== `undefined`) {
+  //     const share = pathOr(false, ['navigator', 'share'], window);
+  //     if (share) {
+  //       return <a href={`/${pageContext.slugPath}`} className="share" onClick={(e) => {
+  //         e.preventDefault();
+  //         navigator.share({
+  //           title: data.api.album[0].title,
+  //           text: data.api.album[0].title,
+  //           url: `/${pageContext.slugPath}`
+  //         }).catch(e => e); //silence catch
+  //       }}><Img fixed={data.shareIcon.childImageSharp.fixed} /></a>
+  //     }
+  //   }
+  // }
 
   return (<Layout>
     <SEO
@@ -55,7 +56,7 @@ const Album = ({ pageContext, data, location }) => {
     />
     <article className="album">
       <nav>
-        {getBackButton()} / <span className="active">{data.api.album[0].title}</span> {getShareButton()}
+        {getBackButton()} / <span className="active">{data.api.album[0].title}</span> <ShareButton title={data.api.album[0].title} slugPath={pageContext.slugPath} />
       </nav>
       <h1>{data.api.album[0].title}</h1>
       {getCoverPhoto()}
