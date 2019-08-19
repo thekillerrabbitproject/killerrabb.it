@@ -36,7 +36,9 @@ const ShareButton = (props) => {
           }).catch(e => e); //silence catch
         }}>{getShareIcon()}</a>
       }
+      return null;
     }
+    return null;
   }
 
   return getButton();
