@@ -33,22 +33,6 @@ const Album = ({ pageContext, data, location }) => {
     return <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link>
   }
 
-  // const getShareButton = () => {
-  //   if (typeof window !== `undefined`) {
-  //     const share = pathOr(false, ['navigator', 'share'], window);
-  //     if (share) {
-  //       return <a href={`/${pageContext.slugPath}`} className="share" onClick={(e) => {
-  //         e.preventDefault();
-  //         navigator.share({
-  //           title: data.api.album[0].title,
-  //           text: data.api.album[0].title,
-  //           url: `/${pageContext.slugPath}`
-  //         }).catch(e => e); //silence catch
-  //       }}><Img fixed={data.shareIcon.childImageSharp.fixed} /></a>
-  //     }
-  //   }
-  // }
-
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
