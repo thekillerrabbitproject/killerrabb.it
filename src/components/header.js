@@ -31,7 +31,7 @@ const Header = ({ siteTitle }) => {
         <nav>
           <ul>
             <li><Link cover direction="right" bg="#1b1c1e" to="/">Home</Link></li>
-            <li><Link cover direction="right" bg="#1b1c1e" to="/newsletter">Newsletter</Link></li>
+            {/* <li><Link cover direction="right" bg="#1b1c1e" to="/newsletter">Newsletter</Link></li> */}
             <li><Link cover direction="right" bg="#1b1c1e" to="/presets">Lightroom Presets</Link></li>
             <li><a href="https://tkrp.net">Store</a></li>
             <li><a href="https://instagram.com/persocon">My Instagram</a></li>
