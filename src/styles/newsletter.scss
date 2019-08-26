@@ -29,7 +29,7 @@
     color: #33323a;
     padding: 10px 20px;
     @media screen and (max-width: 800px) {
-      width: 100%;
+      width: calc(100% - 10px - 30px);
     }
   }
 
