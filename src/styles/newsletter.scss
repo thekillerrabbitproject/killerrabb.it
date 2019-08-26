@@ -1,0 +1,43 @@
+.newsletter {
+  margin: 0 0 0 10px;
+  color: #FFFFFF;
+  background: #33323a;
+  h1 {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin: 15px 0 0 0;
+    background: #33323a;
+    padding: 20px 0px;
+  }
+
+  @media screen and (max-width: 800px) {
+    h1 {
+      font-size: 20px;
+    }
+    margin: 10px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  input[type="email"] {
+    width: 50%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #33323a;
+    padding: 10px 20px;
+    @media screen and (max-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  input[type="submit"] {
+    background: rgb(250, 202, 207);
+    border: none;
+    outline: none;
+    color: #33323a;
+    padding: 10px 20px;
+  }
+}
