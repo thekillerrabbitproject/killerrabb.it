@@ -14,6 +14,6 @@ parse_xml() {
     echo "Testing: $i"
     # or do whatever with individual element of the array
     URL="${i}" npm run test:lighthouse
-  done
+  done || exit 1
 }
 parse_xml https://killerrabb.it/sitemap.xml
