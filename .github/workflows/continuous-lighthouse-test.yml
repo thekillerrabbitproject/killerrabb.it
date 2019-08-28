@@ -1,8 +1,7 @@
 name: Continuous lighthouse test
 on: 
-  push:
-    branches:
-    - master
+  schedule:
+    - cron:  '0 * * * *'
 jobs:
   build:
     name: Setting up and run action
