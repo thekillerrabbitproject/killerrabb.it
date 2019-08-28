@@ -51,7 +51,7 @@
     "prebuild": "gatsby clean",
     "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP",
     "test:lighthouse": "jest --testPathPattern performance --verbose --runInBand",
-    "ci:lighthouse": "sh ./action/lighthouse-prod.sh"
+    "ci:lighthouse": "./action/./lighthouse-prod.sh"
   },
   "browserslist": [
     "last 1 version",
