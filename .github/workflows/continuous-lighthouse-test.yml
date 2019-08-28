@@ -10,6 +10,6 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
     name: Install deps
-      run: npm install
+      - run: npm install
     name: Run e2n
-      run: ./action/./lighthouse.sh
+      - run: ./action/./lighthouse.sh
