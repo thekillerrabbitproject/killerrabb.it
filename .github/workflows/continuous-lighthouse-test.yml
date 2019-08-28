@@ -9,5 +9,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
-    - run: npm install
-    - run: ./action/./lighthouse.sh
+    - run: |
+      npm install
+      ./action/./lighthouse.sh
