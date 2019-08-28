@@ -13,4 +13,4 @@ jobs:
     - name: Npm install
       run: npm install
     - name: Lighthouse test in prod
-      run: ./action/./lighthouse.sh
+      run: npm run ci:lighthouse
