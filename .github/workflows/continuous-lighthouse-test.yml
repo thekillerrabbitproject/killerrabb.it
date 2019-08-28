@@ -1,0 +1,13 @@
+name: Continuous lighthouse test
+on: 
+  schedule:
+    - cron:  '0 * * * *'
+jobs:
+  build:
+    name: Setting up and run action
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - run: ./action/./lighthouse.sh

@@ -2,7 +2,8 @@
 const {launchChromeAndRunLighthouse} = require('../utilities/helpers');
 
 // the url to be audited
-const url = 'https://killerrabbit.netlify.com';
+const url = process.env.URL || 'https://killerrabbit.netlify.com';
+console.log("testing", url);
 
 // lighthouse options and flags
 const opts = {
