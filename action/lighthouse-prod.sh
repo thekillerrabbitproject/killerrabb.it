@@ -11,7 +11,9 @@ parse_xml() {
   pages=(`grep -v -e ".xml$" <<< $urls`)
   for i in "${pages[@]}"
   do
+    echo "=================================================="
     echo "Testing: $i"
+    echo "=================================================="
     # or do whatever with individual element of the array
     URL="${i}" npm run test:lighthouse
   done || exit 1
