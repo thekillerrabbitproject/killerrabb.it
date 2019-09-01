@@ -14,7 +14,7 @@ const Newsletter = () => (
         Don't miss any new post <span role="img" aria-label="heart emoji">😍</span>
       </p>
       <div className="iframe-wrapper">
-        <iframe width="480" height="320" src="https://tkrp.substack.com/embed" frameborder="0" scrolling="no"></iframe>
+        <iframe width="480" height="320" title="newsletter" src="https://tkrp.substack.com/embed" frameborder="0" scrolling="no"></iframe>
       </div>
     </section>
   </Layout>

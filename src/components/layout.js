@@ -8,9 +8,16 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import {
+  initialState,
+  reducer,
+  StateProvider,
+} from '../utils';
+
 import "../styles/main.scss"
 
 import Header from "./header"
+import Main from "./main";
 
 const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
@@ -25,8 +32,10 @@ const Layout = ({ children, className }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <main className={className}>{children}</main>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <Main className={className}>{children}</Main>
+      </StateProvider>
     </>
   )
 }

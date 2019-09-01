@@ -59,4 +59,14 @@ main {
       }
     }
   }
+  transition: all 0.5s ease-in-out;
+  perspective: 100px;
+  &.menu-open {
+    transform: translate3d(50%, 0, 30px);
+    opacity: 0.2;
+  }
+  &.menu-closed {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
 }
