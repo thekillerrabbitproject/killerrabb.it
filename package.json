@@ -50,7 +50,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "prebuild": "gatsby clean",
     "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP",
-    "test:lighthouse": "jest --testPathPattern performance --verbose --runInBand",
+    "test:lighthouse": "jest --testPathPattern performance --verbose --runInBand --bail",
     "ci:lighthouse": "./action/./lighthouse-prod.sh"
   },
   "browserslist": [

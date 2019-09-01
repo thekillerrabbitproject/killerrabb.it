@@ -74,9 +74,9 @@ async function launchChromeAndRunLighthouse(url, opts, config) {
           return client.send('Network.emulateNetworkConditions',
             NETWORK[opts.connection]);
         })
-        .catch(err => console.error(err));
+        .catch(err => process.exit(1));
 
-      console.log(`CDP: network conditions set to WPT ${opts.connection} profile`);
+      // console.log(`CDP: network conditions set to WPT ${opts.connection} profile`);
     }
   });
 
@@ -86,7 +86,7 @@ async function launchChromeAndRunLighthouse(url, opts, config) {
   }).catch(err => {
     return browser.close().then(() => {
       throw err;
-    }, console.error);
+    }, process.exit(1));
   });
 }
 
