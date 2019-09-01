@@ -5,9 +5,14 @@ import SEO from "../components/seo"
 
 import '../styles/newsletter.scss';
 
+import HamburgerMenu from '../components/hamburger-menu';
+
 const Newsletter = () => (
   <Layout>
     <SEO title="Newsletter" />
+    <div className="navigation">
+      <HamburgerMenu />
+    </div>
     <section className="newsletter">
       <h1>Subscribe to my newletter</h1>
       <p>

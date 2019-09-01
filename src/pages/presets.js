@@ -7,9 +7,13 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
 import "../styles/presets.scss";
+import HamburgerMenu from "../components/hamburger-menu";
 const Presets = ({ data }) => (
   <Layout>
     <SEO title="Lightroom Presets" />
+    <div className="navigation">
+      <HamburgerMenu />
+    </div>
     <article className="presets">
       <h1>Lightroom Presets</h1>
       <p>Download:</p>
