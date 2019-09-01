@@ -6,6 +6,8 @@ import Img from 'gatsby-image';
 
 import '../styles/grid-list.scss';
 
+import HamburgerMenu from './hamburger-menu';
+
 const GridList = ({active}) => {
   const data = useStaticQuery(
     graphql`
@@ -29,6 +31,7 @@ const GridList = ({active}) => {
   )
   return (
     <aside className="grid-list">
+      <HamburgerMenu />
       <Link cover direction="right" bg="#1b1c1e" to="/" className={active === 'list' ? 'active list' : 'list'}>
         <Img fixed={data.listIcon.childImageSharp.fixed} />
       </Link>

@@ -12,6 +12,8 @@ import ShareButton from '../components/share-button';
 
 import "../styles/album.scss";
 
+import HamburgerMenu from '../components/hamburger-menu';
+
 import {getCardImage} from '../utils';
 
 const Album = ({ pageContext, data, location }) => {
@@ -39,6 +41,7 @@ const Album = ({ pageContext, data, location }) => {
       meta={getCardImage(data.api.album[0].cover_photo_base_url)}
     />
     <article className="album">
+      <HamburgerMenu />
       <nav>
         {getBackButton()} / <span className="active">{data.api.album[0].title}</span> <ShareButton title={data.api.album[0].title} slugPath={pageContext.slugPath} />
       </nav>

@@ -2,11 +2,17 @@ import React from 'react';
 import {useStateValue} from '../utils';
 import '../styles/hamburger-menu.scss';
 
-const HamburgerMenu = ({onClick}) => {
-  const [{ menu }] = useStateValue();
+const HamburgerMenu = () => {
+  const [{ menu }, dispatch] = useStateValue();
+  const toggleMenu = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'toggle-menu',
+    });
+  }
   return (
     <button
-        onClick={onClick}
+        onClick={toggleMenu}
         className={`menu-hamburger ${menu ? 'menu-open' : 'menu-closed'}`}
       >
         <span className="first"></span>

@@ -10,7 +10,7 @@ import '../styles/header.scss';
 import HamburgerMenu from './hamburger-menu';
 
 const Header = ({ siteTitle }) => {
-  const [{ menu }, dispatch] = useStateValue();
+  const [{ menu }] = useStateValue();
 
   const data = useStaticQuery(
     graphql`
@@ -25,16 +25,10 @@ const Header = ({ siteTitle }) => {
       }
     `
   )
-  const toggleMenu = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: 'toggle-menu',
-    });
-  }
   return (
     <>
-      <HamburgerMenu onClick={toggleMenu} />
       <header className={`${menu ? 'menu-open' : 'menu-closed'}`}>
+      <HamburgerMenu />
           <h1 style={{ margin: 0 }}>
             <Link cover direction="right" bg="#1b1c1e" to="/">
               <Img fixed={data.me.childImageSharp.fixed} alt={siteTitle}/>
