@@ -3,6 +3,9 @@ header {
   max-width: 150px;
   position: fixed;
   padding: 15px;
+  > .menu-hamburger {
+    margin: 10px;
+  }
   img {
     border-radius: 500px;
   }
