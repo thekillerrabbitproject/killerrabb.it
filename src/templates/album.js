@@ -35,6 +35,15 @@ const Album = ({ pageContext, data, location }) => {
     return <Link cover direction="right" bg="#1b1c1e" to="/">Home</Link>
   }
 
+  const getTags = () => {
+    const {tags} = data.api.album[0];
+    const tagsList =  tags.map((tag) => (
+      <li key={tag.keyname}><Link cover direction="left" bg="#1b1c1e" to={`/tag/${tag.keyname}`}>#{tag.name}</Link></li>
+    ))
+
+    return (<div className="tags"><p>Tags:</p><ul>{tagsList}</ul></div>);
+  }
+
   return (<Layout>
     <SEO
       title={data.api.album[0].title}
@@ -49,6 +58,7 @@ const Album = ({ pageContext, data, location }) => {
       {getCoverPhoto()}
       {getContent()}
       {getGallery()}
+      {getTags()}
     </article>
   </Layout>);
 }
@@ -67,6 +77,10 @@ query API_AlbumQuery($albumId: String!) {
       id
       title
       content
+      tags {
+        keyname
+        name
+      }
       cover_photo_base_url
       cover_photo {
         ext

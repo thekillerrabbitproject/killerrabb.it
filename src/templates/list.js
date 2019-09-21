@@ -32,7 +32,7 @@ const List = ({ data, pageContext, location }) => {
 
   return (<Layout>
     <SEO title="Home" meta={getCardImage(data.api.albums[0].cover_photo_base_url)} />
-    <GridList active="list" />
+    <GridList active="list" prefix={pageContext.prefix} />
     <Pagination {...pageContext} />
     {getAlbums()}
     <Pagination {...pageContext} />
@@ -40,9 +40,9 @@ const List = ({ data, pageContext, location }) => {
 }
 
 export const query = graphql`
-query API_ListQueryTMP($skip: Int!, $limit: Int!) {
+query API_ListQueryTMP($skip: Int!, $limit: Int!, $tag: String) {
   api {
-    albums(order: "ASC", skip: $skip, limit: $limit) {
+    albums(order: "ASC", skip: $skip, limit: $limit, tag: $tag) {
       id
       title
       cover_photo_base_url

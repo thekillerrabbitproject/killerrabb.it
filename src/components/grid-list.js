@@ -8,7 +8,7 @@ import '../styles/grid-list.scss';
 
 import HamburgerMenu from './hamburger-menu';
 
-const GridList = ({active}) => {
+const GridList = ({active, prefix}) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -32,10 +32,10 @@ const GridList = ({active}) => {
   return (
     <aside className="grid-list">
       <HamburgerMenu />
-      <Link cover direction="right" bg="#1b1c1e" to="/" className={active === 'list' ? 'active list' : 'list'}>
+      <Link cover direction="right" bg="#1b1c1e" to={`/${prefix}`} className={active === 'list' ? 'active list' : 'list'}>
         <Img fixed={data.listIcon.childImageSharp.fixed} />
       </Link>
-      <Link cover direction="right" bg="#1b1c1e" to="/grid" className={active === 'grid' ? 'active grid' : 'grid'}>
+      <Link cover direction="right" bg="#1b1c1e" to={`/${prefix}grid`} className={active === 'grid' ? 'active grid' : 'grid'}>
       <Img fixed={data.gridIcon.childImageSharp.fixed} />
       </Link>
     </aside>
@@ -44,10 +44,12 @@ const GridList = ({active}) => {
 
 GridList.propTypes = {
   active: PropTypes.string,
+  prefix: PropTypes.string,
 }
 
 GridList.defaultProps = {
-  active: 'list'
+  active: 'list',
+  prefix: '',
 }
 
 export default GridList

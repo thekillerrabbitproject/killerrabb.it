@@ -32,7 +32,7 @@ const Grid = ({ data, pageContext, location }) => {
 
   return (<Layout className="grid">
     <SEO title="Home Grid" meta={getCardImage(data.api.albums[0].cover_photo_base_url)} />
-    <GridList active="grid" />
+    <GridList active="grid" prefix={pageContext.prefix} />
     <Pagination {...pageContext} />
     {getAlbums()}
     <Pagination {...pageContext} />
@@ -40,9 +40,9 @@ const Grid = ({ data, pageContext, location }) => {
 }
 
 export const query = graphql`
-query API_GridQueryTMP($skip: Int!, $limit: Int!) {
+query API_GridQueryTMP($skip: Int!, $limit: Int!, $tag: String) {
   api {
-    albums(order: "ASC", skip: $skip, limit: $limit) {
+    albums(order: "ASC", skip: $skip, limit: $limit, tag: $tag) {
       id
       title
       cover_photo_base_url

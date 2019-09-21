@@ -23,6 +23,10 @@ exports.createPages = async ({ actions, graphql }) => {
             cover_photo_base_url
             order
             content
+            tags {
+              keyname
+              name
+            }
             cover_photo {
               ext
               absolutePath
@@ -38,11 +42,18 @@ exports.createPages = async ({ actions, graphql }) => {
               }
             }
           }
+          tags {
+            name
+            keyname
+            albums {
+              id
+            }
+          }
         }
       }
     `)
 
-    const {albums} = data.api;
+    const {albums, tags} = data.api;
 
     const posts = albums;
     const postsPerPage = 3;
@@ -59,7 +70,9 @@ exports.createPages = async ({ actions, graphql }) => {
           numPages,
           currentPage: i + 1,
           prevPath: paginationPath(i - 1, numPages),
-          nextPath: paginationPath(i + 1, numPages)
+          nextPath: paginationPath(i + 1, numPages),
+          tag: null,
+          prefix: ``,
         },
       });
     });
@@ -74,8 +87,49 @@ exports.createPages = async ({ actions, graphql }) => {
           numPages: numPagesGrid,
           currentPage: i + 1,
           prevPath: paginationPath(i - 1, numPagesGrid, `/grid/`),
-          nextPath: paginationPath(i + 1, numPagesGrid, `/grid/`)
+          nextPath: paginationPath(i + 1, numPagesGrid, `/grid/`),
+          tag: null,
+          prefix: ``,
         },
+      });
+    });
+
+    tags.map((tag) => {
+      const tagPostsPerPage = 3;
+      const numTagPages = Math.ceil(tag.albums.length / tagPostsPerPage);
+      Array.from({ length: numTagPages }).forEach((_, i) => {
+        actions.createPage({
+          path: paginationPath(i, numTagPages, `/tag/${tag.keyname}/`),
+          component: path.resolve("./src/templates/list.js"),
+          context: {
+            limit: tagPostsPerPage,
+            skip: i * tagPostsPerPage,
+            numPages: numTagPages,
+            currentPage: i + 1,
+            prevPath: paginationPath(i - 1, numTagPages, `/tag/${tag.keyname}/`),
+            nextPath: paginationPath(i + 1, numTagPages, `/tag/${tag.keyname}/`),
+            tag: tag.keyname,
+            prefix: `tag/${tag.keyname}/`,
+          },
+        });
+      });
+      const tagPostsPerPageGrid = 9;
+      const numTagPagesGrid = Math.ceil(tag.albums.length / tagPostsPerPageGrid);
+      Array.from({ length: numTagPagesGrid }).forEach((_, i) => {
+        actions.createPage({
+          path: paginationPath(i, numTagPagesGrid, `/tag/${tag.keyname}/grid/`),
+          component: path.resolve("./src/templates/grid.js"),
+          context: {
+            limit: tagPostsPerPageGrid,
+            skip: i * tagPostsPerPageGrid,
+            numPages: numTagPagesGrid,
+            currentPage: i + 1,
+            prevPath: paginationPath(i - 1, numTagPagesGrid, `/tag/${tag.keyname}/grid/`),
+            nextPath: paginationPath(i + 1, numTagPagesGrid, `/tag/${tag.keyname}/grid/`),
+            tag: tag.keyname,
+            prefix: `tag/${tag.keyname}/`,
+          },
+        });
       });
     });
 
@@ -88,7 +142,8 @@ exports.createPages = async ({ actions, graphql }) => {
           slugPath: mangoSlugfy(title),
         },
       })
-    })
+    });
+
   } catch (e) {
     console.log("ERROR", e)
   }

@@ -53,4 +53,22 @@
       padding: 30px 10px;
     }
   }
+  .tags {
+    @extend article;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 5px 0 0 0;
+    }
+    li {
+      a:link, a:visited {
+        color: rgb(250, 202, 207);
+        text-decoration: underline;
+      }
+      padding: 0 10px 0 0;
+    }
+  }
 }

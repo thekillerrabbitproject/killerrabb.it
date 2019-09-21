@@ -6,6 +6,7 @@ type Album {
   order: Int
   photos: [Photo]
   content: String
+  tags: [Tag]
 }
 
 type Photo {
@@ -16,10 +17,18 @@ type Photo {
   order: Int
 }
 
+type Tag {
+  tag_id: String
+  name: String
+  keyname: String
+  albums: [Album]
+}
+
 type Query {
   album(id: String): [Album]
   total_albums: TotalAlbum
-  albums(skip: Int, limit: Int, order: String): [Album]
+  albums(skip: Int, limit: Int, order: String, tag: String): [Album]
+  tags(skip: Int, limit: Int, order: String): [Tag]
 }
 
 type TotalAlbum {
