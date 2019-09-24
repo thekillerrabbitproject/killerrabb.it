@@ -21,7 +21,7 @@ import ipadpro1_splash from '../images/splashscreen/ipadpro1_splash.png';
 import ipadpro3_splash from '../images/splashscreen/ipadpro3_splash.png';
 import ipadpro2_splash from '../images/splashscreen/ipadpro2_splash.png';
 
-function SEO({ description, lang, meta, title, metaLinks }) {
+const SEO = ({ description, lang, meta, title, metaLinks }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -106,17 +106,23 @@ function SEO({ description, lang, meta, title, metaLinks }) {
   }
 
   const getGoSquared = () => {
-    return (process.env.NODE_ENV === 'production') ?
-     (<script>{`
-        !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
-        arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
-        d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
-        insertBefore(d,q)}(window,document,'script','_gs');
+    if (typeof window !== `undefined`) {
+      const search = pathOr(false, ['location', 'search'], window);
+      const urlParams = new URLSearchParams(search);
+      if(!urlParams.get('noGoSquared')) {
+        return (<script>{`
+            !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+            arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+            d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+            insertBefore(d,q)}(window,document,'script','_gs');
 
-        _gs('GSN-606701-F');
-        _gs('set', 'anonymizeIP', true);
-      `}</script>)
-    : null;
+            _gs('GSN-606701-F');
+            _gs('set', 'anonymizeIP', true);
+          `}</script>)
+      }
+      return null;
+    }
+    return null;
   }
 
   return (

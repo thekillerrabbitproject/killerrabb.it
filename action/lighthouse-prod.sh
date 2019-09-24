@@ -12,10 +12,10 @@ parse_xml() {
   for i in "${pages[@]}"
   do
     echo "=================================================="
-    echo "Testing: $i"
+    echo "Testing: $i?noGoSquared=true"
     echo "=================================================="
     # or do whatever with individual element of the array
-    URL="${i}" npm run test:lighthouse
+    URL="${i}?noGoSquared=true" npm run test:lighthouse
   done || exit 1
 }
 parse_xml https://killerrabb.it/sitemap.xml
