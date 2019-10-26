@@ -64,7 +64,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "test": "npm run lint",
     "prebuild": "gatsby clean",
     "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP",
     "test:lighthouse": "jest --testPathPattern performance --verbose --runInBand --bail",

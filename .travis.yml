@@ -17,6 +17,7 @@ before_install:
 
 install:
 - npm install
+- npm run test
 - travis_retry npm run build
 
 before_script:
