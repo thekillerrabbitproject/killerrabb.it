@@ -2,7 +2,5 @@
 
 module.exports = {
   testEnvironment: 'node',
-  testMatch: [
-    '**/tests/performance/**/*-test.js',
-  ],
+  testMatch: ['**/tests/performance/**/*-test.js'],
 };

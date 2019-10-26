@@ -1,5 +1,5 @@
-const fs = require("fs")
-const { buildSchema, buildClientSchema } = require("graphql")
+const fs = require('fs');
+const { buildSchema } = require('graphql');
 
 module.exports = {
   siteMetadata: {
@@ -33,8 +33,8 @@ module.exports = {
         fieldName: `api`,
         url: process.env.TKRP_GRAPHQL_API,
         createSchema: async () => {
-          const sdl = fs.readFileSync(`${__dirname}/schema.sdl`).toString()
-          return buildSchema(sdl)
+          const sdl = fs.readFileSync(`${__dirname}/schema.sdl`).toString();
+          return buildSchema(sdl);
         },
       },
     },
@@ -43,8 +43,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        sitemapSize: 5000
-      }
+        sitemapSize: 5000,
+      },
     },
     {
       resolve: `gatsby-plugin-canonical-urls`,
@@ -59,23 +59,23 @@ module.exports = {
       options: {
         nodeType: 'listQuery',
         imagePath: 'api.albums.photos.base_url',
-        name: 'banana'
+        name: 'banana',
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "The Killer-Rabbit Photography",
-        short_name: "TKRP",
-        start_url: "/",
+        name: 'The Killer-Rabbit Photography',
+        short_name: 'TKRP',
+        start_url: '/',
         description: `Pedro Costa Neves photo portfolio`,
         lang: `en`,
-        background_color: "#1b1c1e",
-        theme_color: "#1b1c1e",
+        background_color: '#1b1c1e',
+        theme_color: '#1b1c1e',
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
-        display: "standalone",
-        icon: "src/images/icon.png", // This path is relative to the root of the site.
+        display: 'standalone',
+        icon: 'src/images/icon.png', // This path is relative to the root of the site.
         // An optional attribute which provides support for CORS check.
         // If you do not provide a crossOrigin option, it will skip CORS for manifest.
         // Any invalid keyword or empty string defaults to `anonymous`
@@ -85,8 +85,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-zopfli',
       options: {
-        extensions: ['css', 'html', 'js', 'svg']
-      }
+        extensions: ['css', 'html', 'js', 'svg'],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -103,5 +103,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-transition-link`,
+    `gatsby-plugin-eslint`,
   ],
-}
+};

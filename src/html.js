@@ -1,18 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-
-import iphone5_splash from './images/splashscreen/iphone5_splash.png';
-import iphone6_splash from './images/splashscreen/iphone6_splash.png';
-import iphoneplus_splash from './images/splashscreen/iphoneplus_splash.png';
-import iphonex_splash from './images/splashscreen/iphonex_splash.png';
-import iphonexr_splash from './images/splashscreen/iphonexr_splash.png';
-import iphonexsmax_splash from './images/splashscreen/iphonexsmax_splash.png';
-import ipad_splash from './images/splashscreen/ipad_splash.png';
-import ipadpro1_splash from './images/splashscreen/ipadpro1_splash.png';
-import ipadpro3_splash from './images/splashscreen/ipadpro3_splash.png';
-import ipadpro2_splash from './images/splashscreen/ipadpro2_splash.png';
-import icon from './images/icon.png'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function HTML(props) {
   return (
@@ -48,7 +35,7 @@ export default function HTML(props) {
         {props.postBodyComponents}
       </body>
     </html>
-  )
+  );
 }
 
 HTML.propTypes = {
@@ -58,4 +45,4 @@ HTML.propTypes = {
   preBodyComponents: PropTypes.array,
   body: PropTypes.string,
   postBodyComponents: PropTypes.array,
-}
+};

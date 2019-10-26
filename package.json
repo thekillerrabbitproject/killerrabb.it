@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@mangocorporation/mango-slugfy": "^1.0.2",
+    "clinton": "^0.14.0",
     "gatsby": "^2.10.4",
     "gatsby-image": "^2.2.6",
     "gatsby-plugin-canonical-urls": "^2.1.2",
@@ -32,8 +33,24 @@
     "react-markdown": "^4.1.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.20.0",
+    "eslint-plugin-jsdoc": "^15.12.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-ramda": "^2.5.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-unicorn": "^12.1.0",
+    "gatsby-plugin-eslint": "^2.0.5",
     "jest": "^24.9.0",
     "lighthouse": "^5.2.0",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0"
   },
@@ -51,7 +68,8 @@
     "prebuild": "gatsby clean",
     "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP",
     "test:lighthouse": "jest --testPathPattern performance --verbose --runInBand --bail",
-    "ci:lighthouse": "./action/./lighthouse-prod.sh"
+    "ci:lighthouse": "./action/./lighthouse-prod.sh",
+    "lint": "eslint --ext .js --fix ./"
   },
   "browserslist": [
     "last 1 version",
@@ -64,5 +82,11 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
