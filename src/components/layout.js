@@ -8,14 +8,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
+import { Global } from '@emotion/core';
 import { initialState, reducer, StateProvider } from '../utils';
 
-import '../styles/main.scss';
+import { globalCss } from '../emotion/Global';
 
 import Header from './header';
 import Main from './main';
 
-const Layout = ({ children, className }) => {
+const Layout = ({ children, cssmod }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -25,12 +26,12 @@ const Layout = ({ children, className }) => {
       }
     }
   `);
-
   return (
     <>
       <StateProvider initialState={initialState} reducer={reducer}>
+        <Global styles={globalCss} />
         <Header siteTitle={data.site.siteMetadata.title} />
-        <Main className={className}>{children}</Main>
+        <Main cssmod={cssmod}>{children}</Main>
       </StateProvider>
     </>
   );
@@ -38,11 +39,11 @@ const Layout = ({ children, className }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
+  cssmod: PropTypes.object,
 };
 
 Layout.defaultProps = {
-  className: '',
+  cssmod: {},
 };
 
 export default Layout;

@@ -1,35 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-plugin-transition-link/AniLink';
+import Link from './Link';
 
-import '../styles/nav.scss';
+import * as ß from '../emotion/nav';
 
 const Pagination = props => {
   const { prevPath, nextPath, currentPage, numPages } = props;
   return (
-    <nav className="nav">
+    <nav css={ß.nav}>
       {prevPath ? (
-        <Link
-          cover
-          direction="right"
-          bg="#1b1c1e"
-          to={prevPath}
-          className="nav--item__prev"
-        >
+        <Link to={prevPath} css={ß.navItemPrev}>
           Previous
         </Link>
       ) : null}
-      <span>
+      <span css={ß.span}>
         {currentPage} / {numPages}
       </span>
       {nextPath ? (
-        <Link
-          cover
-          direction="left"
-          bg="#1b1c1e"
-          to={nextPath}
-          className="nav--item__next"
-        >
+        <Link direction="left" to={nextPath} css={ß.navItemNext}>
           Next
         </Link>
       ) : null}

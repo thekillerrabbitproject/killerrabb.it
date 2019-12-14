@@ -7,19 +7,19 @@ import GatsbyLink from 'gatsby-link';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-import '../styles/presets.scss';
 import HamburgerMenu from '../components/hamburger-menu';
+
+import * as ß from '../emotion/misc';
+
 const Presets = ({ data }) => (
   <Layout>
     <SEO title="Lightroom Presets" />
-    <div className="navigation">
-      <HamburgerMenu />
-    </div>
-    <article className="presets">
-      <h1>Lightroom Presets</h1>
-      <p>Download:</p>
+    <HamburgerMenu cssmod={ß.padBurger} />
+    <section css={ß.contentBlock}>
+      <h1 css={ß.h1}>Lightroom Presets</h1>
+      <p css={ß.subtitle}>Download:</p>
       {data.allFile.edges.length > 0 && (
-        <ul>
+        <ul css={ß.discUl}>
           {data.allFile.edges.map(item => (
             <li key={item.node.base}>
               <GatsbyLink to={item.node.publicURL}>
@@ -29,11 +29,11 @@ const Presets = ({ data }) => (
           ))}
         </ul>
       )}
-      <p>BW - High Contrast</p>
+      <p css={ß.subtitle}>BW - High Contrast</p>
       <Img fluid={data.bwHighContrast.childImageSharp.fluid} />
-      <p>BW - High Contrast + -70 Black</p>
+      <p css={ß.subtitle}>BW - High Contrast + -70 Black</p>
       <Img fluid={data.bw70Black.childImageSharp.fluid} />
-      <aside>
+      <aside css={ß.aside}>
         <p>FAQ:</p>
         <ul>
           <li>
@@ -43,7 +43,7 @@ const Presets = ({ data }) => (
           </li>
         </ul>
       </aside>
-    </article>
+    </section>
   </Layout>
 );
 
