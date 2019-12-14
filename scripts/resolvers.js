@@ -1,4 +1,4 @@
-const {createRemoteFileNode} = require(`gatsby-source-filesystem`);
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
 const photoResolvers = ({
   actions,
@@ -8,7 +8,7 @@ const photoResolvers = ({
   store,
   reporter,
 }) => {
-  const {createNode} = actions;
+  const { createNode } = actions;
   createResolvers({
     API_Photo: {
       imageFile: {
@@ -45,4 +45,4 @@ const photoResolvers = ({
 
 module.exports = {
   photoResolvers,
-}
+};

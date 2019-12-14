@@ -14,9 +14,7 @@ const {
   map,
   addIndex,
   pipe,
-  ifElse,
-  identity,
-  __,
+  when,
   isEmpty,
   prop,
   flatten,
@@ -27,13 +25,10 @@ const imap = addIndex(map);
 const pageRoot = page => page < 0;
 const pageEndWithTotal = curry((totalPages, page) => page >= totalPages);
 
-const ifEmptyPrefixUseSlash = ifElse(
-    isEmpty,
-    always(`/`),
-    identity,
-);
+const ifEmptyPrefixUseSlash = when(isEmpty, always(`/`));
 
 /**
+ * @description generates path prefix for paginated bullshit
  * @param  {String} pfx
  * @param  {Number} page
  * @param  {Number} totalPages
@@ -49,6 +44,7 @@ const paginationPathWithPrefix = curry((pfx, page, totalPages) => {
 });
 
 /**
+ * @description generates paginated page context
  * @param  {String} template
  * @param  {Number} postsPerPage
  * @param  {Object} posts
@@ -56,28 +52,34 @@ const paginationPathWithPrefix = curry((pfx, page, totalPages) => {
  * @param  {String} prefix
  * @param  {String} tag
  */
-const createPaginatedContext =
-    curry((template, postsPerPage, posts, paginationPath, prefix, tag) => {
-      const numPages = Math.ceil(divide(posts.length, postsPerPage));
-      return pipe(range(0), imap((_, i) => {
-                    return {
-                      path: paginationPath(i, numPages),
-                      component: template,
-                      context: {
-                        limit: postsPerPage,
-                        skip: multiply(i, postsPerPage),
-                        numPages,
-                        currentPage: inc(i),
-                        prevPath: paginationPath(dec(i), numPages),
-                        nextPath: paginationPath(inc(i), numPages),
-                        tag,
-                        prefix: prefix,
-                      },
-                    };
-                  }))(numPages);
-    });
+const createPaginatedContext = curry(
+  (template, postsPerPage, posts, paginationPath, prefix, tag) => {
+    const numPages = Math.ceil(divide(posts.length, postsPerPage));
+    return pipe(
+      range(0),
+      imap((_, i) => {
+        return {
+          path: paginationPath(i, numPages),
+          component: template,
+          context: {
+            limit: postsPerPage,
+            skip: multiply(i, postsPerPage),
+            numPages,
+            currentPage: inc(i),
+            prevPath: paginationPath(dec(i), numPages),
+            nextPath: paginationPath(inc(i), numPages),
+            tag,
+            prefix: prefix,
+          },
+        };
+      })
+    )(numPages);
+  }
+);
 
 /**
+ * @description map over page contexts and create pages with gatsby
+ * actions.createPage
  * @param  {Function} createPage
  * @param  {Object} posts
  */
@@ -86,53 +88,56 @@ const createPages = curry((createPage, posts) => map(createPage, posts));
 const getKeyname = prop('keyname');
 const getAlbums = prop('albums');
 
-const getSuffix = ifElse(
-    isEmpty,
-    always(`/`),
-    identity,
-);
-
 /**
+ * @description map over all tags and generate page context
  * @param  {Function} cPaginatedContext
  * @param  {Array} tags
  * @param  {String} sufix
  */
-const mapTagsToContext = curry(
-    (cPaginatedContext, tags, sufix) => pipe(
-        map(
-            (t) => cPaginatedContext(
-                getAlbums(t),
-                paginationPathWithPrefix(
-                    `/tag/${getKeyname(t)}${getSuffix(sufix)}`),
-                `tag/${getKeyname(t)}/`,
-                getKeyname(t),
-                ),
-            ),
-        flatten,
-        )(tags));
+const mapTagsToContext = curry((cPaginatedContext, tags, sufix) =>
+  pipe(
+    map(t =>
+      cPaginatedContext(
+        getAlbums(t),
+        paginationPathWithPrefix(
+          `/tag/${getKeyname(t)}${ifEmptyPrefixUseSlash(sufix)}`
+        ),
+        `tag/${getKeyname(t)}/`,
+        getKeyname(t)
+      )
+    ),
+    flatten
+  )(tags)
+);
 
 const getId = prop('id');
 const getTitleSlug = pipe(prop('title'), mangoSlugfy);
 
 /**
- * @param  {String} template
- * @param  {Object} x
+ * generate album context
+ *
+ * @param {String} template - Path for the template
+ * @param {Object} x - list of albums
+ * @example albumsContext(path.resolve(`./src/templates/album.js`), albums);
+ * @returns {Object} with albums page context
  */
 const albumsContext = (template, x) =>
-    map((y) => ({
-          path: getTitleSlug(y),
-          component: template,
-          context: {
-            albumId: getId(y),
-            slugPath: getTitleSlug(y),
-          },
-        }),
-        x);
+  map(
+    y => ({
+      path: getTitleSlug(y),
+      component: template,
+      context: {
+        albumId: getId(y),
+        slugPath: getTitleSlug(y),
+      },
+    }),
+    x
+  );
 
 module.exports = {
   paginationPathWithPrefix,
   createPaginatedContext,
   createPages,
   mapTagsToContext,
-  albumsContext
-}
+  albumsContext,
+};

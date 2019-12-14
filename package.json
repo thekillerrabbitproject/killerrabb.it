@@ -63,7 +63,6 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "npm run lint",
@@ -87,8 +86,8 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
+    "**/**/*.js?(x)": [
+      "npm run lint",
       "git add"
     ]
   }

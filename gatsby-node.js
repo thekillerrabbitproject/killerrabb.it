@@ -1,9 +1,7 @@
 const path = require(`path`);
-const mangoSlugfy = require(`@mangocorporation/mango-slugfy`);
 
-
-const {listQuery} = require('./scripts/queries');
-const {photoResolvers} = require('./scripts/resolvers');
+const { listQuery } = require('./scripts/queries');
+const { photoResolvers } = require('./scripts/resolvers');
 const {
   paginationPathWithPrefix,
   createPaginatedContext,
@@ -12,31 +10,49 @@ const {
   createPages,
 } = require('./scripts/context');
 
-exports.createPages = async ({actions, graphql}) => {
+exports.createPages = async ({ actions, graphql }) => {
   try {
-    const {data} = await graphql(`${listQuery}`);
+    const { data } = await graphql(`
+      ${listQuery}
+    `);
 
-    const {albums, tags} = data.api;
+    const { albums, tags } = data.api;
 
     const postsPaginationPath = paginationPathWithPrefix(``);
     const gridPostsPaginationPath = paginationPathWithPrefix(`/grid/`);
 
     const paginatedPosts = createPaginatedContext(
-        path.resolve('./src/templates/list.js'), 3, albums, postsPaginationPath,
-        ``, null);
+      path.resolve('./src/templates/list.js'),
+      3,
+      albums,
+      postsPaginationPath,
+      ``,
+      null
+    );
     const paginatedGridPosts = createPaginatedContext(
-        path.resolve('./src/templates/grid.js'), 9, albums,
-        gridPostsPaginationPath, ``, null);
+      path.resolve('./src/templates/grid.js'),
+      9,
+      albums,
+      gridPostsPaginationPath,
+      ``,
+      null
+    );
 
-    const paginatedTagPosts =
-        createPaginatedContext(path.resolve('./src/templates/list.js'), 3);
-    const paginatedTagGridPosts =
-        createPaginatedContext(path.resolve('./src/templates/grid.js'), 9);
+    const paginatedTagPosts = createPaginatedContext(
+      path.resolve('./src/templates/list.js'),
+      3
+    );
+    const paginatedTagGridPosts = createPaginatedContext(
+      path.resolve('./src/templates/grid.js'),
+      9
+    );
 
     const tagsList = mapTagsToContext(paginatedTagPosts, tags, ``);
     const tagsGrid = mapTagsToContext(paginatedTagGridPosts, tags, `/grid/`);
-    const albumsMagic =
-        albumsContext(path.resolve(`./src/templates/album.js`), albums);
+    const albumsMagic = albumsContext(
+      path.resolve(`./src/templates/album.js`),
+      albums
+    );
 
     const mapCreatePage = createPages(actions.createPage);
 
@@ -47,7 +63,6 @@ exports.createPages = async ({actions, graphql}) => {
       ...tagsGrid,
       ...albumsMagic,
     ]);
-
   } catch (e) {
     console.log('ERROR', e);
   }
