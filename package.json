@@ -70,7 +70,8 @@
     "deploy": "rsync -rvh --progress --delete-after -e \"ssh -o StrictHostKeyChecking=no\" ./public/ $SSH_TKRP",
     "test:lighthouse": "jest --testPathPattern performance --verbose --runInBand --bail",
     "ci:lighthouse": "./action/./lighthouse-prod.sh",
-    "lint": "eslint --ext .js --fix ./"
+    "lint": "eslint --ext .js --fix ./",
+    "hello:env": "cp example.env .env"
   },
   "browserslist": [
     "last 1 version",
