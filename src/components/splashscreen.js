@@ -2,6 +2,8 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
+import * as ß from '../emotion/splashscreen';
+
 const SplashScreen = () => {
   const data = useStaticQuery(
     graphql`
@@ -88,70 +90,70 @@ const SplashScreen = () => {
   );
 
   return (
-    <div key={`splashscreen`} id="___splashscreen">
+    <div key={`splashscreen`} css={ß.splashscreen} id="___splashscreen">
       <Img
         fixed={data.icon.childImageSharp.fixed}
-        className="fallback"
+        css={ß.fallback}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.iphone5.childImageSharp.fixed}
-        className="loader-iphone5"
+        css={ß.loaderIphone5}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.iphone6.childImageSharp.fixed}
-        className="loader-iphone6"
+        css={ß.loaderIphone6}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.iphoneplus.childImageSharp.fixed}
-        className="loader-iphoneplus"
+        css={ß.loaderIphonePlus}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.iphonex.childImageSharp.fixed}
-        className="loader-iphonex"
+        loader={ß.loaderIphoneX}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.iphonexr.childImageSharp.fixed}
-        className="loader-iphonexr"
+        css={ß.loaderIphoneXr}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.iphonexsmax.childImageSharp.fixed}
-        className="loader-iphonexsmax"
+        css={ß.loaderIphoneXsMax}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.ipad.childImageSharp.fixed}
-        className="loader-ipad"
+        css={ß.loaderIpad}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.ipadpro1.childImageSharp.fixed}
-        className="loader-ipadpro1"
+        css={ß.loaderIpadPro1}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.ipadpro3.childImageSharp.fixed}
-        className="loader-ipadpro3"
+        css={ß.loaderIpadPro3}
         critical
         imgStyle={{ opacity: 1 }}
       />
       <Img
         fixed={data.ipadpro2.childImageSharp.fixed}
-        className="loader-ipadpro2"
+        css={ß.loaderIpadPro2}
         critical
         imgStyle={{ opacity: 1 }}
       />

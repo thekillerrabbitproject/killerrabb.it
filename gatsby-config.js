@@ -38,7 +38,6 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-sass`,
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -106,5 +105,6 @@ module.exports = {
     },
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-eslint`,
+    `gatsby-plugin-emotion`,
   ],
 };

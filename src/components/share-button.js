@@ -6,6 +6,7 @@ import { pathOr } from 'ramda';
 const ShareButton = props => {
   const slugPath = pathOr(false, ['slugPath'], props);
   const title = pathOr(false, ['title'], props);
+  const css = pathOr({}, ['css'], props);
   const data = useStaticQuery(graphql`
     query QueryShareButton {
       shareIcon: file(relativePath: { eq: "share-icon.png" }) {
@@ -35,7 +36,7 @@ const ShareButton = props => {
         return (
           <a
             href={`/${slugPath}`}
-            className="share"
+            css={css}
             onClick={e => {
               e.preventDefault();
               navigator

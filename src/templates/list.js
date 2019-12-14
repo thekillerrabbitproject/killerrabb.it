@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import mangoSlugfy from '@mangocorporation/mango-slugfy';
 import Img from 'gatsby-image';
-import Link from 'gatsby-plugin-transition-link/AniLink';
+import Link from '../components/Link';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -11,14 +11,14 @@ import Pagination from '../components/pagination';
 
 import { getCardImage, defaultPropTypes } from '../utils';
 
+import * as ßµ from '../emotion/misc';
+
 const List = ({ data, pageContext, location }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
       <article key={album.id}>
         <Link
-          cover
           direction="left"
-          bg="#1b1c1e"
           to={`/${mangoSlugfy(album.title)}`}
           state={{
             prevPath: location.pathname,
@@ -30,7 +30,7 @@ const List = ({ data, pageContext, location }) => {
             alt=""
           />
         </Link>
-        <section>
+        <section css={ßµ.block}>
           <p>
             <Link to={`/${mangoSlugfy(album.title)}`}>{album.title}</Link>
           </p>

@@ -3,25 +3,23 @@ import React from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-import '../styles/newsletter.scss';
-
 import HamburgerMenu from '../components/hamburger-menu';
+
+import * as ß from '../emotion/misc';
 
 const Newsletter = () => (
   <Layout>
     <SEO title="Newsletter" />
-    <div className="navigation">
-      <HamburgerMenu />
-    </div>
-    <section className="newsletter">
-      <h1>Subscribe to my newletter</h1>
-      <p>
+    <HamburgerMenu cssmod={ß.padBurger} />
+    <section css={ß.contentBlock}>
+      <h1 css={ß.h1}>Subscribe to my newletter</h1>
+      <p css={ß.subtitle}>
         Don&apos;t miss any new post{' '}
         <span role="img" aria-label="heart emoji">
           😍
         </span>
       </p>
-      <div className="iframe-wrapper">
+      <div css={ß.iframeWrapper}>
         <iframe
           width="480"
           height="320"

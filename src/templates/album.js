@@ -2,19 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Link from 'gatsby-plugin-transition-link/AniLink';
 import { pathOr } from 'ramda';
 
 import ReactMarkdown from 'react-markdown';
+import Link from '../components/Link';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import ShareButton from '../components/share-button';
 
-import '../styles/album.scss';
+// import '../styles/album.scss';
 
 import HamburgerMenu from '../components/hamburger-menu';
 
 import { getCardImage } from '../utils';
+
+import * as ß from '../emotion/album';
 
 const Album = ({ pageContext, data, location }) => {
   const prevPath = pathOr(false, ['state', 'prevPath'], location);
@@ -38,7 +40,7 @@ const Album = ({ pageContext, data, location }) => {
   };
   const getContent = () => {
     return (
-      <article>
+      <article css={ß.article}>
         <ReactMarkdown source={data.api.album[0].content} />
       </article>
     );
@@ -46,33 +48,25 @@ const Album = ({ pageContext, data, location }) => {
 
   const getBackButton = () => {
     if (prevPath) {
-      return (
-        <Link cover direction="right" bg="#1b1c1e" to={prevPath}>
-          Back
-        </Link>
-      );
+      return <Link to={prevPath}>Back</Link>;
     }
-    return (
-      <Link cover direction="right" bg="#1b1c1e" to="/">
-        Home
-      </Link>
-    );
+    return <Link to="/">Home</Link>;
   };
 
   const getTags = () => {
     const { tags } = data.api.album[0];
     const tagsList = tags.map(tag => (
-      <li key={tag.keyname}>
-        <Link cover direction="left" bg="#1b1c1e" to={`/tag/${tag.keyname}`}>
+      <li key={tag.keyname} css={ß.tagLi}>
+        <Link direction="left" to={`/tag/${tag.keyname}`}>
           #{tag.name}
         </Link>
       </li>
     ));
 
     return (
-      <div className="tags">
+      <div css={ß.article}>
         <p>Tags:</p>
-        <ul>{tagsList}</ul>
+        <ul css={ß.tagUl}>{tagsList}</ul>
       </div>
     );
   };
@@ -83,22 +77,23 @@ const Album = ({ pageContext, data, location }) => {
         title={data.api.album[0].title}
         meta={getCardImage(data.api.album[0].cover_photo_base_url)}
       />
-      <article className="album">
+      <section css={ß.album}>
         <HamburgerMenu />
-        <nav>
+        <nav css={ß.nav}>
           {getBackButton()} /{' '}
           <span className="active">{data.api.album[0].title}</span>{' '}
           <ShareButton
             title={data.api.album[0].title}
             slugPath={pageContext.slugPath}
+            css={ß.share}
           />
         </nav>
-        <h1>{data.api.album[0].title}</h1>
+        <h1 css={ß.h1}>{data.api.album[0].title}</h1>
         {getCoverPhoto()}
         {getContent()}
         {getGallery()}
         {getTags()}
-      </article>
+      </section>
     </Layout>
   );
 };

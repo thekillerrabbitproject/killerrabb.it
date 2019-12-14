@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Link from 'gatsby-plugin-transition-link/AniLink';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { useStateValue } from '../utils';
+import Link from './Link';
 
-import '../styles/header.scss';
+import * as ß from '../emotion/header';
 
 import HamburgerMenu from './hamburger-menu';
 
@@ -27,40 +27,38 @@ const Header = ({ siteTitle }) => {
   );
   return (
     <>
-      <header className={`${menu ? 'menu-open' : 'menu-closed'}`}>
-        <HamburgerMenu />
-        <h1 style={{ margin: 0 }}>
-          <Link cover direction="right" bg="#1b1c1e" to="/">
-            <Img fixed={data.me.childImageSharp.fixed} alt={siteTitle} />
+      <header css={ß.header(menu)}>
+        <HamburgerMenu cssmod={ß.hamburgerMenu} />
+        <h1 css={ß.h1}>
+          <Link to="/">
+            <Img
+              fixed={data.me.childImageSharp.fixed}
+              alt={siteTitle}
+              css={ß.img}
+            />
           </Link>
         </h1>
-        <nav>
-          <ul>
-            <li>
-              <Link cover direction="right" bg="#1b1c1e" to="/">
-                Home
-              </Link>
+        <nav css={ß.nav}>
+          <ul css={ß.navUl}>
+            <li css={ß.navLi}>
+              <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link cover direction="right" bg="#1b1c1e" to="/newsletter">
-                Newsletter
-              </Link>
+            <li css={ß.navLi}>
+              <Link to="/newsletter">Newsletter</Link>
             </li>
-            <li>
-              <Link cover direction="right" bg="#1b1c1e" to="/presets">
-                Lightroom Presets
-              </Link>
+            <li css={ß.navLi}>
+              <Link to="/presets">Lightroom Presets</Link>
             </li>
-            <li>
+            <li css={ß.navLi}>
               <a href="https://tkrp.net">Store</a>
             </li>
-            <li>
+            <li css={ß.navLi}>
               <a href="https://instagram.com/persocon">My Instagram</a>
             </li>
-            <li>
+            <li css={ß.navLi}>
               <a href="https://tkrp.net/contact">Contact</a>
             </li>
-            <li>
+            <li css={ß.navLi}>
               <a href="https://www.tkrp.net/i-want-to-shoot/">
                 I Want to Shoot
               </a>

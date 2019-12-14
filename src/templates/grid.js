@@ -2,25 +2,23 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import mangoSlugfy from '@mangocorporation/mango-slugfy';
 import Img from 'gatsby-image';
-import Link from 'gatsby-plugin-transition-link/AniLink';
+import Link from '../components/Link';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import GridList from '../components/grid-list';
 import Pagination from '../components/pagination';
 
-import '../styles/nav.scss';
-
 import { getCardImage, defaultPropTypes } from '../utils';
+
+import * as ß from '../emotion/main';
 
 const Grid = ({ data, pageContext, location }) => {
   const getAlbums = () => {
     return data.api.albums.map(album => (
-      <article key={album.id}>
+      <article key={album.id} css={ß.gridArticle}>
         <Link
-          cover
           direction="left"
-          bg="#1b1c1e"
           to={`/${mangoSlugfy(album.title)}`}
           state={{
             prevPath: location.pathname,
@@ -39,7 +37,7 @@ const Grid = ({ data, pageContext, location }) => {
   };
 
   return (
-    <Layout className="grid">
+    <Layout cssmod={ß.grid}>
       <SEO
         title="Home Grid"
         meta={getCardImage(data.api.albums[0].cover_photo_base_url)}
