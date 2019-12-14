@@ -11,7 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Global } from '@emotion/core';
 import { initialState, reducer, StateProvider } from '../utils';
 
-import { globalCss } from '../emotion/Global';
+import { globalCss } from '../emotion/global';
 
 import Header from './header';
 import Main from './main';
