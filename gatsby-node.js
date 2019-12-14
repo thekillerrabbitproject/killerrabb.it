@@ -1,210 +1,56 @@
 const path = require(`path`);
 const mangoSlugfy = require(`@mangocorporation/mango-slugfy`);
-const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
-const paginationPath = (page, totalPages, prefix = `/`) => {
-  if (page === 0) {
-    return `${prefix}`;
-  } else if (page < 0 || page >= totalPages) {
-    return '';
-  } else {
-    return `${prefix}${page + 1}`;
-  }
-};
 
-exports.createPages = async ({ actions, graphql }) => {
+const {listQuery} = require('./scripts/queries');
+const {photoResolvers} = require('./scripts/resolvers');
+const {
+  paginationPathWithPrefix,
+  createPaginatedContext,
+  albumsContext,
+  mapTagsToContext,
+  createPages,
+} = require('./scripts/context');
+
+exports.createPages = async ({actions, graphql}) => {
   try {
-    const { data } = await graphql(`
-      query API_ListQuery {
-        api {
-          albums(order: "ASC") {
-            id
-            title
-            cover_photo_base_url
-            order
-            content
-            tags {
-              keyname
-              name
-            }
-            cover_photo {
-              ext
-              absolutePath
-              childImageSharp {
-                fluid(quality: 100) {
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
-                }
-              }
-            }
-          }
-          tags {
-            name
-            keyname
-            albums {
-              id
-            }
-          }
-        }
-      }
-    `);
+    const {data} = await graphql(`${listQuery}`);
 
-    const { albums, tags } = data.api;
+    const {albums, tags} = data.api;
 
-    const posts = albums;
-    const postsPerPage = 3;
-    const numPages = Math.ceil(posts.length / postsPerPage);
-    const postsPerPageGrid = 9;
-    const numPagesGrid = Math.ceil(posts.length / postsPerPageGrid);
-    Array.from({ length: numPages }).forEach((_, i) => {
-      actions.createPage({
-        path: paginationPath(i, numPages),
-        component: path.resolve('./src/templates/list.js'),
-        context: {
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          numPages,
-          currentPage: i + 1,
-          prevPath: paginationPath(i - 1, numPages),
-          nextPath: paginationPath(i + 1, numPages),
-          tag: null,
-          prefix: ``,
-        },
-      });
-    });
+    const postsPaginationPath = paginationPathWithPrefix(``);
+    const gridPostsPaginationPath = paginationPathWithPrefix(`/grid/`);
 
-    Array.from({ length: numPagesGrid }).forEach((_, i) => {
-      actions.createPage({
-        path: paginationPath(i, numPagesGrid, `/grid/`),
-        component: path.resolve('./src/templates/grid.js'),
-        context: {
-          limit: postsPerPageGrid,
-          skip: i * postsPerPageGrid,
-          numPages: numPagesGrid,
-          currentPage: i + 1,
-          prevPath: paginationPath(i - 1, numPagesGrid, `/grid/`),
-          nextPath: paginationPath(i + 1, numPagesGrid, `/grid/`),
-          tag: null,
-          prefix: ``,
-        },
-      });
-    });
+    const paginatedPosts = createPaginatedContext(
+        path.resolve('./src/templates/list.js'), 3, albums, postsPaginationPath,
+        ``, null);
+    const paginatedGridPosts = createPaginatedContext(
+        path.resolve('./src/templates/grid.js'), 9, albums,
+        gridPostsPaginationPath, ``, null);
 
-    tags.map(tag => {
-      const tagPostsPerPage = 3;
-      const numTagPages = Math.ceil(tag.albums.length / tagPostsPerPage);
-      Array.from({ length: numTagPages }).forEach((_, i) => {
-        actions.createPage({
-          path: paginationPath(i, numTagPages, `/tag/${tag.keyname}/`),
-          component: path.resolve('./src/templates/list.js'),
-          context: {
-            limit: tagPostsPerPage,
-            skip: i * tagPostsPerPage,
-            numPages: numTagPages,
-            currentPage: i + 1,
-            prevPath: paginationPath(
-              i - 1,
-              numTagPages,
-              `/tag/${tag.keyname}/`
-            ),
-            nextPath: paginationPath(
-              i + 1,
-              numTagPages,
-              `/tag/${tag.keyname}/`
-            ),
-            tag: tag.keyname,
-            prefix: `tag/${tag.keyname}/`,
-          },
-        });
-      });
-      const tagPostsPerPageGrid = 9;
-      const numTagPagesGrid = Math.ceil(
-        tag.albums.length / tagPostsPerPageGrid
-      );
-      Array.from({ length: numTagPagesGrid }).forEach((_, i) => {
-        actions.createPage({
-          path: paginationPath(i, numTagPagesGrid, `/tag/${tag.keyname}/grid/`),
-          component: path.resolve('./src/templates/grid.js'),
-          context: {
-            limit: tagPostsPerPageGrid,
-            skip: i * tagPostsPerPageGrid,
-            numPages: numTagPagesGrid,
-            currentPage: i + 1,
-            prevPath: paginationPath(
-              i - 1,
-              numTagPagesGrid,
-              `/tag/${tag.keyname}/grid/`
-            ),
-            nextPath: paginationPath(
-              i + 1,
-              numTagPagesGrid,
-              `/tag/${tag.keyname}/grid/`
-            ),
-            tag: tag.keyname,
-            prefix: `tag/${tag.keyname}/`,
-          },
-        });
-      });
-    });
+    const paginatedTagPosts =
+        createPaginatedContext(path.resolve('./src/templates/list.js'), 3);
+    const paginatedTagGridPosts =
+        createPaginatedContext(path.resolve('./src/templates/grid.js'), 9);
 
-    albums.forEach(({ id, title }) => {
-      actions.createPage({
-        path: mangoSlugfy(title),
-        component: path.resolve(`./src/templates/album.js`),
-        context: {
-          albumId: id,
-          slugPath: mangoSlugfy(title),
-        },
-      });
-    });
+    const tagsList = mapTagsToContext(paginatedTagPosts, tags, ``);
+    const tagsGrid = mapTagsToContext(paginatedTagGridPosts, tags, `/grid/`);
+    const albumsMagic =
+        albumsContext(path.resolve(`./src/templates/album.js`), albums);
+
+    const mapCreatePage = createPages(actions.createPage);
+
+    mapCreatePage([
+      ...paginatedPosts,
+      ...paginatedGridPosts,
+      ...tagsList,
+      ...tagsGrid,
+      ...albumsMagic,
+    ]);
+
   } catch (e) {
     console.log('ERROR', e);
   }
 };
 
-exports.createResolvers = ({
-  actions,
-  cache,
-  createNodeId,
-  createResolvers,
-  store,
-  reporter,
-}) => {
-  const { createNode } = actions;
-  createResolvers({
-    API_Photo: {
-      imageFile: {
-        type: `File`,
-        resolve(source) {
-          return createRemoteFileNode({
-            url: source.base_url,
-            store,
-            cache,
-            createNode,
-            createNodeId,
-            reporter,
-          });
-        },
-      },
-    },
-    API_Album: {
-      cover_photo: {
-        type: `File`,
-        resolve(source) {
-          return createRemoteFileNode({
-            url: source.cover_photo_base_url,
-            store,
-            cache,
-            createNode,
-            createNodeId,
-            reporter,
-          });
-        },
-      },
-    },
-  });
-};
+exports.createResolvers = photoResolvers;

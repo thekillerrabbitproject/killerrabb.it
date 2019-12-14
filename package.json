@@ -53,7 +53,8 @@
     "lighthouse": "^5.2.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "puppeteer": "^1.19.0"
+    "puppeteer": "^1.19.0",
+    "xtrace": "^0.3.0"
   },
   "keywords": [
     "gatsby"
