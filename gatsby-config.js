@@ -106,5 +106,16 @@ module.exports = {
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-eslint`,
     `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        // This type will contain remote schema Query type
+        typeName: `WPGraphQL`,
+        // This is field under which it's accessible
+        fieldName: `wpgraphql`,
+        // Url to query from
+        url: `https://www.tkrp.net/graphql`,
+      },
+    },
   ],
 };

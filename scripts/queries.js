@@ -1,5 +1,4 @@
 const listQuery = `
-query API_ListQuery {
   api {
     albums(order: "ASC") {
       id
@@ -34,8 +33,14 @@ query API_ListQuery {
       }
     }
   }
-}`;
+`;
+
+const mainQuery = `
+  query API_MainQuery {
+    ${listQuery}
+  }
+`;
 
 module.exports = {
-  listQuery,
+  mainQuery,
 };

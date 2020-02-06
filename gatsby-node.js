@@ -1,6 +1,7 @@
 const path = require(`path`);
+const { pathOr } = require(`ramda`);
 
-const { listQuery } = require('./scripts/queries');
+const { mainQuery } = require('./scripts/queries');
 const { photoResolvers } = require('./scripts/resolvers');
 const {
   paginationPathWithPrefix,
@@ -13,10 +14,11 @@ const {
 exports.createPages = async ({ actions, graphql }) => {
   try {
     const { data } = await graphql(`
-      ${listQuery}
+      ${mainQuery}
     `);
 
-    const { albums, tags } = data.api;
+    const albums = pathOr([], ['api', 'albums'], data);
+    const tags = pathOr([], ['api', 'tags'], data);
 
     const postsPaginationPath = paginationPathWithPrefix(``);
     const gridPostsPaginationPath = paginationPathWithPrefix(`/grid/`);

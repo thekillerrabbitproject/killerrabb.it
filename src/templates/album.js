@@ -75,7 +75,9 @@ const Album = ({ pageContext, data, location }) => {
     <Layout>
       <SEO
         title={data.api.album[0].title}
-        meta={getCardImage(data.api.album[0].cover_photo_base_url)}
+        meta={getCardImage(
+          data.api.album[0].cover_photo.childImageSharp.fluid.src
+        )}
       />
       <section css={ß.album}>
         <HamburgerMenu />

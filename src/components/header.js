@@ -50,7 +50,7 @@ const Header = ({ siteTitle }) => {
               <Link to="/presets">Lightroom Presets</Link>
             </li>
             <li css={ß.navLi}>
-              <a href="https://tkrp.net">Store</a>
+              <Link to="/products">Store</Link>
             </li>
             <li css={ß.navLi}>
               <a href="https://instagram.com/persocon">My Instagram</a>

@@ -40,7 +40,9 @@ const Grid = ({ data, pageContext, location }) => {
     <Layout cssmod={ß.grid}>
       <SEO
         title="Home Grid"
-        meta={getCardImage(data.api.albums[0].cover_photo_base_url)}
+        meta={getCardImage(
+          data.api.albums[0].cover_photo.childImageSharp.fluid.src
+        )}
       />
       <GridList active="grid" prefix={pageContext.prefix} />
       <Pagination {...pageContext} />
