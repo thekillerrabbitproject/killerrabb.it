@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GLink from 'gatsby-plugin-transition-link/AniLink';
+import { Link as GLink } from 'gatsby';
+// import GLink from 'gatsby-plugin-transition-link/AniLink';
 import { tertiary } from '../emotion/utils/color';
 
 const Link = ({ to, direction, children, ...rest }) => (
