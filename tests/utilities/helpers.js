@@ -64,7 +64,8 @@ lighthouse. Not ideal; would prefer adv throttle via comcast os level util
 async function launchChromeAndRunLighthouse(url, opts, config) {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--disable-gpu'],
+    defaultViewport: null,
+    args: ['--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
   });
 
   browser.on('targetchanged', async target => {
@@ -81,12 +82,11 @@ async function launchChromeAndRunLighthouse(url, opts, config) {
           );
         })
         .catch(err => {
-          throw err;
-          // eslint-disable-next-line unicorn/no-process-exit
-          process.exit(1);
+          return browser.close().then(() => {
+            return new Error(err);
+            // eslint-disable-next-line unicorn/no-process-exit
+          }, process.exit(1));
         });
-
-      // console.log(`CDP: network conditions set to WPT ${opts.connection} profile`);
     }
   });
 
