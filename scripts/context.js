@@ -19,9 +19,11 @@ const {
   prop,
   flatten,
   filter,
+  complement,
 } = require('ramda');
 
 const imap = addIndex(map);
+const notEmpty = complement(isEmpty);
 
 const pageRoot = page => page < 0;
 const pageEndWithTotal = curry((totalPages, page) => page >= totalPages);
@@ -45,10 +47,9 @@ const paginationPathWithPrefix = curry((pfx, page, totalPages) => {
 });
 
 const getNumPages = curry((postsLength, postsPerPage) => {
-  const preNumPages =
+  const numberPages =
     postsLength > 1 ? Math.floor(divide(postsLength, postsPerPage)) : 1;
-  // force mofo to be at least 1
-  return preNumPages > 1 ? preNumPages : 1;
+  return Math.max(numberPages, 1);
 });
 
 /**
@@ -63,29 +64,28 @@ const getNumPages = curry((postsLength, postsPerPage) => {
 const createPaginatedContext = curry(
   (template, postsPerPage, posts, paginationPath, prefix, tag) => {
     const { length: postsLength } = posts;
-    if (postsLength <= 0) {
-      return;
+    if (postsLength > 0) {
+      const numPages = getNumPages(postsLength, postsPerPage);
+      return pipe(
+        range(0),
+        imap((_, i) => {
+          return {
+            path: paginationPath(i, numPages),
+            component: template,
+            context: {
+              limit: postsPerPage,
+              skip: multiply(i, postsPerPage),
+              numPages,
+              currentPage: inc(i),
+              prevPath: paginationPath(dec(i), numPages),
+              nextPath: paginationPath(inc(i), numPages),
+              tag,
+              prefix: prefix,
+            },
+          };
+        })
+      )(numPages);
     }
-    const numPages = getNumPages(postsLength, postsPerPage);
-    return pipe(
-      range(0),
-      imap((_, i) => {
-        return {
-          path: paginationPath(i, numPages),
-          component: template,
-          context: {
-            limit: postsPerPage,
-            skip: multiply(i, postsPerPage),
-            numPages,
-            currentPage: inc(i),
-            prevPath: paginationPath(dec(i), numPages),
-            nextPath: paginationPath(inc(i), numPages),
-            tag,
-            prefix: prefix,
-          },
-        };
-      })
-    )(numPages);
   }
 );
 
@@ -108,7 +108,7 @@ const getAlbums = prop('albums');
  */
 const mapTagsToContext = curry((cPaginatedContext, tags, sufix) =>
   pipe(
-    filter(x => !isEmpty(getAlbums(x))),
+    filter(pipe(getAlbums, notEmpty)),
     map(t =>
       cPaginatedContext(
         getAlbums(t),
