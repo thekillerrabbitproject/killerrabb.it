@@ -18,6 +18,8 @@ const {
   isEmpty,
   prop,
   flatten,
+  identity,
+  filter,
 } = require('ramda');
 
 const imap = addIndex(map);
@@ -43,6 +45,13 @@ const paginationPathWithPrefix = curry((pfx, page, totalPages) => {
   ])(page);
 });
 
+const getNumPages = curry((postsLength, postsPerPage) => {
+  const preNumPages =
+    postsLength > 1 ? Math.floor(divide(postsLength, postsPerPage)) : 1;
+  // force mofo to be at least 1
+  return preNumPages > 1 ? preNumPages : 1;
+});
+
 /**
  * @description generates paginated page context
  * @param  {String} template
@@ -54,7 +63,11 @@ const paginationPathWithPrefix = curry((pfx, page, totalPages) => {
  */
 const createPaginatedContext = curry(
   (template, postsPerPage, posts, paginationPath, prefix, tag) => {
-    const numPages = Math.ceil(divide(posts.length, postsPerPage));
+    const { length: postsLength } = posts;
+    if (postsLength <= 0) {
+      return;
+    }
+    const numPages = getNumPages(postsLength, postsPerPage);
     return pipe(
       range(0),
       imap((_, i) => {
@@ -96,6 +109,7 @@ const getAlbums = prop('albums');
  */
 const mapTagsToContext = curry((cPaginatedContext, tags, sufix) =>
   pipe(
+    filter(x => !isEmpty(getAlbums(x))),
     map(t =>
       cPaginatedContext(
         getAlbums(t),
