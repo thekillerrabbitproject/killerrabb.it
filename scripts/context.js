@@ -48,7 +48,7 @@ const paginationPathWithPrefix = curry((pfx, page, totalPages) => {
 
 const getNumPages = curry((postsLength, postsPerPage) => {
   const numberPages =
-    postsLength > 1 ? Math.floor(divide(postsLength, postsPerPage)) : 1;
+    postsLength > 1 ? Math.ceil(divide(postsLength, postsPerPage)) : 1;
   return Math.max(numberPages, 1);
 });
 
@@ -106,6 +106,7 @@ const getAlbums = prop('albums');
  * @param  {Array} tags
  * @param  {String} sufix
  */
+
 const mapTagsToContext = curry((cPaginatedContext, tags, sufix) =>
   pipe(
     filter(pipe(getAlbums, notEmpty)),
