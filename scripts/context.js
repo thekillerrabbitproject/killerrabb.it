@@ -18,7 +18,6 @@ const {
   isEmpty,
   prop,
   flatten,
-  identity,
   filter,
 } = require('ramda');
 
