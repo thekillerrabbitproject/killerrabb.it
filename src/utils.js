@@ -2,6 +2,7 @@ import React, { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 export const getCardImage = imageUrl => {
+  if (!imageUrl) return {};
   return [
     {
       name: 'twitter:image',

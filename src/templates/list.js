@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import mangoSlugfy from '@mangocorporation/mango-slugfy';
 import Img from 'gatsby-image';
+import { pathOr } from 'ramda';
 import Link from '../components/Link';
 
 import Layout from '../components/layout';
@@ -43,7 +44,9 @@ const List = ({ data, pageContext, location }) => {
     <Layout>
       <SEO
         title="Home"
-        meta={getCardImage(data.api.albums[0].cover_photo_base_url)}
+        meta={getCardImage(
+          pathOr(false, ['api', 'albums', 0, 'cover_photo_base_url'], data)
+        )}
       />
       <GridList active="list" prefix={pageContext.prefix} />
       <Pagination {...pageContext} />
