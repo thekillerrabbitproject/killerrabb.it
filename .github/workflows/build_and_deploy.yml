@@ -18,5 +18,11 @@ jobs:
       - run: yarn
       # This triggers `gatsby build` script in "package.json"
       - run: yarn build --write-to-file --log-pages
-      - run: ls -lah
-      - run: pwd
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - run: ls -lah ./public
