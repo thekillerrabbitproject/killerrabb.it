@@ -18,3 +18,5 @@ jobs:
       - run: yarn
       # This triggers `gatsby build` script in "package.json"
       - run: yarn build --write-to-file --log-pages
+      - run: ls -lah
+      - run: pwd
