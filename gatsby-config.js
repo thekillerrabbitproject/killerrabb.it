@@ -1,33 +1,56 @@
 module.exports = {
   siteMetadata: {
-    title: "killerrabb.it",
+    title: 'Pedro Costa Neves - Photography Portfolio',
+    siteUrl: 'https://killerrabb.it',
   },
   plugins: [
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: 'gatsby-source-wordpress',
       options: {
-        url: "https://www.tkrp.net/graphql",
+        url: 'https://www.tkrp.net/graphql',
       },
     },
-    "gatsby-plugin-emotion",
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: `gatsby-plugin-alias-imports`,
       options: {
-        icon: "src/images/icon.png",
+        alias: {
+          '@components': 'src/components',
+          '@css': 'src/emotion',
+          '@root': '.',
+        },
+        extensions: ['js'],
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'The Killer-Rabbit Photography',
+        short_name: 'TKRP',
+        start_url: '/',
+        description: `Pedro Costa Neves photo portfolio`,
+        lang: `en`,
+        background_color: '#1b1c1e',
+        theme_color: '#1b1c1e',
+        display: 'standalone',
+        icon: 'src/images/icon.png',
+        crossOrigin: `use-credentials`,
+        cache_busting_mode: `none`,
       },
-      __key: "images",
     },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: './src/images/',
+      },
+      __key: 'images',
+    },
+    'gatsby-plugin-remove-serviceworker',
   ],
 };
