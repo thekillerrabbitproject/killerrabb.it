@@ -1,4 +1,8 @@
 name: Build and Deploy to Gatsby
+on:
+  push:
+    branches:
+    - master
 jobs:
   build:
     # 2. Using the latest Ubuntu image
