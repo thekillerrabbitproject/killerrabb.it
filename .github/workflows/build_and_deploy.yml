@@ -1,0 +1,16 @@
+name: Build and Deploy to Gatsby
+jobs:
+  build:
+    # 2. Using the latest Ubuntu image
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the current repository code
+      - uses: actions/checkout@v2
+      # 3. https://github.com/actions/setup-node#usage
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - run: yarn
+      # This triggers `gatsby build` script in "package.json"
+      - run: yarn build --write-to-file --log-pages
