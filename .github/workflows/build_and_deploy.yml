@@ -1,5 +1,8 @@
 name: Build and Deploy to Gatsby
 on:
+  schedule:
+    # run daily at midnight to get random home page hehe
+    - cron: '0 0 * * *'
   push:
     branches:
     - master
