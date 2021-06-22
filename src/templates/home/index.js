@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
 import Layout from '@components/Layout';
+import SEO from '@components/SEO';
 import { Masonry } from 'masonic';
 
 const MasonryCard = ({ data }) => (
@@ -26,6 +27,7 @@ const IndexPage = ({ pageContext }) => {
   const posts = pageContext?.posts ?? [];
   return posts.length > 0 ? (
     <Layout>
+      <SEO />
       <main>
         <Masonry
           items={posts}

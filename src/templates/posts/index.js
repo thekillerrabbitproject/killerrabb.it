@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
-
+import SEO from '@components/SEO';
 import Layout from '@components/Layout';
 
 import * as ß from '@css/post';
@@ -16,6 +16,7 @@ const PostPage = ({ data }) => {
   }));
   return (
     <Layout>
+      <SEO title={post.title} />
       <article>
         <div css={ß.headline}>
           <h1>{post.title}</h1>
