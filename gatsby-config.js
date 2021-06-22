@@ -26,6 +26,12 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
+      resolve: `gatsby-plugin-zopfli`,
+      options: {
+        extensions: ['css', 'js', 'svg', 'jpg', 'jpeg', 'webp'],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'The Killer-Rabbit Photography',

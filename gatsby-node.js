@@ -40,6 +40,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   gatsbyImageData(
                     formats: [AUTO, WEBP]
                     layout: FULL_WIDTH
+                    placeholder: BLURRED
                     quality: 100
                   )
                 }
@@ -55,6 +56,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   gatsbyImageData(
                     formats: [AUTO, WEBP]
                     layout: FULL_WIDTH
+                    placeholder: BLURRED
                     quality: 100
                   )
                 }

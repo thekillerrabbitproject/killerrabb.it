@@ -10,11 +10,7 @@ import { Masonry } from 'masonic';
 const MasonryCard = ({ data }) => (
   <article key={data.id} id={data.id}>
     <Link to={data.slug}>
-      <GatsbyImage
-        image={getImage(data.gallery.localFile)}
-        alt={data.title}
-        loading="eager"
-      />
+      <GatsbyImage image={getImage(data.gallery.localFile)} alt={data.title} />
     </Link>
   </article>
 );

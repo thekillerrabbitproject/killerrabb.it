@@ -7,6 +7,9 @@ const SEO = ({ title }) => {
     <Helmet
       titleTemplate="%s | The Killer-Rabbit Photography"
       defaultTitle="The Killer-Rabbit Photography"
+      htmlAttributes={{
+        lang: 'en',
+      }}
     >
       <title>{title}</title>
       <meta

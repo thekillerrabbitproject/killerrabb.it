@@ -52,6 +52,7 @@ export const data = graphql`
               gatsbyImageData(
                 formats: [AUTO, WEBP]
                 layout: FULL_WIDTH
+                placeholder: BLURRED
                 quality: 100
               )
             }
@@ -67,6 +68,7 @@ export const data = graphql`
               gatsbyImageData(
                 formats: [AUTO, WEBP]
                 layout: FULL_WIDTH
+                placeholder: BLURRED
                 quality: 100
               )
             }
