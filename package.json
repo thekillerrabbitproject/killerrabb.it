@@ -46,5 +46,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.23.2",
     "prettier": "^2.2.1"
+  },
+  "resolutions": {
+    "postcss": ">=8.2.12"
   }
 }
