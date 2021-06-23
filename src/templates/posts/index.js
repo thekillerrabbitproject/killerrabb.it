@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 import SEO from '@components/SEO';
 import Layout from '@components/Layout';
@@ -10,27 +10,30 @@ import * as ß from '@css/post';
 const PostPage = ({ data }) => {
   const post = data?.wpPost ?? {};
   const featuredImage = getImage(post.featuredImage.node.localFile);
+  const cardImage = getSrc(post.featuredImage.node.localFile);
   const galleryImages = post.media.gallery.map((image) => ({
     id: image.id,
     url: getImage(image.localFile),
   }));
   return (
-    <Layout>
-      <SEO title={post.title} />
-      <article>
-        <div css={ß.headline}>
-          <h1>{post.title}</h1>
-          <GatsbyImage image={featuredImage} alt={post.title} />
-        </div>
-        <article
-          css={ß.article}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-        {galleryImages.map((image) => (
-          <GatsbyImage key={image.id} alt={post.title} image={image.url} />
-        ))}
-      </article>
-    </Layout>
+    <>
+      <SEO title={post.title} cardImage={cardImage} />
+      <Layout>
+        <article>
+          <div css={ß.headline}>
+            <h1>{post.title}</h1>
+            <GatsbyImage image={featuredImage} alt={post.title} />
+          </div>
+          <article
+            css={ß.article}
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+          {galleryImages.map((image) => (
+            <GatsbyImage key={image.id} alt={post.title} image={image.url} />
+          ))}
+        </article>
+      </Layout>
+    </>
   );
 };
 

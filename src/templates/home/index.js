@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
@@ -22,16 +22,18 @@ MasonryCard.propTypes = {
 const IndexPage = ({ pageContext }) => {
   const posts = pageContext?.posts ?? [];
   return posts.length > 0 ? (
-    <Layout>
-      <SEO />
-      <main>
-        <Masonry
-          items={posts}
-          render={MasonryCard}
-          style={{ maxWidth: 'calc(100vw - var(--doubleFakeBorder))' }}
-        />
-      </main>
-    </Layout>
+    <>
+      <SEO cardImage={getSrc(posts[0].gallery.localFile)} />
+      <Layout>
+        <main>
+          <Masonry
+            items={posts}
+            render={MasonryCard}
+            style={{ maxWidth: 'calc(100vw - var(--doubleFakeBorder))' }}
+          />
+        </main>
+      </Layout>
+    </>
   ) : (
     <></>
   );
