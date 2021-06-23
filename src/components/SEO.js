@@ -32,7 +32,10 @@ const SEO = ({ title, cardImage }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@persocon" />
       <meta name="twitter:creator" content="@persocon" />
-      <meta name="twitter:title" content={title} />
+      <meta
+        name="twitter:title"
+        content={title ?? 'The Killer-Rabbit Photography'}
+      />
       <meta name="twitter:image" content={`${siteUrl}${cardImage}`} />
     </Helmet>
   );
