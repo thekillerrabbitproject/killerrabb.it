@@ -4,6 +4,7 @@ import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 import SEO from '@components/SEO';
 import Layout from '@components/Layout';
+import Share from '@components/Share';
 
 import * as ß from '@css/post';
 
@@ -24,10 +25,15 @@ const PostPage = ({ data }) => {
             <h1>{post.title}</h1>
             <GatsbyImage image={featuredImage} alt={post.title} />
           </div>
-          <article
-            css={ß.article}
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <section css={ß.section}>
+            <aside>
+              <Share />
+            </aside>
+            <article
+              css={ß.article}
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          </section>
           {galleryImages.map((image) => (
             <GatsbyImage key={image.id} alt={post.title} image={image.url} />
           ))}

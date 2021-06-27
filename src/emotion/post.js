@@ -20,3 +20,15 @@ export const headline = css`
     font-size: clamp(var(--minFontSize), var(--scaler), var(--maxFontSize));
   }
 `;
+
+export const section = css`
+  display: grid;
+  grid-template-columns: [article] auto [share] calc(24px + var(--fakeBorder));
+  aside {
+    grid-area: share;
+    padding: var(--fakeBorder) calc(var(--fakeBorder) / 2);
+  }
+  article {
+    grid-area: article;
+  }
+`;

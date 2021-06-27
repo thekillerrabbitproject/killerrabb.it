@@ -18,3 +18,7 @@ export const floatingTitle = css`
   left: 0;
   top: 2px;
 `;
+
+export const share = css`
+  filter: invert(100%);
+`;
