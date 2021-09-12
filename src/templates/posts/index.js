@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import PropTypes from 'prop-types';
 import SEO from '@components/SEO';
 import Layout from '@components/Layout';
 import Share from '@components/Share';
+import { getWebp } from '../../utils';
 
 import * as ß from '@css/post';
 
@@ -13,7 +14,7 @@ import * as ß from '@css/post';
 const PostPage = ({ data }) => {
   const post = data?.wpPost ?? {};
   const featuredImage = getImage(post.featuredImage.node.localFile);
-  const cardImage = getSrc(post.featuredImage.node.localFile);
+  const cardImage = getWebp(post.featuredImage.node.localFile);
   const cardImageUrl = `${cardImage}&text=${post.title}`;
   const galleryImages = post.media.gallery.map((image) => ({
     id: image.id,

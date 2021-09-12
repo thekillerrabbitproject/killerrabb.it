@@ -7,6 +7,8 @@ import Layout from '@components/Layout';
 import SEO from '@components/SEO';
 import { Masonry } from 'masonic';
 
+import { getWebp } from '../../utils';
+
 const MasonryCard = ({ data }) => (
   <article key={data.id} id={data.id}>
     <Link to={data.slug}>
@@ -21,9 +23,14 @@ MasonryCard.propTypes = {
 
 const IndexPage = ({ pageContext }) => {
   const posts = pageContext?.posts ?? [];
+  const cardImageUrl = `${getWebp(
+    posts[0].gallery.localFile
+  )}&text=The Killer-Rabbit Photography`;
+
+  // console.log(getWebp(posts[0].gallery.localFile));
   return posts.length > 0 ? (
     <>
-      <SEO cardImage={getSrc(posts[0].gallery.localFile)} />
+      <SEO cardImage={cardImageUrl} />
       <Layout>
         <main>
           <Masonry
