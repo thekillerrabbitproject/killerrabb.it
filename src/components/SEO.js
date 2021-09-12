@@ -29,6 +29,10 @@ const SEO = ({ title, cardImage }) => {
         name="description"
         content="Analog photography made by Pedro Costa Neves"
       />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+      ></meta>
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@persocon" />
       <meta name="twitter:creator" content="@persocon" />
@@ -40,7 +44,10 @@ const SEO = ({ title, cardImage }) => {
         name="og:title"
         content={title ?? 'The Killer-Rabbit Photography'}
       />
-      <meta name="twitter:image" content={`${siteUrl}${cardImage}`} />
+      <meta
+        name="twitter:image"
+        content={`https://tkrp.net/share/index.php?image=${siteUrl}${cardImage}`}
+      />
       <meta name="og:image" content={`${siteUrl}${cardImage}`} />
     </Helmet>
   );

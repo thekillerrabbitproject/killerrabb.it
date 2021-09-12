@@ -8,17 +8,21 @@ import Share from '@components/Share';
 
 import * as ß from '@css/post';
 
+// https://tkrp.net/share/index.php?image=&text=duas%20palavra
+
 const PostPage = ({ data }) => {
   const post = data?.wpPost ?? {};
   const featuredImage = getImage(post.featuredImage.node.localFile);
   const cardImage = getSrc(post.featuredImage.node.localFile);
+  const cardImageUrl = `${cardImage}&text=${post.title}`;
   const galleryImages = post.media.gallery.map((image) => ({
     id: image.id,
     url: getImage(image.localFile),
   }));
+
   return (
     <>
-      <SEO title={post.title} cardImage={cardImage} />
+      <SEO title={post.title} cardImage={cardImageUrl} />
       <Layout>
         <article>
           <div css={ß.headline}>
