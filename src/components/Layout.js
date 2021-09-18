@@ -4,15 +4,27 @@ import { Global } from '@emotion/react';
 import { globalCss } from '@css/global';
 import Header from '@components/Header';
 
-import { fakeBorder, normalContent } from '@css/misc';
+import {
+  normalContent,
+  borderWrapper,
+  borderTop,
+  borderBottom,
+  borderLeft,
+  borderRight,
+} from '@css/misc';
 
 const Layout = ({ children }) => {
   return (
     <>
       <Global styles={globalCss} />
-      <div css={fakeBorder}>
-        <Header />
+      <div css={borderWrapper}>
+        <div css={borderTop}>
+          <Header />
+        </div>
+        <div css={borderLeft} />
         <div css={normalContent}>{children}</div>
+        <div css={borderRight} />
+        <div css={borderBottom} />
       </div>
     </>
   );
