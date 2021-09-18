@@ -29,8 +29,7 @@ const verticalBorder = css`
 export const borderTop = css`
   ${border};
   ${horizontalBorder};
-  top: calc(var(--fakeBorder) * -1);
-  height: calc(var(--fakeBorder) * 2);
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;

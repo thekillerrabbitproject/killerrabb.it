@@ -41,7 +41,7 @@ module.exports = {
         lang: `en`,
         background_color: '#1b1c1e',
         theme_color: '#1b1c1e',
-        display: 'standalone',
+        display: 'fullscreen',
         icon: 'src/images/icon.png',
         crossOrigin: `use-credentials`,
         cache_busting_mode: `none`,
