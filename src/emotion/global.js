@@ -145,11 +145,15 @@ export const globalCss = css`
     border-spacing: 0;
   }
 
+  html {
+    background-color: var(---secondary);
+  }
+
   body {
     color: var(--primary);
     font-size: 16px;
     margin: 0;
-    background: var(--tertiary);
+    background: var(--secondary);
     font-family: Arial, Helvetica, sans-serif;
     a {
       opacity: 1;
