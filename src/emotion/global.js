@@ -146,14 +146,14 @@ export const globalCss = css`
   }
 
   html {
-    background-color: var(---secondary);
+    background-color: var(--tertiary);
   }
 
   body {
     color: var(--primary);
     font-size: 16px;
     margin: 0;
-    background: var(--secondary);
+    background: var(--tertiary);
     font-family: Arial, Helvetica, sans-serif;
     a {
       opacity: 1;
