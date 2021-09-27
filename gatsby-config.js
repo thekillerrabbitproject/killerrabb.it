@@ -47,6 +47,7 @@ module.exports = {
         cache_busting_mode: `none`,
       },
     },
+    'gatsby-plugin-transition-link',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {

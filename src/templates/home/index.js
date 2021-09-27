@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image';
-import { Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import Link from 'gatsby-plugin-transition-link/AniLink';
+
 import PropTypes from 'prop-types';
 
 import Layout from '@components/Layout';
@@ -9,9 +10,11 @@ import { Masonry } from 'masonic';
 
 import { getWebp } from '../../utils';
 
+import { tertiary } from '@css/utils/color';
+
 const MasonryCard = ({ data }) => (
   <article key={data.id} id={data.id}>
-    <Link to={data.slug}>
+    <Link to={data.slug} cover bg={tertiary}>
       <GatsbyImage image={getImage(data.gallery.localFile)} alt={data.title} />
     </Link>
   </article>
