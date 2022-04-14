@@ -48,7 +48,9 @@ module.exports = {
       },
     },
     'gatsby-plugin-transition-link',
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+    },
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
