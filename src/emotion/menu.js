@@ -44,7 +44,16 @@ export const dialog = css`
   ul {
     margin: 20px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    h3 {
+      color: ${highlight};
+      font-weight: 700;
+    }
+    li {
+      padding: 4px 0;
+    }
     li a {
       display: flex;
       align-self: center;

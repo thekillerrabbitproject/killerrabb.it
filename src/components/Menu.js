@@ -18,6 +18,9 @@ const Menu = () => {
         </div>
         <ul>
           <li>
+            <h3>MENU</h3>
+          </li>
+          <li>
             <Instagram />
           </li>
         </ul>
