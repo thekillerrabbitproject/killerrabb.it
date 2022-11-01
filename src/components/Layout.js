@@ -13,6 +13,8 @@ import {
   borderRight,
 } from '@css/misc';
 
+import Menu from './Menu';
+
 const Layout = ({ children }) => {
   return (
     <>
@@ -25,6 +27,7 @@ const Layout = ({ children }) => {
         <div css={normalContent}>{children}</div>
         <div css={borderRight} />
         <div css={borderBottom} />
+        <Menu />
       </div>
     </>
   );

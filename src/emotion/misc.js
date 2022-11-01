@@ -104,3 +104,26 @@ export const floatingTitle = css`
 export const share = css`
   filter: invert(100%);
 `;
+
+export const container = css`
+  column-count: 1;
+  column-gap: 10px;
+
+  @media (min-width: 760px) {
+    column-count: 2;
+  }
+  @media (min-width: 990px) {
+    column-count: 4;
+  }
+  @media (min-width: 1200px) {
+    column-count: 6;
+  }
+`;
+
+export const articleGrid = css`
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 10px;
+  break-inside: avoid;
+`;

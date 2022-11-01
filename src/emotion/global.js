@@ -166,4 +166,8 @@ export const globalCss = css`
       font-style: italic;
     }
   }
+  footer {
+    margin: auto 40px;
+    text-align: right;
+  }
 `;

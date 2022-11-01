@@ -6,14 +6,15 @@ import PropTypes from 'prop-types';
 
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
-import { Masonry } from 'masonic';
 
 import { getWebp } from '../../utils';
 
 import { tertiary } from '@css/utils/color';
 
+import { container, articleGrid } from '@css/misc';
+
 const MasonryCard = ({ data }) => (
-  <article key={data.id} id={data.id}>
+  <article key={data.id} id={data.id} css={articleGrid}>
     <Link to={data.slug} cover bg={tertiary}>
       <GatsbyImage image={getImage(data.gallery.localFile)} alt={data.title} />
     </Link>
@@ -35,12 +36,10 @@ const IndexPage = ({ pageContext }) => {
     <>
       <SEO cardImage={cardImageUrl} />
       <Layout>
-        <main>
-          <Masonry
-            items={posts}
-            render={MasonryCard}
-            style={{ maxWidth: 'calc(100vw - var(--doubleFakeBorder))' }}
-          />
+        <main css={container}>
+          {posts.map((post) => (
+            <MasonryCard data={post} key={post.id} />
+          ))}
         </main>
       </Layout>
     </>
