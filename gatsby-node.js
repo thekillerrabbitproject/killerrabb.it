@@ -8,17 +8,21 @@ const getN = (limit, arr) => {
   return arr;
 };
 const getShuffledPosts = (posts) => {
-  const galleries = posts
-    .map((post) =>
-      getN(3, shuffle(post.media.gallery)).map((gallery) => ({
-        title: post.title,
-        id: gallery.id,
-        slug: post.slug,
-        gallery,
-      }))
-    )
+  const shuffledPosts = shuffle(posts);
+  const postsWithShuffledGallery = shuffledPosts.map((post) =>
+    getN(3, shuffle(post.media.gallery)).map((gallery) => ({
+      title: post.title,
+      id: gallery.id,
+      slug: post.slug,
+      gallery,
+    }))
+  );
+
+  const galleries = [0, 1, 2]
+    .map((index) => postsWithShuffledGallery.map((post) => post[index]))
     .flat();
-  return shuffle(galleries);
+
+  return galleries;
 };
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
