@@ -179,8 +179,11 @@ export const globalCss = css`
     top: 0;
     left: 0;
     color: var(--highlight);
-    padding: 20px;
     text-align: center;
+    z-index: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     .lds-heart {
       display: inline-block;
       position: relative;
