@@ -29,6 +29,12 @@ const Layout = ({ children }) => {
         <div css={borderBottom} />
         <Menu />
       </div>
+      <div id="loader">
+        <div className="lds-heart">
+          <div></div>
+        </div>
+        <p>Loading...</p>
+      </div>
     </>
   );
 };
