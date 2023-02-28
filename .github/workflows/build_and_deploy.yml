@@ -24,7 +24,7 @@ jobs:
       - run: yarn build --write-to-file --log-pages
 
       - name: rsync deployments
-        uses: burnett01/rsync-deployments@4.1
+        uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no"
           path: public/
