@@ -11,17 +11,17 @@ const span = css`
   background: ${highlight};
   border-radius: 3px;
 
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const nav = css`
   width: 20px;
   height: 16px;
   position: fixed;
-  top: 0;
+  top: 8px;
   padding-top: 4px;
   right: 20px;
-  z-index: 1;
+  z-index: 2;
   cursor: pointer;
   span {
     ${span};

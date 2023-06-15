@@ -172,7 +172,7 @@ export const globalCss = css`
   }
   #loader {
     display: none;
-    background: var(--secondary);
+    background: var(--tertiary);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -180,7 +180,7 @@ export const globalCss = css`
     left: 0;
     color: var(--highlight);
     text-align: center;
-    z-index: 1;
+    z-index: 3;
     flex-direction: column;
     align-items: center;
     justify-content: center;

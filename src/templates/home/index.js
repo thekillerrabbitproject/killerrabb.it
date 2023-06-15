@@ -15,7 +15,7 @@ import { container, articleGrid } from '@css/misc';
 
 const MasonryCard = ({ data }) => (
   <article key={data.id} id={data.id} css={articleGrid}>
-    <Link to={data.slug} cover bg={tertiary}>
+    <Link to={data.slug} paintDrip hex={tertiary}>
       <GatsbyImage image={getImage(data.gallery.localFile)} alt={data.title} />
     </Link>
   </article>

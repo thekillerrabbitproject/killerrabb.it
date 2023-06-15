@@ -1,17 +1,21 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import Link from 'gatsby-plugin-transition-link/AniLink';
 
 import { floatingTitle } from '@css/misc';
+import { tertiary } from '@css/utils/color';
 
 const Header = () => {
   return (
-    <>
-      <h1 css={floatingTitle}>
-        <Link to="/" title="The Killer-Rabbit Photography">
-          The Killer-Rabbit Photography
-        </Link>
-      </h1>
-    </>
+    <h1 css={floatingTitle}>
+      <Link
+        to="/"
+        title="The Killer-Rabbit Photography"
+        paintDrip
+        hex={tertiary}
+      >
+        The Killer-Rabbit Photography
+      </Link>
+    </h1>
   );
 };
 

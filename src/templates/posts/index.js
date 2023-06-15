@@ -40,7 +40,12 @@ const PostPage = ({ data }) => {
             />
           </section>
           {galleryImages.map((image) => (
-            <GatsbyImage key={image.id} alt={post.title} image={image.url} />
+            <GatsbyImage
+              css={ß.image}
+              key={image.id}
+              alt={post.title}
+              image={image.url}
+            />
           ))}
         </article>
       </Layout>
