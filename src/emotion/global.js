@@ -147,6 +147,10 @@ export const globalCss = css`
 
   html {
     background-color: var(--tertiary);
+    overscroll-behavior: none;
+  }
+  .tl-wrapper--mount {
+    transform: unset !important;
   }
 
   body {

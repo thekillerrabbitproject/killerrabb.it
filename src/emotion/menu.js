@@ -29,6 +29,7 @@ export const nav = css`
 `;
 
 export const dialog = css`
+  border: none;
   transform: translate(0, 0);
   height: 100vh;
   width: 100vw;
