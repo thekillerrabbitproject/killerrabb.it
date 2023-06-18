@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const image = css`
-  margin: calc(var(--fakeBorder) / 2) 0;
+  margin-bottom: calc(var(--fakeBorder) / 2) 0;
 `;
 
 export const article = css`
