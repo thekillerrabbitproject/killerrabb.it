@@ -24,6 +24,7 @@ export const share = css`
 export const container = css`
   column-count: 2;
   column-gap: 10px;
+  column-fill: balance;
 
   @media (min-width: 990px) {
     column-count: 4;
