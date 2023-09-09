@@ -1,6 +1,5 @@
 name: Build and Deploy to Gatsby
 on:
-  workflow_dispatch
   schedule:
     # run daily at midnight to get random home page hehe
     - cron: '0 0 * * *'
