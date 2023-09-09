@@ -29,6 +29,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
   const templateHome = path.resolve(`./src/templates/home/index.js`);
   const templatePosts = path.resolve(`./src/templates/posts/index.js`);
+  const templateVideos = path.resolve(`./src/templates/video/index.js`);
   const result = await graphql(`
     query allPosts {
       allWpPost {
@@ -69,6 +70,35 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
+      allWpVideo {
+        nodes {
+          id
+          slug
+          title
+          content
+          featuredImage {
+            node {
+              sourceUrl
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    formats: [AUTO, WEBP]
+                    layout: FULL_WIDTH
+                    placeholder: BLURRED
+                    quality: 100
+                  )
+                }
+              }
+            }
+          }
+          videoThingy {
+            credits
+            featuredVideo {
+              mediaItemUrl
+            }
+          }
+        }
+      }
     }
   `);
 
@@ -98,5 +128,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         id: post.id,
       },
     });
+  });
+
+  const videos = result?.data?.allWpVideo?.nodes;
+  createPage({
+    path: `/video`,
+    component: templateVideos,
+    context: {
+      posts: videos,
+    },
   });
 };

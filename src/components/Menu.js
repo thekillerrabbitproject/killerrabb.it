@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import * as ß from '@css/menu';
 import Instagram from './Instagram';
+import { Link } from 'gatsby';
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,16 @@ const Menu = () => {
         <ul>
           <li>
             <h3>MENU</h3>
+          </li>
+          <li>
+            <Link to="/" title="Home">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/video" title="Video">
+              Video
+            </Link>
           </li>
           <li>
             <Instagram />
