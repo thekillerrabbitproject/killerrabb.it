@@ -8,6 +8,13 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: 'https://www.tkrp.net/graphql',
+        type: {
+          MediaItem: {
+            localFile: {
+              maxFileSizeBytes: 1e8, // 100Mb
+            },
+          },
+        },
       },
     },
     {

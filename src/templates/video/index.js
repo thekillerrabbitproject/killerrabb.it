@@ -28,7 +28,7 @@ const VideoPage = ({ pageContext }) => {
             <article key={post.id} css={ß.article}>
               <aside css={ß.aside}>
                 <VideoAside
-                  videoUrl={post.videoThingy.featuredVideo.mediaItemUrl}
+                  videoUrl={post.videoThingy.featuredVideo.publicUrl}
                   cover={post.featuredImage.node.localFile}
                   title={post.title}
                 />

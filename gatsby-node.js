@@ -95,6 +95,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             credits
             featuredVideo {
               mediaItemUrl
+              sourceUrl
+              publicUrl
             }
           }
         }
