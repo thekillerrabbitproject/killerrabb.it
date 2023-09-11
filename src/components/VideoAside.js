@@ -15,6 +15,7 @@ const VideoAside = ({ videoUrl, cover, title }) => {
         poster={getWebp(cover)}
         controlsList="nodownload noplaybackrate"
         disablePictureInPicture
+        preload="metadata"
       >
         Sorry, your browser doesn't support embedded videos
       </video>
