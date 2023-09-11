@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 
 export const video = css`
-  /* aspect-ratio: 4 / 3; */
   width: 100%;
   object-fit: cover;
+  transition: all 0.3s ease-in-out;
 `;
 
 export const main = css`

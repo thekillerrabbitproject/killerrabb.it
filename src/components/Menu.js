@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import * as ß from '@css/menu';
 import Instagram from './Instagram';
-import { Link } from 'gatsby';
+import Link from 'gatsby-plugin-transition-link/AniLink';
+import { tertiary } from '@css/utils/color';
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
@@ -22,12 +23,12 @@ const Menu = () => {
             <h3>MENU</h3>
           </li>
           <li>
-            <Link to="/" title="Home">
+            <Link to="/" title="Home" paintDrip hex={tertiary}>
               Home
             </Link>
           </li>
           <li>
-            <Link to="/videos" title="Videos">
+            <Link to="/videos" title="Videos" paintDrip hex={tertiary}>
               Videos
             </Link>
           </li>
