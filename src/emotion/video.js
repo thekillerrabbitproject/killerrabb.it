@@ -13,12 +13,11 @@ export const main = css`
     --maxFontSize: 32px;
     --scaler: 16vw;
     font-size: clamp(var(--minFontSize), var(--scaler), var(--maxFontSize));
-    padding: 0 calc(var(--fakeBorder) / 2);
   }}
 `;
 
 export const article = css`
-  padding: var(--fakeBorder) calc(var(--fakeBorder) / 2);
+  padding: var(--fakeBorder) 0;
   color: var(--primary);
 
   display: grid;
