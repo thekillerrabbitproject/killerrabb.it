@@ -41,6 +41,8 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@emotion/babel-preset-css-prop": "^11.11.0",
+    "@emotion/eslint-plugin": "^11.11.0",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^8.2.0",
     "eslint-config-standard": "^16.0.2",

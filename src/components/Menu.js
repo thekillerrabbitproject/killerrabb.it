@@ -27,8 +27,8 @@ const Menu = () => {
             </Link>
           </li>
           <li>
-            <Link to="/video" title="Video">
-              Video
+            <Link to="/videos" title="Videos">
+              Videos
             </Link>
           </li>
           <li>

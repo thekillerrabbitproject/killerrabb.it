@@ -29,7 +29,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
   const templateHome = path.resolve(`./src/templates/home/index.js`);
   const templatePosts = path.resolve(`./src/templates/posts/index.js`);
-  const templateVideos = path.resolve(`./src/templates/video/index.js`);
+  const templateVideos = path.resolve(`./src/templates/videos/index.js`);
   const result = await graphql(`
     query allPosts {
       allWpPost {
@@ -97,6 +97,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               mediaItemUrl
               sourceUrl
               publicUrl
+              localFile {
+                publicURL
+              }
             }
           }
         }
@@ -134,7 +137,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const videos = result?.data?.allWpVideo?.nodes;
   createPage({
-    path: `/video`,
+    path: `/videos`,
     component: templateVideos,
     context: {
       posts: videos,
