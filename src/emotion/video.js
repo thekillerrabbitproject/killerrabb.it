@@ -7,6 +7,8 @@ export const video = css`
 `;
 
 export const main = css`
+  max-width: 990px;
+  margin: 0 auto;
   h1 {
     color: var(--highlight);
     --minFontSize: 24px;
@@ -24,13 +26,9 @@ export const article = css`
   gap: var(--fakeBorder);
 
   grid-template:
+    'title'
     'aside'
     'section';
-
-  @media (min-width: 990px) {
-    grid-template: 'aside section';
-    grid-template-columns: 2fr 1fr;
-  }
 `;
 
 export const aside = css`
@@ -57,9 +55,6 @@ export const section = css`
     --scaler: 16vw;
     font-size: clamp(var(--minFontSize), var(--scaler), var(--maxFontSize));
     margin: calc(var(--fakeBorder) / 2) 0;
-  }
-  @media (min-width: 990px) {
-    border-bottom: unset;
   }
   p {
     line-height: 18px;

@@ -33,6 +33,16 @@ const Menu = () => {
             </Link>
           </li>
           <li>
+            <a
+              href="https://onlyfans.com/persocon"
+              title="Free OnlyFans"
+              target="_blank"
+              rel="nofollow noreferrer"
+            >
+              OnlyFans
+            </a>
+          </li>
+          <li>
             <Instagram />
           </li>
         </ul>
