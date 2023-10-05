@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as ß from '@css/video';
 import { getWebp } from '../utils';
 
-const VideoAside = ({ videoUrl, cover, title }) => {
+const VideoAside = ({ videoUrl, cover }) => {
   return (
     <>
       <video
@@ -17,7 +17,7 @@ const VideoAside = ({ videoUrl, cover, title }) => {
         disablePictureInPicture
         preload="metadata"
       >
-        Sorry, your browser doesn't support embedded videos
+        Sorry, your browser doesn&rsquo;t support embedded videos
       </video>
     </>
   );

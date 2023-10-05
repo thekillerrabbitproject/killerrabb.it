@@ -8,6 +8,7 @@ import Share from '@components/Share';
 import { getWebp } from '../../utils';
 
 import * as ß from '@css/post';
+import RelatedPosts from '@components/RelatedPosts';
 
 // https://tkrp.net/share/index.php?image=&text=duas%20palavra
 
@@ -38,6 +39,7 @@ const PostPage = ({ data }) => {
               css={ß.article}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
+            <RelatedPosts relatedPosts={post.related_posts} />
           </section>
           {galleryImages.map((image) => (
             <GatsbyImage
@@ -91,6 +93,20 @@ export const data = graphql`
                 quality: 100
               )
             }
+          }
+        }
+      }
+      related_posts {
+        posts {
+          ... on WpPost {
+            id
+            title
+            slug
+          }
+          ... on WpVideo {
+            id
+            title
+            link
           }
         }
       }

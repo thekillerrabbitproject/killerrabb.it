@@ -30,6 +30,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const templateHome = path.resolve(`./src/templates/home/index.js`);
   const templatePosts = path.resolve(`./src/templates/posts/index.js`);
   const templateVideos = path.resolve(`./src/templates/videos/index.js`);
+  const templateVideo = path.resolve(`./src/templates/video/index.js`);
   const result = await graphql(`
     query allPosts {
       allWpPost {
@@ -142,5 +143,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     context: {
       posts: videos,
     },
+  });
+
+  videos.forEach((video) => {
+    createPage({
+      path: `/video/${video.slug}`,
+      component: templateVideo,
+      context: {
+        id: video.id,
+      },
+    });
   });
 };

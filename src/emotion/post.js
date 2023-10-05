@@ -27,12 +27,18 @@ export const headline = css`
 
 export const section = css`
   display: grid;
-  grid-template-columns: [article] auto [share] calc(24px + var(--fakeBorder));
+  grid-template-columns: auto calc(24px + var(--fakeBorder));
+  grid-template-areas:
+    'article share'
+    'relatedPosts relatedPosts';
   aside {
     grid-area: share;
     padding: var(--fakeBorder) calc(var(--fakeBorder) / 2);
   }
   article {
     grid-area: article;
+  }
+  .related-posts {
+    padding: var(--fakeBorder) calc(var(--fakeBorder) / 2);
   }
 `;

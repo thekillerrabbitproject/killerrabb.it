@@ -28,10 +28,11 @@ export const article = css`
   display: grid;
   gap: var(--fakeBorder);
 
-  grid-template:
+  grid-template-areas:
     'title'
     'aside'
-    'section';
+    'section'
+    'relatedPosts';
 `;
 
 export const aside = css`

@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
+import Link from 'gatsby-plugin-transition-link/AniLink';
 
 import { getWebp } from '../../utils';
+import { tertiary } from '@css/utils/color';
 
 import * as ß from '@css/video';
 import VideoAside from '../../components/VideoAside';
@@ -35,7 +37,11 @@ const VideosPage = ({ pageContext }) => {
                 />
               </aside>
               <section css={ß.section}>
-                <h2>{post.title}</h2>
+                <h2>
+                  <Link to={`/video/${post.slug}`} paintDrip hex={tertiary}>
+                    {post.title}
+                  </Link>
+                </h2>
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 {post.videoThingy.credits && (
                   <>
