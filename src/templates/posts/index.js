@@ -39,7 +39,6 @@ const PostPage = ({ data }) => {
               css={ß.article}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
-            <RelatedPosts relatedPosts={post.related_posts} />
           </section>
           {galleryImages.map((image) => (
             <GatsbyImage
@@ -49,6 +48,9 @@ const PostPage = ({ data }) => {
               image={image.url}
             />
           ))}
+          <section css={ß.section}>
+            <RelatedPosts relatedPosts={post.related_posts} />
+          </section>
         </article>
       </Layout>
     </>
@@ -103,6 +105,8 @@ export const data = graphql`
             title
             slug
           }
+        }
+        videos: posts {
           ... on WpVideo {
             id
             title

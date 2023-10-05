@@ -98,6 +98,8 @@ export const data = graphql`
             title
             slug
           }
+        }
+        videos: posts {
           ... on WpVideo {
             id
             title
