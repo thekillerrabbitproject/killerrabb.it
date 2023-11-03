@@ -71,7 +71,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allWpVideo {
+      allWpVideo(sort: { date: DESC }) {
         nodes {
           id
           slug

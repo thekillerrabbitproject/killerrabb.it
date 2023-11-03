@@ -43,6 +43,16 @@ const Menu = () => {
             </a>
           </li>
           <li>
+            <a
+              href="https://www.magcloud.com/user/persocon"
+              title="Zines On Sale"
+              target="_blank"
+              rel="nofollow noreferrer"
+            >
+              Zines On Sale
+            </a>
+          </li>
+          <li>
             <Instagram />
           </li>
         </ul>

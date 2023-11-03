@@ -29,7 +29,7 @@ const VideosPage = ({ pageContext }) => {
               <aside css={ß.aside}>
                 <VideoAside
                   videoUrl={
-                    post.videoThingy.featuredVideo.localFile.publicURL ||
+                    post.videoThingy.featuredVideo?.localFile?.publicURL ||
                     post.videoThingy.featuredVideo.publicUrl
                   }
                   cover={post.featuredImage.node.localFile}
