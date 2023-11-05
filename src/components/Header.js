@@ -7,13 +7,8 @@ import { tertiary } from '@css/utils/color';
 const Header = () => {
   return (
     <h1 css={floatingTitle}>
-      <Link
-        to="/"
-        title="The Killer-Rabbit Photography"
-        paintDrip
-        hex={tertiary}
-      >
-        The Killer-Rabbit Photography
+      <Link to="/" title="The Killer-Rabbit Project" paintDrip hex={tertiary}>
+        The Killer-Rabbit Project
       </Link>
     </h1>
   );

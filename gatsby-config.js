@@ -41,10 +41,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'The Killer-Rabbit Photography',
+        name: 'The Killer-Rabbit Project',
         short_name: 'TKRP',
         start_url: '/',
-        description: `Pedro Costa Neves photo portfolio`,
+        description: `Pedro Costa Neves Photo and Video Portfolio`,
         lang: `en`,
         background_color: '#1b1c1e',
         theme_color: '#1b1c1e',
