@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Pedro Costa Neves - Photography Portfolio',
+    title: 'Pedro Costa Neves - Photography and Video Portfolio',
     siteUrl: 'https://killerrabb.it',
   },
   plugins: [

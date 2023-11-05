@@ -19,8 +19,8 @@ const SEO = ({ title, cardImage }) => {
   const shareService = 'https://tkrp.net/share/index.php';
   return (
     <Helmet
-      titleTemplate="%s | The Killer-Rabbit Photography"
-      defaultTitle="The Killer-Rabbit Photography"
+      titleTemplate="%s | The Killer-Rabbit Project"
+      defaultTitle="The Killer-Rabbit Project"
       htmlAttributes={{
         lang: 'en',
       }}
@@ -28,19 +28,16 @@ const SEO = ({ title, cardImage }) => {
       <title>{title}</title>
       <meta
         name="description"
-        content="Analog photography made by Pedro Costa Neves"
+        content="Analog Photography and Video made by Pedro Costa Neves"
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@persocon" />
       <meta name="twitter:creator" content="@persocon" />
       <meta
         name="twitter:title"
-        content={title ?? 'The Killer-Rabbit Photography'}
+        content={title ?? 'The Killer-Rabbit Project'}
       />
-      <meta
-        name="og:title"
-        content={title ?? 'The Killer-Rabbit Photography'}
-      />
+      <meta name="og:title" content={title ?? 'The Killer-Rabbit Project'} />
       <meta
         name="twitter:image"
         content={`${shareService}?image=${siteUrl}${cardImage}`}

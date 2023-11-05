@@ -1,7 +1,4 @@
 import React from 'react';
-import { withPrefix } from 'gatsby';
-
-const icon = withPrefix('icons/instagram.svg');
 
 const Instagram = () => {
   return (
@@ -10,7 +7,6 @@ const Instagram = () => {
       target="_blank"
       rel="nofollow noreferrer"
     >
-      <img src={icon} alt="Instagram" width="20" height="20" />
       @persocon
     </a>
   );
