@@ -49,7 +49,7 @@ module.exports = {
         background_color: '#1b1c1e',
         theme_color: '#1b1c1e',
         display: 'fullscreen',
-        icon: 'src/images/icon.png',
+        icon: 'src/images/icon-tkrp.png',
         crossOrigin: `use-credentials`,
         cache_busting_mode: `none`,
       },
