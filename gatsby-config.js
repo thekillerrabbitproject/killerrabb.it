@@ -51,6 +51,7 @@ module.exports = {
         display: 'fullscreen',
         icon: 'src/images/icon-tkrp.png',
         crossOrigin: `use-credentials`,
+        cache_busting_mode: `none`,
       },
     },
     'gatsby-plugin-transition-link',
