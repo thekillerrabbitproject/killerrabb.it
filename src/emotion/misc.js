@@ -24,7 +24,6 @@ export const share = css`
 export const container = css`
   column-count: 2;
   column-gap: 10px;
-  column-fill: balance;
 
   @media (min-width: 990px) {
     column-count: 4;
@@ -35,9 +34,8 @@ export const container = css`
 `;
 
 export const articleGrid = css`
-  margin: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  width: 100%;
+  display: inline-block;
   margin-bottom: 10px;
   break-inside: avoid;
 `;

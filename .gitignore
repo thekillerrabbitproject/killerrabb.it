@@ -3,3 +3,4 @@ node_modules/
 public
 *rsync_deploy*
 .DS_Store
+.wordpress-cache

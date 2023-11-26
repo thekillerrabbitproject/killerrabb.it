@@ -8,10 +8,20 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: 'https://www.tkrp.net/graphql',
+        schema: {
+          timeout: 3600000,
+        },
+        production: {
+          hardCacheMediaFiles: true,
+        },
+        develop: {
+          hardCacheMediaFiles: true,
+        },
         type: {
           MediaItem: {
             localFile: {
-              maxFileSizeBytes: 2e8, // 200Mb
+              requestConcurrency: 10,
+              maxFileSizeBytes: 3e8, // 200Mb
             },
           },
         },
@@ -35,7 +45,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-zopfli`,
       options: {
-        extensions: ['css', 'js', 'svg', 'jpg', 'jpeg', 'webp'],
+        extensions: ['css', 'js', 'svg', 'jpg', 'jpeg', 'webp', 'mp4'],
       },
     },
     {

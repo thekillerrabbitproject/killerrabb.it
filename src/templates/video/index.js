@@ -10,6 +10,7 @@ import { getWebp } from '../../utils';
 import * as ß from '@css/video';
 import VideoAside from '@components/VideoAside';
 import RelatedPosts from '@components/RelatedPosts';
+import Share from '@components/Share';
 
 const VideosPage = ({ data }) => {
   const post = data?.wpVideo ?? [];
@@ -22,7 +23,10 @@ const VideosPage = ({ data }) => {
       <SEO cardImage={cardImageUrl} title={post.title} />
       <Layout>
         <main css={ß.main}>
-          <h1>{post.title}</h1>
+          <h1>
+            {post.title}
+            <Share />
+          </h1>
           <article key={post.id} css={ß.article}>
             <aside css={ß.aside}>
               <VideoAside

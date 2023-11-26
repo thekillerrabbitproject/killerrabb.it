@@ -18,6 +18,8 @@ export const main = css`
     --maxFontSize: 32px;
     --scaler: 16vw;
     font-size: clamp(var(--minFontSize), var(--scaler), var(--maxFontSize));
+    display: flex;
+    justify-content: space-between;
   }}
 `;
 
