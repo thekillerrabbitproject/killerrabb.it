@@ -1,4 +1,4 @@
 exports.onRouteUpdateDelayed = () => {
-  const loader = document.getElementById('loader');
+  const loader = document.querySelector('#loader');
   loader.style.display = 'flex';
 };
