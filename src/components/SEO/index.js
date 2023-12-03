@@ -21,7 +21,7 @@ const SEO = ({ title, description, pathname, image, children }) => {
     image: image || `${siteUrl}${defaultImage}`,
     url: `${siteUrl}${pathname || ''}`,
     twitterUsername,
-    shareImage: `${siteUrl}${image}` || `${siteUrl}${defaultImage}`,
+    shareImage: image ? `${siteUrl}${image}` : `${siteUrl}${defaultImage}`,
   };
 
   const shareImage = shareService({
