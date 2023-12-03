@@ -2,11 +2,14 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 
+const title = 'The Killer-Rabbit Project';
+const description = 'Analog Photography and Videomaking by Pedro Costa Neves';
+
 module.exports = {
   siteMetadata: {
-    title: 'The Killer-Rabbit Project',
+    title,
     siteUrl: 'https://killerrabb.it',
-    description: 'Analog Photography and Videomaking by Pedro Costa Neves',
+    description,
     twitterUsername: '@persocon',
     image: '/icon-tkrp.png',
     shareImage: '/icon-tkrp.webp',
@@ -60,10 +63,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'The Killer-Rabbit Project',
+        name: title,
         short_name: 'TKRP',
         start_url: '/',
-        description: 'Pedro Costa Neves Photo and Video Portfolio',
+        description,
         lang: 'en',
         background_color: '#000000',
         theme_color: '#000000',
