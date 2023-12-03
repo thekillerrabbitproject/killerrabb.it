@@ -1,43 +1,58 @@
 import { css } from '@emotion/react';
 
 export const videoSlider = css`
+  --height: 256px;
+  display: block;
+  position: relative;
+  inline-size: 100%;
+  white-space: nowrap;
+  overflow: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  display: flex;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
-  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--trueblack) transparent;
+  height: var(--height);
+  padding-bottom: 24px;
 `;
 
 export const disabledVideoSlider = css`
   scroll-snap-type: unset;
   overflow-x: unset;
+  overflow-y: unset;
   -webkit-overflow-scrolling: unset;
+  display: flex;
   flex-wrap: wrap;
+  inline-size: auto;
+  height: auto;
+  gap: 16px 8px;
 `;
 
-export const videoTile = css`
-  scroll-snap-align: start;
-  display: grid;
-  grid-template-areas:
-    'header'
-    'aside';
-  grid-template-columns: 300px;
-  min-width: 300px;
-  height: 300px;
-  overflow: hidden;
-  aside {
-    grid-area: aside;
-    display: grid;
-    position: relative;
-    width: 300px;
-    height: 300px;
+export const videoTile = ({ width, height }) => css`
+  --ratio: calc(${width} / ${height});
+  --width: calc(var(--height) * var(--ratio));
+
+  max-width: var(--width);
+  height: var(--height);
+  margin-inline-end: 16px;
+
+  display: inline-block;
+  scroll-snap-align: center;
+  position: relative;
+
+  .gatsby-image-wrapper {
+    object-fit: contain;
+    max-width: var(--width);
+    height: var(--height);
   }
-  h2 {
-    font-family: var(--font-vcr);
-  }
-  p {
-    color: var(--primary);
-  }
+`;
+export const title = css`
+  position: sticky;
+  top: 6px;
+  left: 0;
+  z-index: 1;
+
+  font-family: var(--font-vcr);
+  mix-blend-mode: screen;
 `;
 
 export const removeDecoration = css`

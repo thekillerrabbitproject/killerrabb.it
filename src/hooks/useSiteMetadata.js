@@ -10,6 +10,7 @@ const useSiteMetadata = () => {
           siteUrl
           twitterUsername
           image
+          shareImage
           menu {
             id
             path

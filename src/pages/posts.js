@@ -22,8 +22,8 @@ export const query = graphql`
   query PostsPage {
     posts: allWpPost {
       nodes {
-        ...Post
-        ...FeaturedImage
+        ...PostConstrained
+        ...FeaturedImageConstrained
         films {
           nodes {
             ...FilmTaxonomy

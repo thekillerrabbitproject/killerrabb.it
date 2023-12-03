@@ -28,8 +28,8 @@ export const query = graphql`
   query HomePage {
     posts: allWpPost {
       nodes {
-        ...Post
-        ...FeaturedImage
+        ...PostConstrained
+        ...FeaturedImageConstrained
         films {
           nodes {
             ...FilmTaxonomy
@@ -45,7 +45,7 @@ export const query = graphql`
     videos: allWpVideo {
       nodes {
         ...VideoPost
-        ...FeaturedImage
+        ...FeaturedImageConstrained
         films {
           nodes {
             ...FilmTaxonomy

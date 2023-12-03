@@ -1,19 +1,19 @@
 import React from 'react';
-import { dataAny } from '@types/index';
+import { sliders } from '@types/index';
+import { isDuplicatedFromGallery } from '@utils';
 
 import Image from './Image';
 import Meta from './Meta';
 import * as ß from './styles';
-import { isDuplicatedFromGallery } from './utils';
 
-const SlidesPosts = ({ data }) => {
+const SlidesPosts = ({ data, title }) => {
   const { nodes } = data;
 
   const hasContent = nodes?.length;
 
   return hasContent ? (
     <>
-      <h2>Recent Posts</h2>
+      <h2>{title}</h2>
       {nodes.map((content) => (
         <section key={content.path}>
           <article css={ß.innerSlider}>
@@ -35,6 +35,10 @@ const SlidesPosts = ({ data }) => {
   ) : null;
 };
 
-SlidesPosts.propTypes = dataAny;
+SlidesPosts.propTypes = sliders;
+
+SlidesPosts.defaultProps = {
+  title: 'Recent Posts',
+};
 
 export default SlidesPosts;

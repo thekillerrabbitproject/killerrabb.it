@@ -6,9 +6,10 @@ module.exports = {
   siteMetadata: {
     title: 'The Killer-Rabbit Project',
     siteUrl: 'https://killerrabb.it',
-    description: '',
+    description: 'Analog Photography and Videomaking by Pedro Costa Neves',
     twitterUsername: '@persocon',
     image: '/icon-tkrp.png',
+    shareImage: '/icon-tkrp.webp',
     menu: [
       {
         id: 'home',
@@ -32,6 +33,23 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: 'https://www.tkrp.net/graphql',
+        schema: {
+          timeout: 3_600_000,
+        },
+        production: {
+          hardCacheMediaFiles: true,
+        },
+        develop: {
+          hardCacheMediaFiles: true,
+        },
+        type: {
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 10,
+              maxFileSizeBytes: 3e8, // 300Mb
+            },
+          },
+        },
       },
     },
     'gatsby-plugin-image',
@@ -72,6 +90,7 @@ module.exports = {
           '@types': 'src/types',
           '@css': 'src/css',
           '@hooks': 'src/hooks',
+          '@utils': 'src/utils',
         },
         extensions: ['js'],
       },

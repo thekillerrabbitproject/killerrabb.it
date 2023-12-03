@@ -1,24 +1,60 @@
 import React from 'react';
+import Content from '@components/Content';
 import Layout from '@components/Layout';
+import Meta from '@components/Meta';
+import RelatedPosts from '@components/RelatedPosts';
+import SEO from '@components/SEO';
+import Title from '@components/Title';
+import Video from '@components/Video';
 import { dataAny } from '@types';
 
 import { graphql } from 'gatsby';
+import { getSrc } from 'gatsby-plugin-image';
 
-const VideoPage = ({ data }) => (
-  <Layout>
-    <pre>{JSON.stringify(data, null, 4)}</pre>
-  </Layout>
-);
+const VideoPage = ({ data }) => {
+  const video = data.wpVideo;
+
+  return (
+    <Layout>
+      <Title title={video.title} isVideo />
+      <Video
+        title={video.title}
+        cover={video.featuredImage.node.localFile}
+        videoUrl={
+          video?.videoThingy?.featuredVideo?.localFile?.publicURL ||
+          video.videoThingy.featuredVideo.publicUrl
+        }
+      />
+      <Meta data={video} />
+      <Content content={video.content} />
+      <Title title="Credits" isVideo />
+      <Content content={video.videoThingy.credits} />
+      <RelatedPosts data={video.relatedPosts} />
+    </Layout>
+  );
+};
 
 VideoPage.propTypes = dataAny;
+
+const HeadSEO = ({ data }) => (
+  <SEO
+    title={data.wpVideo.title}
+    pathname={data.wpVideo.path}
+    image={getSrc(data.wpVideo.featuredImage.node.localFile.webp)}
+  />
+);
+
+HeadSEO.propTypes = dataAny;
+
+export const Head = HeadSEO;
 
 export default VideoPage;
 
 export const data = graphql`
   query VideoPage($slug: String) {
-    data: wpVideo(slug: { eq: $slug }) {
+    wpVideo(slug: { eq: $slug }) {
       ...VideoPost
-      ...FeaturedImage
+      ...FeaturedImageConstrained
       relatedPosts: related_posts {
         ...VideoRelatedPosts
       }

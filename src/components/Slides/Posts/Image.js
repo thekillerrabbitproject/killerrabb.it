@@ -10,10 +10,12 @@ const Image = ({ data, image, isFeatured }) => {
   const className = isFeatured ? 'featured' : 'image';
 
   return (
-    <div css={ß.item} className={className}>
+    <div
+      css={ß.imageWrapper(image.childImageSharp.gatsbyImageData)}
+      className={className}
+    >
       <Link to={data.path} title={data.title}>
         <GatsbyImage
-          css={ß.item}
           image={getImage(image)}
           objectFit="contain"
           alt={data.title}

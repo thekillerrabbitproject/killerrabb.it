@@ -25,7 +25,9 @@ const Header = () => {
 
   return (
     <header css={ß.header}>
-      <h1 css={ß.title}>{title}</h1>
+      <h1 css={ß.title} data-title={title}>
+        {title}
+      </h1>
       <Menu />
     </header>
   );

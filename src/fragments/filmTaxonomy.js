@@ -5,6 +5,5 @@ export const filmFragment = graphql`
     name
     slug
     path: gatsbyPath(filePath: "/film/{WpFilm.slug}")
-    # totalCount
   }
 `;

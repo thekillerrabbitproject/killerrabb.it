@@ -23,7 +23,7 @@ export const query = graphql`
     videos: allWpVideo {
       nodes {
         ...VideoPost
-        ...FeaturedImage
+        ...FeaturedImageConstrained
         films {
           nodes {
             ...FilmTaxonomy

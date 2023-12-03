@@ -1,8 +1,8 @@
 import React from 'react';
 import { dataAny } from '@types/index';
+import { getFilmString } from '@utils';
 
 import * as ß from './styles';
-import { getFilmString } from './utils';
 
 import { Link } from 'gatsby';
 

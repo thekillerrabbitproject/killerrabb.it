@@ -6,5 +6,16 @@ export const videoFragment = graphql`
     content
     slug
     path: gatsbyPath(filePath: "/video/{WpVideo.slug}")
+    videoThingy {
+      credits
+      featuredVideo {
+        mediaItemUrl
+        sourceUrl
+        publicUrl
+        localFile {
+          publicURL
+        }
+      }
+    }
   }
 `;

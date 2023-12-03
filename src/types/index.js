@@ -16,3 +16,24 @@ export const slidePostsImage = {
   image: PropTypes.object,
   isFeatured: PropTypes.bool,
 };
+
+export const content = {
+  content: PropTypes.string,
+};
+
+export const title = {
+  title: PropTypes.string,
+  isVideo: PropTypes.bool,
+};
+
+export const sliders = {
+  ...dataAny,
+  title: PropTypes.string,
+  disableSlider: PropTypes.bool,
+};
+
+export const video = {
+  title: PropTypes.string.isRequired,
+  videoUrl: PropTypes.string.isRequired,
+  cover: PropTypes.object.isRequired,
+};

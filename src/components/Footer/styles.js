@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 export const footer = css`
   margin: 16px 0 32px 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 32px;
   font-family: var(--font-vcr);
   font-size: 14px;

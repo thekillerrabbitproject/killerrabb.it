@@ -6,26 +6,26 @@ import * as ß from './styles';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const VideoTile = ({ data }) => (
-  <Link
-    to={data.path}
-    title={data.title}
-    key={data.path}
-    css={ß.removeDecoration}
-  >
-    <article css={ß.videoTile}>
-      <header>
-        <h2>{data.title}</h2>
-      </header>
-      <aside>
+const VideoTile = ({ data }) => {
+  const image = data.featuredImage.node.localFile;
+
+  return (
+    <article css={ß.videoTile(image.childImageSharp.gatsbyImageData)}>
+      <Link
+        to={data.path}
+        title={data.title}
+        key={data.path}
+        css={ß.removeDecoration}
+      >
+        <h2 css={ß.title}>{data.title}</h2>
         <GatsbyImage
           image={getImage(data.featuredImage.node.localFile)}
           alt={data.title}
         />
-      </aside>
+      </Link>
     </article>
-  </Link>
-);
+  );
+};
 
 VideoTile.propTypes = dataAny;
 

@@ -1,41 +1,37 @@
 import { css } from '@emotion/react';
 
-export const image = css`
-  block-size: min(16rem, 90vh);
-  inline-size: auto;
-  max-width: 100vw;
-  display: inline-block;
-  object-fit: contain;
-`;
-
-export const item = css`
-  position: relative;
-  ${image}
-`;
-
 export const innerSlider = css`
+  --height: 256px;
+  display: block;
   position: relative;
   inline-size: 100%;
   white-space: nowrap;
   overflow: auto;
   overflow-y: hidden;
-  scroll-snap-type: x;
-  margin: 0;
+  scroll-snap-type: x mandatory;
   scrollbar-width: thin;
   scrollbar-color: var(--trueblack) transparent;
-  .featured a,
-  .image a {
-    ${item}
-  }
+  height: var(--height);
+  padding-bottom: 24px;
+`;
+export const isPortrait = (width, height) => height > width;
+
+export const imageWrapper = ({ width, height }) => css`
+  --ratio: calc(${width} / ${height});
+  --width: calc(var(--height) * var(--ratio));
+
+  max-width: var(--width);
+  height: var(--height);
+  margin-inline-end: 16px;
+
+  display: inline-block;
+  scroll-snap-align: center;
+  position: relative;
+
   .gatsby-image-wrapper {
-    ${item}
-    margin-inline-end: 16px;
-    scroll-snap-align: center;
-    & > div,
-    & > picture img {
-      ${image}
-      width: 100%
-    }
+    object-fit: contain;
+    max-width: var(--width);
+    height: var(--height);
   }
 `;
 
