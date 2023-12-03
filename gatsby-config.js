@@ -11,8 +11,8 @@ module.exports = {
     siteUrl: 'https://killerrabb.it',
     description,
     twitterUsername: '@persocon',
-    image: '/icon-tkrp.png',
-    shareImage: '/icon-tkrp.webp',
+    image: '/icons/icon-tkrp.png',
+    shareImage: '/icons/icon-tkrp.webp',
     menu: [
       {
         id: 'home',
