@@ -1,34 +1,82 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "node": true
+  },
+
+  "extends": [
+    "plugin:import/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:unicorn/recommended"
+  ],
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "standard",
-        "prettier"
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+
+  "plugins": ["@emotion", "react", "simple-import-sort"],
+
+  "rules": {
+    "arrow-body-style": 2,
+    "import/exports-last": 2,
+    "import/first": 2,
+    "import/newline-after-import": 2,
+    "import/no-named-as-default": 0,
+    "import/no-unresolved": 2,
+    "max-lines": [2, { "max": 250 }],
+    "no-console": 2,
+    "no-restricted-imports": 2,
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "object-shorthand": 2,
+    "padding-line-between-statements": [
+      2,
+      { "blankLine": "always", "next": ["if", "return"], "prev": "*" }
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@emotion",
-        "react",
-        "prettier"
+    "prettier/prettier": [2, { "singleQuote": true }],
+    "quotes": [2, "single"],
+    "react/jsx-boolean-value": 2,
+    "react/jsx-curly-brace-presence": 2,
+    "react/jsx-fragments": [2, "syntax"],
+    "react/jsx-no-useless-fragment": 2,
+    "react/jsx-pascal-case": [2, { "allowAllCaps": true }],
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/prop-types": 1,
+    "react/sort-default-props": 2,
+    "simple-import-sort/imports": [
+      2,
+      {
+        "groups": [
+          ["^react", "^prop-types", "^w", "^@"],
+          ["^@root", "^@/"],
+          ["^\\."]
+        ]
+      }
     ],
-    "rules": {
-        "prettier/prettier": ["error", {
-            "endOfLine": "lf",
-            "semi": true,
-            "singleQuote": true,
-            "tabWidth": 2,
-            "trailingComma": "es5"
-          }],
-          "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+    "unicorn/filename-case": 0,
+    "unicorn/no-array-reduce": 0,
+    "unicorn/no-null": 0,
+    "unicorn/prefer-module": 0,
+    "unicorn/prevent-abbreviations": 0
+  },
+
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@components", "./src/components"],
+        ["@graphql", "./src/graphql"],
+        ["@types", "./src/types"],
+        ["@css", "./src/css"],
+        ["@hooks", "./src/hooks"],
+        ["@utils", "./src/utils"]
+      ]
     }
+  }
 }

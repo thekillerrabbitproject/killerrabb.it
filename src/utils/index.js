@@ -1,7 +1,16 @@
-import { getImage } from 'gatsby-plugin-image';
-export const getWebp = (image) => {
-  const localImage = getImage(image);
-  const { length, [length - 1]: last } =
-    localImage?.images?.sources?.[0].srcSet.split(',');
-  return last.split(' ')?.[0].trim();
+export const isDuplicatedFromGallery = (content) => {
+  const {
+    featuredImageId,
+    acf: { gallery },
+  } = content;
+
+  return !!gallery.some(({ id }) => id === featuredImageId);
+};
+
+export const getFilmString = (content) => {
+  const {
+    films: { nodes },
+  } = content;
+
+  return nodes.map((film) => film.slug).join(' ');
 };

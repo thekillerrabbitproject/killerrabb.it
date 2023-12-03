@@ -4,3 +4,5 @@ public
 *rsync_deploy*
 .DS_Store
 .wordpress-cache
+backup_old_gatsby/
+yarn-error.log

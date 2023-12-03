@@ -1,7 +1,35 @@
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
+
+const title = 'The Killer-Rabbit Project';
+const description = 'Analog Photography and Videomaking by Pedro Costa Neves';
+
 module.exports = {
   siteMetadata: {
-    title: 'Pedro Costa Neves - Photography and Video Portfolio',
+    title,
     siteUrl: 'https://killerrabb.it',
+    description,
+    twitterUsername: '@persocon',
+    image: '/icon-tkrp.png',
+    shareImage: '/icon-tkrp.webp',
+    menu: [
+      {
+        id: 'home',
+        path: '/',
+        name: 'Home',
+      },
+      {
+        id: 'posts',
+        path: '/posts',
+        name: 'Posts',
+      },
+      {
+        id: 'videos',
+        path: '/videos',
+        name: 'Videos',
+      },
+    ],
   },
   plugins: [
     {
@@ -9,7 +37,7 @@ module.exports = {
       options: {
         url: 'https://www.tkrp.net/graphql',
         schema: {
-          timeout: 3600000,
+          timeout: 3_600_000,
         },
         production: {
           hardCacheMediaFiles: true,
@@ -21,54 +49,33 @@ module.exports = {
           MediaItem: {
             localFile: {
               requestConcurrency: 10,
-              maxFileSizeBytes: 3e8, // 200Mb
+              maxFileSizeBytes: 3e8, // 300Mb
             },
           },
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-alias-imports`,
-      options: {
-        alias: {
-          '@components': 'src/components',
-          '@css': 'src/emotion',
-          '@root': '.',
-        },
-        extensions: ['js'],
-      },
-    },
-    'gatsby-plugin-emotion',
     'gatsby-plugin-image',
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-emotion',
     'gatsby-plugin-sitemap',
-    {
-      resolve: `gatsby-plugin-zopfli`,
-      options: {
-        extensions: ['css', 'js', 'svg', 'jpg', 'jpeg', 'webp', 'mp4'],
-      },
-    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'The Killer-Rabbit Project',
+        name: title,
         short_name: 'TKRP',
         start_url: '/',
-        description: `Pedro Costa Neves Photo and Video Portfolio`,
-        lang: `en`,
-        background_color: '#1b1c1e',
-        theme_color: '#1b1c1e',
+        description,
+        lang: 'en',
+        background_color: '#000000',
+        theme_color: '#000000',
         display: 'fullscreen',
-        icon: 'src/images/icon-tkrp.png',
-        crossOrigin: `use-credentials`,
-        cache_busting_mode: `none`,
+        icon: 'static/icon-tkrp.png',
+        crossOrigin: 'use-credentials',
+        cache_busting_mode: 'none',
       },
     },
-    'gatsby-plugin-transition-link',
-    {
-      resolve: 'gatsby-plugin-sharp',
-    },
-    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -77,6 +84,19 @@ module.exports = {
       },
       __key: 'images',
     },
-    'gatsby-plugin-remove-serviceworker',
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          '@components': 'src/components',
+          '@graphql': 'src/graphql',
+          '@types': 'src/types',
+          '@css': 'src/css',
+          '@hooks': 'src/hooks',
+          '@utils': 'src/utils',
+        },
+        extensions: ['js'],
+      },
+    },
   ],
 };
