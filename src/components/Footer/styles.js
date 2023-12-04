@@ -11,6 +11,7 @@ export const footer = css`
     display: flex;
     flex-direction: column;
     gap: 8px;
+    font-size: 16px;
     li:not(a) {
       --text-shadow: 0px 0px 1px currentColor;
       text-shadow: var(--text-shadow);
