@@ -8,6 +8,11 @@
     RewriteCond %{REQUEST_FILENAME}\.gz -f
     RewriteRule \.(css|ics|js|json|html|svg)$ %{REQUEST_URI}.gz [L]
 
+    <FilesMatch ".(jpg|jpeg|webp|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+
     # Prevent mod_deflate double gzip
     RewriteRule \.gz$ - [E=no-gzip:1]
 
