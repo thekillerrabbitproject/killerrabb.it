@@ -17,7 +17,7 @@ export const footer = css`
       text-shadow: var(--text-shadow);
     }
     li a {
-      line-height: 26px;
+      line-height: 20px;
       &::before {
         display: inline-block;
         content: '\\25B8';
