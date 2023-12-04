@@ -6,7 +6,7 @@ import * as ß from './styles';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const VideoTile = ({ data }) => {
+const VideoTile = ({ data, isEager }) => {
   const image = data.featuredImage.node.localFile;
 
   return (
@@ -21,6 +21,7 @@ const VideoTile = ({ data }) => {
         <GatsbyImage
           image={getImage(data.featuredImage.node.localFile)}
           alt={data.title}
+          loading={isEager ? 'eager' : 'lazy'}
         />
       </Link>
     </article>

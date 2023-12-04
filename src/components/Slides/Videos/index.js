@@ -15,8 +15,8 @@ const SlidesVideos = ({ data, disableSlider, title }) => {
     <>
       <h2>{title}</h2>
       <section css={[ß.videoSlider, disableSliderCSS]}>
-        {nodes.map((content) => (
-          <VideoTile key={content.path} data={content} />
+        {nodes.map((content, index) => (
+          <VideoTile key={content.path} data={content} isEager={index === 0} />
         ))}
       </section>
     </>
