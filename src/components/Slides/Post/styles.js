@@ -1,4 +1,4 @@
-import { mediaQueryDesktop } from '@css/constants';
+import { mediaQueryDesktop, sliderScrollbar } from '@css/constants';
 import { css } from '@emotion/react';
 
 export const slider = css`
@@ -16,8 +16,7 @@ export const slider = css`
     overflow: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
-    scrollbar-color: var(--trueblack) transparent;
+    ${sliderScrollbar}
     height: var(--height);
   }
 `;

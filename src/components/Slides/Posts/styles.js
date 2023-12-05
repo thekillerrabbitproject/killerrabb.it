@@ -1,7 +1,10 @@
+import { sliderScrollbar } from '@css/constants';
 import { css } from '@emotion/react';
 
+const defaultHeight = '256';
+
 export const innerSlider = css`
-  --height: 256px;
+  --height: ${defaultHeight}px;
   display: block;
   position: relative;
   inline-size: 100%;
@@ -9,16 +12,14 @@ export const innerSlider = css`
   overflow: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--trueblack) transparent;
+  ${sliderScrollbar}
   height: var(--height);
   padding-bottom: 24px;
 `;
 export const isPortrait = (width, height) => height > width;
 
 export const imageWrapper = ({ width, height }) => css`
-  --ratio: calc(${width} / ${height});
-  --width: calc(var(--height) * var(--ratio));
+  --width: ${defaultHeight * (width / height)}px;
 
   max-width: var(--width);
   height: var(--height);
@@ -91,8 +92,5 @@ export const metaSlider = css`
   white-space: nowrap;
   overflow-y: hidden;
   scroll-snap-type: x;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  ${sliderScrollbar}
 `;

@@ -1,3 +1,4 @@
+import { sliderScrollbar } from '@css/constants';
 import { css } from '@emotion/react';
 
 export const meta = css`
@@ -47,8 +48,5 @@ export const metaSlider = css`
   white-space: nowrap;
   overflow-y: hidden;
   scroll-snap-type: x;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  ${sliderScrollbar}
 `;
