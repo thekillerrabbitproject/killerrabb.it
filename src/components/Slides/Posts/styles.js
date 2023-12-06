@@ -41,7 +41,7 @@ export const meta = css`
   top: 6px;
   left: 0;
   z-index: 1;
-  width: calc(100vw - 16px);
+  width: var(--slider-default-width);
 
   font-family: var(--font-negative);
   mix-blend-mode: screen;

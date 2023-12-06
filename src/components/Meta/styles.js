@@ -2,7 +2,7 @@ import { sliderScrollbar } from '@css/constants';
 import { css } from '@emotion/react';
 
 export const meta = css`
-  width: calc(100vw - 16px);
+  width: var(--slider-default-width);
 
   font-family: var(--font-negative);
   mix-blend-mode: screen;

@@ -27,6 +27,7 @@ const global = css`
     --font-negative: 'Roboto Mono', ui-monospace, sans-serif;
     --color-negative: ${colorNegativeText};
     --black-and-white-negative: ${blackAndWhiteNegativeText};
+    --slider-default-width: calc(100vw - 16px);
   }
   ${fonts}
   html,

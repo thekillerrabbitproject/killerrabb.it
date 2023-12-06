@@ -8,7 +8,6 @@ export const slider = css`
   margin: 16px 0;
 
   ${mediaQueryDesktop} {
-    --height: calc(100vh - 160px);
     display: block;
     position: relative;
     inline-size: 100%;
@@ -17,7 +16,7 @@ export const slider = css`
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     ${sliderScrollbar}
-    height: var(--height);
+    height: var(--slider-default-height);
   }
 `;
 
@@ -28,11 +27,11 @@ export const imageWrapper = ({ width, height }) => css`
     --ratio: ${height};
     --defaultWidth: 80vw;
     --width: ${isPortrait(width, height)
-      ? 'calc(var(--height) / var(--ratio))'
+      ? 'calc(var(--slider-default-height) / var(--ratio))'
       : 'var(--defaultWidth)'};
 
     width: var(--width);
-    height: var(--height);
+    height: var(--slider-default-height);
     margin-inline-end: 16px;
 
     display: inline-block;
@@ -42,7 +41,7 @@ export const imageWrapper = ({ width, height }) => css`
     .gatsby-image-wrapper {
       object-fit: contain;
       width: var(--width);
-      height: var(--height);
+      height: var(--slider-default-height);
     }
   }
 `;
