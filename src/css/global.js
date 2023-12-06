@@ -28,6 +28,7 @@ const global = css`
     --color-negative: ${colorNegativeText};
     --black-and-white-negative: ${blackAndWhiteNegativeText};
     --slider-default-width: calc(100vw - 16px);
+    --slider-default-height: calc(100vh - 160px);
   }
   ${fonts}
   html,
