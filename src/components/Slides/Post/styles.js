@@ -25,10 +25,9 @@ export const isPortrait = (width, height) => height > width;
 export const imageWrapper = ({ width, height }) => css`
   ${mediaQueryDesktop} {
     --ratio: ${height};
-    --defaultWidth: 80vw;
     --width: ${isPortrait(width, height)
       ? 'calc(var(--slider-default-height) / var(--ratio))'
-      : 'var(--defaultWidth)'};
+      : '80vw'};
 
     width: var(--width);
     height: var(--slider-default-height);

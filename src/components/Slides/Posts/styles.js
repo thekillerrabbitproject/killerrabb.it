@@ -4,7 +4,6 @@ import { css } from '@emotion/react';
 const defaultHeight = '256';
 
 export const innerSlider = css`
-  --height: ${defaultHeight}px;
   display: block;
   position: relative;
   inline-size: 100%;
@@ -13,7 +12,7 @@ export const innerSlider = css`
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   ${sliderScrollbar}
-  height: var(--height);
+  height: ${defaultHeight}px;
   padding-bottom: 24px;
 `;
 export const isPortrait = (width, height) => height > width;
@@ -22,7 +21,7 @@ export const imageWrapper = ({ width, height }) => css`
   --width: ${defaultHeight * (width / height)}px;
 
   max-width: var(--width);
-  height: var(--height);
+  height: ${defaultHeight}px;
   margin-inline-end: 16px;
 
   display: inline-block;
@@ -32,7 +31,7 @@ export const imageWrapper = ({ width, height }) => css`
   .gatsby-image-wrapper {
     object-fit: contain;
     max-width: var(--width);
-    height: var(--height);
+    height: ${defaultHeight}px;
   }
 `;
 
