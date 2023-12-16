@@ -39,9 +39,10 @@ export const shareService = ({
   const shareApi = 'https://tkrp.net/share/index.php';
 
   const categoryColor = getColorByCategory(categories);
+  const satanizedTitle = encodeURIComponent(title);
 
   if (image) {
-    const queryString = `?image=${image}&text=${title}&type=${postType}&color=${categoryColor}`;
+    const queryString = `?image=${image}&text=${satanizedTitle}&type=${postType}&color=${categoryColor}`;
 
     return `${shareApi}${queryString}`;
   }
