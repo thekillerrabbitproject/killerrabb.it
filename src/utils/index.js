@@ -1,3 +1,5 @@
+const getNodeImage = (node) => node.featuredImage.node.localFile.shareImage;
+
 export const isDuplicatedFromGallery = (content) => {
   const {
     featuredImageId,
@@ -13,4 +15,16 @@ export const getFilmString = (content) => {
   } = content;
 
   return nodes.map((film) => film.slug).join(' ');
+};
+
+export const getFirstModelImage = (data) => {
+  const {
+    wpModel: { videos, posts },
+  } = data;
+
+  if (videos.length > 0) {
+    return getNodeImage(videos.nodes.at(0));
+  }
+
+  return getNodeImage(posts.nodes.at(0));
 };

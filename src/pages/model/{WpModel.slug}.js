@@ -5,8 +5,10 @@ import SlidesPosts from '@components/Slides/Posts';
 import SlidesVideos from '@components/Slides/Videos';
 import Title from '@components/Title';
 import { dataAny } from '@types';
+import { getFirstModelImage } from '@utils/index';
 
 import { graphql } from 'gatsby';
+import { getSrc } from 'gatsby-plugin-image';
 
 const ModelPage = ({ data }) => {
   const {
@@ -28,7 +30,7 @@ const HeadSEO = ({ data }) => (
   <SEO
     title={`Model: ${data.wpModel.title}`}
     pathname={data.wpModel.path}
-    image={data.site.siteMetadata.shareImageNoLogo}
+    image={getSrc(getFirstModelImage(data))}
   />
 );
 
@@ -40,11 +42,6 @@ export default ModelPage;
 
 export const data = graphql`
   query ModelPage($slug: String) {
-    site {
-      siteMetadata {
-        shareImageNoLogo
-      }
-    }
     wpModel(slug: { eq: $slug }) {
       title: name
       posts {
