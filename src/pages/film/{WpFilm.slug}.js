@@ -15,7 +15,7 @@ const FilmPage = ({ data }) => {
 
   return (
     <Layout>
-      <Title title={title} />
+      <Title title={title} hasShare />
       <SlidesVideos data={videos} />
       <SlidesPosts data={posts} />
     </Layout>
