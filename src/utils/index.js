@@ -22,7 +22,7 @@ export const getFirstModelImage = (data) => {
     wpModel: { videos, posts },
   } = data;
 
-  if (videos.length > 0) {
+  if (videos?.nodes.length > 0) {
     return getNodeImage(videos.nodes.at(0));
   }
 
