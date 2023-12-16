@@ -14,14 +14,28 @@ const VideosPage = ({ data }) => (
 
 VideosPage.propTypes = dataAny;
 
-export default VideosPage;
-
-export const Head = () => (
-  <SEO title="Recent Videos" pathname="/videos" postType="video" />
+const HeadSEO = ({ data }) => (
+  <SEO
+    title="Recent Videos"
+    pathname="/videos"
+    postType="video"
+    image={data.site.siteMetadata.shareImageNoLogo}
+  />
 );
+
+HeadSEO.propTypes = dataAny;
+
+export const Head = HeadSEO;
+
+export default VideosPage;
 
 export const query = graphql`
   query VideosPage {
+    site {
+      siteMetadata {
+        shareImageNoLogo
+      }
+    }
     videos: allWpVideo {
       nodes {
         ...VideoPost

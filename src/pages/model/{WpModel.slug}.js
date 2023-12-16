@@ -25,7 +25,11 @@ const ModelPage = ({ data }) => {
 ModelPage.propTypes = dataAny;
 
 const HeadSEO = ({ data }) => (
-  <SEO title={`Model: ${data.wpModel.title}`} pathname={data.wpModel.path} />
+  <SEO
+    title={`Model: ${data.wpModel.title}`}
+    pathname={data.wpModel.path}
+    image={data.site.siteMetadata.shareImageNoLogo}
+  />
 );
 
 HeadSEO.propTypes = dataAny;
@@ -36,6 +40,11 @@ export default ModelPage;
 
 export const data = graphql`
   query ModelPage($slug: String) {
+    site {
+      siteMetadata {
+        shareImageNoLogo
+      }
+    }
     wpModel(slug: { eq: $slug }) {
       title: name
       posts {

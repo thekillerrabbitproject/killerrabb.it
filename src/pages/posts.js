@@ -14,12 +14,27 @@ const PostsPage = ({ data }) => (
 
 PostsPage.propTypes = dataAny;
 
-export default PostsPage;
+const HeadSEO = ({ data }) => (
+  <SEO
+    title="Recent Posts"
+    pathname="/posts"
+    image={data.site.siteMetadata.shareImageNoLogo}
+  />
+);
 
-export const Head = () => <SEO title="Recent Posts" pathname="/posts" />;
+HeadSEO.propTypes = dataAny;
+
+export const Head = HeadSEO;
+
+export default PostsPage;
 
 export const query = graphql`
   query PostsPage {
+    site {
+      siteMetadata {
+        shareImageNoLogo
+      }
+    }
     posts: allWpPost {
       nodes {
         ...PostConstrained

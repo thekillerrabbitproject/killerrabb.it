@@ -13,6 +13,7 @@ module.exports = {
     twitterUsername: '@persocon',
     image: '/icons/icon-tkrp.png',
     shareImage: '/icons/icon-tkrp.webp',
+    shareImageNoLogo: '/icons/icon-tkrp-no-logo.webp',
     menu: [
       {
         id: 'home',

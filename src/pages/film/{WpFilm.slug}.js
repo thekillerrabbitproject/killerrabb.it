@@ -29,6 +29,7 @@ const HeadSEO = ({ data }) => (
     title={`Film: ${data.wpFilm.title}`}
     pathname={data.wpFilm.path}
     categories={[{ slug: data.wpFilm.slug }]}
+    image={data.site.siteMetadata.shareImageNoLogo}
   />
 );
 
@@ -40,6 +41,11 @@ export default FilmPage;
 
 export const data = graphql`
   query FilmPage($slug: String) {
+    site {
+      siteMetadata {
+        shareImageNoLogo
+      }
+    }
     wpFilm(slug: { eq: $slug }) {
       title: name
       slug
