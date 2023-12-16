@@ -16,7 +16,7 @@ const VideoPage = ({ data }) => {
 
   return (
     <Layout>
-      <Title title={video.title} isVideo />
+      <Title title={video.title} isVideo hasShare />
       <Video
         title={video.title}
         cover={video.featuredImage.node.localFile}
@@ -40,7 +40,9 @@ const HeadSEO = ({ data }) => (
   <SEO
     title={data.wpVideo.title}
     pathname={data.wpVideo.path}
-    image={getSrc(data.wpVideo.featuredImage.node.localFile.webp)}
+    image={getSrc(data.wpVideo.featuredImage.node.localFile.shareImage)}
+    postType="video"
+    categories={data.wpVideo.films.nodes}
   />
 );
 

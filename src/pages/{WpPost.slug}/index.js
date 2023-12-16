@@ -16,7 +16,7 @@ const PostPage = ({ data }) => {
 
   return (
     <Layout>
-      <Title title={post.title} />
+      <Title title={post.title} hasShare />
       <PostSlider data={post} />
       <Meta data={post} />
       <Content content={post.content} />
@@ -31,7 +31,8 @@ const HeadSEO = ({ data }) => (
   <SEO
     title={data.wpPost.title}
     pathname={data.wpPost.path}
-    image={getSrc(data.wpPost.featuredImage.node.localFile.webp)}
+    image={getSrc(data.wpPost.featuredImage.node.localFile.shareImage)}
+    categories={data.wpPost.films.nodes}
   />
 );
 

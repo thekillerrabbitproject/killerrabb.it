@@ -16,7 +16,9 @@ VideosPage.propTypes = dataAny;
 
 export default VideosPage;
 
-export const Head = () => <SEO title="Recent Videos" pathname="/videos" />;
+export const Head = () => (
+  <SEO title="Recent Videos" pathname="/videos" postType="video" />
+);
 
 export const query = graphql`
   query VideosPage {

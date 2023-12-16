@@ -1,10 +1,18 @@
 import React from 'react';
 import useSiteMetadata from '@hooks/useSiteMetadata';
-import { seo } from '@types';
+import { seo } from '@types/index';
 
 import { shareService } from './utils';
 
-const SEO = ({ title, description, pathname, image, children }) => {
+const SEO = ({
+  title,
+  description,
+  pathname,
+  image,
+  children,
+  postType,
+  categories,
+}) => {
   const {
     title: defaultTitle,
     description: defaultDescription,
@@ -27,6 +35,8 @@ const SEO = ({ title, description, pathname, image, children }) => {
   const shareImage = shareService({
     title,
     image: seo.shareImage,
+    postType,
+    categories,
   });
 
   return (
@@ -53,6 +63,8 @@ const SEO = ({ title, description, pathname, image, children }) => {
 SEO.propTypes = seo;
 
 SEO.defaultProps = {
+  categories: [],
+  postType: 'post',
   title: '',
 };
 

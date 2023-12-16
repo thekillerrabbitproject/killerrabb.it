@@ -25,7 +25,11 @@ const FilmPage = ({ data }) => {
 FilmPage.propTypes = dataAny;
 
 const HeadSEO = ({ data }) => (
-  <SEO title={`Film: ${data.wpFilm.title}`} pathname={data.wpFilm.path} />
+  <SEO
+    title={`Film: ${data.wpFilm.title}`}
+    pathname={data.wpFilm.path}
+    categories={[{ slug: data.wpFilm.slug }]}
+  />
 );
 
 HeadSEO.propTypes = dataAny;
@@ -38,6 +42,7 @@ export const data = graphql`
   query FilmPage($slug: String) {
     wpFilm(slug: { eq: $slug }) {
       title: name
+      slug
       posts {
         nodes {
           ...PostConstrained

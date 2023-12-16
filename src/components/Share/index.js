@@ -6,11 +6,13 @@ const shareIcon = withPrefix('icons/share.svg');
 
 const Share = () => {
   const [hasShare, setHasShare] = useState(false);
+
   useEffect(() => {
     if (navigator.share) {
       setHasShare(true);
     }
   }, []);
+
   const onClick = (event) => {
     event.preventDefault();
     const { log } = console;

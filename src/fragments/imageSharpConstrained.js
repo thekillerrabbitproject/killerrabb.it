@@ -10,12 +10,13 @@ export const imageSharpConstrained = graphql`
         placeholder: BLURRED
       )
     }
-    webp: childImageSharp {
+    shareImage: childImageSharp {
       gatsbyImageData(
         formats: [WEBP]
-        layout: FULL_WIDTH
         quality: 100
         placeholder: NONE
+        width: 1200
+        height: 630
       )
       original {
         height

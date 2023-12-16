@@ -8,8 +8,8 @@ import { children } from '@types';
 const Layout = ({ children }) => (
   <>
     <Global styles={globalStyles} />
+    <Header />
     <main>
-      <Header />
       {children}
       <Footer />
     </main>

@@ -1,18 +1,19 @@
 import { menuHack } from '@components/Menu/styles';
 import { css } from '@emotion/react';
 
+import {
+  blackAndWhiteNegativeText,
+  colorNegativeText,
+  highlight,
+  primary,
+  secondary,
+  tertiary,
+  trueblack,
+} from './constants';
 import fonts from './fonts';
 import { headers } from './header';
 import icon from './icon';
 import loader from './loader';
-
-const primary = '#FFFFFF';
-const secondary = '#33323a';
-const tertiary = '#1b1c1e';
-const highlight = '#facacf';
-const trueblack = '#000000';
-const colorNegativeText = '#e8850d';
-const blackAndWhiteNegativeText = '#FFF';
 
 const global = css`
   :root {
@@ -21,8 +22,7 @@ const global = css`
     --tertiary: ${tertiary};
     --highlight: ${highlight};
     --trueblack: ${trueblack};
-    --icon-color: invert(83%) sepia(8%) saturate(915%) hue-rotate(305deg)
-      brightness(101%) contrast(96%);
+    --icon-color: invert(100%);
     --font-vcr: 'vcr-osd-mono', sans-serif;
     --font-negative: 'Roboto Mono', ui-monospace, sans-serif;
     --color-negative: ${colorNegativeText};
