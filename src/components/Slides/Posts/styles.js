@@ -15,7 +15,6 @@ export const innerSlider = css`
   height: ${defaultHeight}px;
   padding-bottom: 24px;
 `;
-export const isPortrait = (width, height) => height > width;
 
 export const imageWrapper = ({ width, height }) => css`
   --width: ${defaultHeight * (width / height)}px;

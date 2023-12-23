@@ -20,14 +20,10 @@ export const slider = css`
   }
 `;
 
-export const isPortrait = (width, height) => height > width;
-
-export const imageWrapper = ({ width, height }) => css`
+export const imageWrapper = ({ height }) => css`
   ${mediaQueryDesktop} {
     --ratio: ${height};
-    --width: ${isPortrait(width, height)
-      ? 'calc(var(--slider-default-height) / var(--ratio))'
-      : '80vw'};
+    --width: calc(var(--slider-default-height) / var(--ratio));
 
     width: var(--width);
     height: var(--slider-default-height);
