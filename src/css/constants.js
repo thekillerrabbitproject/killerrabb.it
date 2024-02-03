@@ -7,6 +7,8 @@ export const sliderScrollbar = css`
   &::-webkit-scrollbar {
     display: none;
   }
+  transform-style: preserve-3d;
+  transform: translateZ(0);
 `;
 
 export const primary = '#FFFFFF';
