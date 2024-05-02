@@ -3,7 +3,7 @@
  */
 
 const title = 'The Killer-Rabbit Project';
-const description = 'Analog Photography and Videomaking by Pedro Costa Neves';
+const description = 'Analog Photography and Videomaking by O.';
 
 module.exports = {
   siteMetadata: {
