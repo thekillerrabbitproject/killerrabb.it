@@ -48,11 +48,10 @@ const SEO = ({
       <meta name="image" content={shareImage} />
 
       <meta name="og:title" content={seo.title} />
-      {video ? (
+      {video && (
         <meta name="og:video" content={`https://killerrabb.it${video}`} />
-      ) : (
-        <meta name="og:image" content={shareImage} />
       )}
+      <meta name="og:image" content={shareImage} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
