@@ -43,6 +43,10 @@ const HeadSEO = ({ data }) => (
     image={getSrc(data.wpVideo.featuredImage.node.localFile.shareImage)}
     postType="video"
     categories={data.wpVideo.films.nodes}
+    video={
+      data.wpVideo.videoThingy?.featuredVideo?.localFile?.publicURL ||
+      data.wpVideo.videoThingy?.featuredVideo?.publicUrl
+    }
   />
 );
 
