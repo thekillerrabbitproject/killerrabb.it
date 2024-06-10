@@ -34,7 +34,7 @@ const Share = () => {
     hasShare && (
       <a href="#" onClick={onClick}>
         <Image
-          src="icons/share.svg"
+          src="/icons/share.svg"
           unoptimized
           width="24"
           height="24"

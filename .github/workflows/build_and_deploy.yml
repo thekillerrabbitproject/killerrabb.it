@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: public/static-assets
-          key: ${{ runner.os }}-static-assets
+          key: ${{ runner.os }}-static-assets-${{ hashFiles('public/static-assets') }}
 
       - run: yarn add sharp --ignore-engines
       - run: yarn

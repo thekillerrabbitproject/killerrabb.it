@@ -1,6 +1,7 @@
-import Link from 'next/link';
 import styles from '@/css/ImageComponent.module.css';
 import { children, slidePostsImage } from '@/types/index';
+
+import Link from 'next/link';
 
 const LinkWrapper = ({ href, title, children }) => {
   if (href) {

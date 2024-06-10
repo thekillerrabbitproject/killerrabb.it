@@ -10,7 +10,7 @@ const RelatedPosts = ({ data }) => {
     const ids = data?.posts?.map((post) => post?.id);
 
     return (
-      <div css={styles.wrapper}>
+      <div className={styles.wrapper}>
         <SlidesVideos ids={ids} title="Related Videos" />
         <PostSlider ids={ids} title="Related Posts" />
       </div>

@@ -19,9 +19,9 @@ const PostSlider = ({ data }) => (
         {...data.images.featuredImage}
       />
     )}
-    {data.images.gallery.map((image) => (
+    {data.images.gallery.map((image, index) => (
       <Image
-        key={image.id}
+        key={`${image.id}-${index}`}
         alt={data.title}
         width={image.width}
         height={image.height}

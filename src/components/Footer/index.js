@@ -31,22 +31,22 @@ const Footer = async () => {
 
   return (
     <footer className={styles.footer}>
-      <ul>
-        <li>menu</li>
+      <ul className={styles.list}>
+        <li className={styles.listItemHeader}>menu</li>
         {menu.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className={styles.listItem}>
             <Link href={item.path} title={item.name}>
               {item.name}
             </Link>
           </li>
         ))}
       </ul>
-      <ul css={styles.list}>
-        <li>films</li>
+      <ul className={styles.list}>
+        <li className={styles.listItemHeader}>films</li>
         {films?.map(
           (film) =>
             film?.count && (
-              <li key={film.uri}>
+              <li key={film.uri} className={styles.listItem}>
                 <Link href={film.uri} title={film.name}>
                   {film.name}
                 </Link>
@@ -54,12 +54,12 @@ const Footer = async () => {
             ),
         )}
       </ul>
-      <ul>
-        <li>models</li>
+      <ul className={styles.list}>
+        <li className={styles.listItemHeader}>models</li>
         {models?.map(
           (model) =>
             model?.count && (
-              <li key={model.uri}>
+              <li key={model.uri} className={styles.listItem}>
                 <Link href={model.uri} title={model.name}>
                   {model.name}
                 </Link>
