@@ -62,7 +62,7 @@
     "string-width": "4.2.3"
   },
   "supportedArchitecture": {
-    "os": ["current"],
-    "cpu": ["current"]
+    "os": ["current", "linux"],
+    "cpu": ["current", "x64"]
   }
 }
