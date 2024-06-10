@@ -3,6 +3,7 @@ import pkg from '@apollo/client';
 import query from './src/graphql/Downloader/StaticAssets.mjs';
 import imageConverter from './src/utils/image-converter.mjs';
 import externalImagesDownloader from './src/utils/image-downloader.mjs';
+import imageResizeAndBlur from './src/utils/image-resize-blur.mjs';
 import shareService from './src/utils/shareimage.mjs';
 import externalVideosDownloader from './src/utils/video-downloader.mjs';
 
@@ -145,3 +146,5 @@ await externalVideosDownloader({
 });
 
 await imageConverter();
+
+await imageResizeAndBlur();

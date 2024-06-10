@@ -45,10 +45,12 @@ export const getImageLocalSrc = ({
 
   const jpg = `${newPath}${fileName}.${originalExtension}`;
   const webp = `${newPath}${fileName}.webp`;
+  const blur = `${newPath}${fileName}-blur.${originalExtension}`;
 
   return {
     jpg,
     webp,
+    blur,
   };
 };
 

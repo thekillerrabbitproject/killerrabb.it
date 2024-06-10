@@ -32,12 +32,14 @@ export const query = gql`
         }
         thumbnails @client {
           featuredImage {
+            blur
             webp
             jpg
             width
             height
           }
           gallery {
+            blur
             webp
             jpg
             width

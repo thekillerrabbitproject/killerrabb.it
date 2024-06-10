@@ -31,6 +31,7 @@ const Image = ({
   isFeatured = false,
   cssOverride,
   className,
+  blur,
 }) => {
   const featuredClassName = isFeatured ? 'featured' : 'image';
 
@@ -40,6 +41,7 @@ const Image = ({
       style={{
         '--width': cssOverride?.width || `${width}px`,
         '--height': cssOverride?.height || `${height}px`,
+        ...(blur && { '--blur': `url('${blur}')` }),
       }}
     >
       <LinkWrapper href={uri} title={alt}>

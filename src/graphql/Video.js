@@ -34,6 +34,7 @@ export const query = gql`
       }
       images @client {
         featuredImage {
+          blur
           jpg
           width
           height
