@@ -21,7 +21,9 @@ const imageConverter = async () => {
     // eslint-disable-next-line no-console
     console.log('\n- Converting Images and Thumbnails -');
 
-    const images = await glob(['public/static-assets/images/**/*.{jpg,jpeg}']);
+    const images = await glob(['public/static-assets/images/**/*.{jpg,jpeg}'], {
+      ignore: 'public/static-assets/images/**/*-blur.{jpg,jpeg}',
+    });
 
     for (const image of images) {
       const fileName = getFileName(image);
