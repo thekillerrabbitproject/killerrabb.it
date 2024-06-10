@@ -18,9 +18,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20.13.x"
+      - name: Restore static-assets
+        id: cache-static-assets-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: public/static-assets
+          key: ${{ runner.os }}-static-assets
+
       - run: yarn add sharp --ignore-engines
       - run: yarn
       - run: yarn build
+
+      - name: Save static-assets
+        id: cache-static-assets-save
+        uses: actions/cache/save@v4
+        with:
+          path: public/static-assets
+          key: ${{ steps.cache-static-assets-restore.outputs.cache-primary-key }}
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
