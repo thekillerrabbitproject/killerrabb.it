@@ -6,7 +6,7 @@
   display: inline-block;
   scroll-snap-align: center;
   position: relative;
-  background: var(--blur, transparent) no-repeat;
+  background: var(--blur, transparent);
   background-repeat: no-repeat;
   background-size: contain;
 }
