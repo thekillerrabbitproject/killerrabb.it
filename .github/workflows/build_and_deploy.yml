@@ -5,6 +5,9 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+
 jobs:
   build_and_deploy:
     name: Build & Deploy
