@@ -1,8 +1,6 @@
 .video {
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: all 0.3s ease-in-out;
 }
-.video:fullscreen {
-  object-fit: contain;
-}
+
