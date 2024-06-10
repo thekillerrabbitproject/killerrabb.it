@@ -1,0 +1,58 @@
+.videoSlider {
+  --defaultHeight: 256px;
+  composes: sliderScrollbar from '@/css/sliderScrollbar.module.css';
+  display: block;
+  position: relative;
+  inline-size: 100%;
+  white-space: nowrap;
+  overflow: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  height: var(--defaultHeight);
+  padding-bottom: 24px;
+}
+
+.disabledVideoSlider {
+  composes: videoSlider;
+  scroll-snap-type: unset;
+  overflow-x: unset;
+  overflow-y: unset;
+  -webkit-overflow-scrolling: unset;
+  display: flex;
+  flex-wrap: wrap;
+  inline-size: auto;
+  height: auto;
+  gap: 16px 8px;
+}
+
+.videoTile {
+  max-width: var(--width);
+  height: var(--height);
+  margin-inline-end: 16px;
+
+  display: inline-block;
+  scroll-snap-align: center;
+  position: relative;
+}
+
+.videoTileTitle {
+  position: sticky;
+  top: 6px;
+  left: 0;
+  z-index: 1;
+  color: var(--highlight);
+
+  font-family: var(--font-vcr);
+  mix-blend-mode: screen;
+}
+
+.removeDecoration {
+  text-decoration: unset;
+  color: currentColor;
+}
+
+.videoTileImage {
+  width: auto;
+  max-width: 100%;
+  height: var(--height);;
+}

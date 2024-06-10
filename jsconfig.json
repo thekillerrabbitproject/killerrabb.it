@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@graphql/*": ["src/graphql/*"],
-      "@types/*": ["src/types/*"],
-      "@css/*": ["src/css/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

@@ -1,19 +1,19 @@
-import React from 'react';
-import useSiteMetadata from '@hooks/useSiteMetadata';
+import styles from '@/css/MenuComponent.module.css';
+import useSiteMetadata from '@/hooks/useSiteMetadata';
 
-import * as ß from './styles';
-
-import { Link } from 'gatsby';
+import Link from 'next/link';
 
 const Menu = () => {
   const { menu } = useSiteMetadata();
 
   return (
-    <nav css={ß.nav}>
-      <ul css={ß.menu}>
+    <nav className={styles.nav}>
+      <ul className={styles.menu}>
         {menu.map((item) => (
           <li id={item.id} key={item.id}>
-            <Link to={item.path}>{item.name}</Link>
+            <Link href={item.path} className={styles.link}>
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>

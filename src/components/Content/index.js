@@ -1,11 +1,12 @@
-import React from 'react';
-import { content } from '@types';
-
-import * as ß from './styles';
+import styles from '@/css/ContentComponent.module.css';
+import { content } from '@/types';
 
 const Content = ({ content }) =>
   content && (
-    <article css={ß.content} dangerouslySetInnerHTML={{ __html: content }} />
+    <article
+      className={styles.content}
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
   );
 
 Content.propTypes = content;

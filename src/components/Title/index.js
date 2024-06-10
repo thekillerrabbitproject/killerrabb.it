@@ -1,24 +1,15 @@
-import React from 'react';
-import Share from '@components/Share';
-import { title } from '@types/index';
+import Share from '@/components/Share';
+import styles from '@/css/TitleComponent.module.css';
+import { title } from '@/types/index';
 
-import * as ß from './styles';
-
-const Title = ({ title, isVideo, hasShare }) =>
+const Title = ({ title, isVideo = false, hasShare = false }) =>
   title && (
-    <header css={ß.header}>
-      <h2 css={ß.title} className={isVideo ? 'video' : 'post'}>
-        {title}
-      </h2>
+    <header className={styles.header}>
+      <h2 className={`${styles.title} ${isVideo && styles.video}`}>{title}</h2>
       {hasShare && <Share />}
     </header>
   );
 
 Title.propTypes = title;
-
-Title.defaultProps = {
-  hasShare: false,
-  isVideo: false,
-};
 
 export default Title;

@@ -1,0 +1,70 @@
+.meta {
+  position: sticky;
+  top: 6px;
+  left: 0;
+  z-index: 1;
+  width: var(--slider-default-width);
+
+  font-family: var(--font-negative);
+  mix-blend-mode: screen;
+}
+
+.header {
+  scroll-snap-align: center;
+}
+
+.paragraph {
+  margin-top: 4px;
+  font-style: italic;
+  font-weight: 300;
+  scroll-snap-align: center;
+}
+
+.paragraph:first-of-type {
+  margin-left: 16px;
+}
+
+.list {
+  composes: paragraph;
+  display: flex;
+  gap: 8px;
+  text-transform: lowercase;
+}
+
+.listItem::before {
+  content: '\25B8';
+  margin-right: 8px;
+}
+
+.link {
+  text-decoration: none;
+  color: currentColor;
+}
+
+.color {
+  color: var(--color-negative);
+}
+
+.black-white {
+  color: var(--black-and-white-negative);
+}
+
+.metaNotSticky {
+  position: unset;
+  margin: 16px 0;
+  & p:first-of-type, & ul:first-of-type {
+    margin-left: 0;
+  }
+}
+
+.metaSlider {
+  composes: sliderScrollbar from '@/css/sliderScrollbar.module.css';
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  position: relative;
+  inline-size: 100%;
+  white-space: nowrap;
+  overflow-y: hidden;
+  scroll-snap-type: x;
+}

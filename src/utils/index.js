@@ -1,5 +1,3 @@
-const getNodeImage = (node) => node.featuredImage.node.localFile.shareImage;
-
 export const isDuplicatedFromGallery = (content) => {
   const {
     featuredImageId,
@@ -9,22 +7,64 @@ export const isDuplicatedFromGallery = (content) => {
   return !!gallery.some(({ id }) => id === featuredImageId);
 };
 
-export const getFilmString = (content) => {
+export const getFilmString = (content, styles) => {
   const {
     films: { nodes },
   } = content;
 
-  return nodes.map((film) => film.slug).join(' ');
+  return nodes
+    .map((film) => styles?.[film.slug])
+    .filter(Boolean)
+    .join(' ');
 };
 
-export const getFirstModelImage = (data) => {
-  const {
-    wpModel: { videos, posts },
-  } = data;
+export const getShareImage = ({ slug, postType }) => {
+  const type = postType ? `/${postType.toLowerCase()}/` : '';
 
-  if (videos?.nodes.length > 0) {
-    return getNodeImage(videos.nodes.at(0));
-  }
+  return `/static-assets/shareimages${type}${slug}/share.png`;
+};
 
-  return getNodeImage(posts.nodes.at(0));
+export const getVideoName = (slug, videoSrc) => {
+  const { length, [length - 1]: fileName } = videoSrc.split('/');
+
+  return `/static-assets/videos/${slug}/${fileName}`;
+};
+
+export const getImageLocalSrc = ({
+  slug = '',
+  sourceUrl,
+  pathPrefix = '',
+  isThumbnail = false,
+  isFeatured = false,
+}) => {
+  const thumbPath = isThumbnail ? 'thumbnails/' : '';
+  const featuredPath = isFeatured ? 'featured/' : '';
+  const newPath = `/static-assets/images/${pathPrefix}${slug}/${thumbPath}${featuredPath}`;
+  const { length, [length - 1]: rawFileName } = sourceUrl.split('/');
+  const [fileName, originalExtension] = rawFileName.split('.');
+
+  const jpg = `${newPath}${fileName}.${originalExtension}`;
+  const webp = `${newPath}${fileName}.webp`;
+
+  return {
+    jpg,
+    webp,
+  };
+};
+
+export const getMetadata = ({ title, slug, postType, metadataBase }) => {
+  const shareImage = getShareImage({ slug, postType });
+
+  return {
+    title,
+    openGraph: {
+      images: [shareImage],
+    },
+    other: {
+      image: `${metadataBase.toString().replace(/\/$/, '')}${shareImage}`,
+    },
+    alternates: {
+      canonical: slug,
+    },
+  };
 };

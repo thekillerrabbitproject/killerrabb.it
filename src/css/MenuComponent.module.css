@@ -1,0 +1,15 @@
+.nav {
+  margin: 8px 0;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.link {
+  color: var(--highlight);
+}

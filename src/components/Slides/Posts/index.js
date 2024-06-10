@@ -1,44 +1,70 @@
-import React from 'react';
-import { sliders } from '@types/index';
-import { isDuplicatedFromGallery } from '@utils';
+import Image from '@/components/Image';
+import Meta from '@/components/Meta';
+import styles from '@/css/Slides/Posts.module.css';
+import { query } from '@/graphql/Posts';
+import { sliders } from '@/types/index';
+import { isDuplicatedFromGallery } from '@/utils';
+import client from '@/utils/apollo-client';
 
-import Image from './Image';
-import Meta from './Meta';
-import * as ß from './styles';
+async function getData(ids = []) {
+  try {
+    const res = await client.query({
+      query,
+      variables: {
+        where: {
+          in: ids,
+        },
+      },
+    });
 
-const SlidesPosts = ({ data, title }) => {
-  const { nodes } = data;
+    return res?.data?.posts?.nodes ?? [];
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-  const hasContent = nodes?.length;
+const SlidesPosts = async ({ title = 'Recent Posts', ids = [] }) => {
+  const data = await getData(ids);
+  const hasContent = data?.length > 0;
 
-  return hasContent ? (
-    <>
-      <h2>{title}</h2>
-      {nodes.map((content) => (
-        <section key={content.path}>
-          <article css={ß.innerSlider}>
-            <Meta data={content} />
-            {!isDuplicatedFromGallery(content) && (
-              <Image
-                data={content}
-                image={content.featuredImage.node.localFile}
-                isFeatured
-              />
-            )}
-            {content.acf.gallery.map((image) => (
-              <Image key={image.id} data={content} image={image.localFile} />
-            ))}
-          </article>
-        </section>
-      ))}
-    </>
-  ) : null;
+  return (
+    hasContent && (
+      <>
+        <h2>{title}</h2>
+        {data.map((content) => (
+          <section key={content.uri}>
+            <article className={styles.innerSlider}>
+              <Meta data={content} showTitle />
+              {!isDuplicatedFromGallery(content) && (
+                <Image
+                  alt={content.title}
+                  uri={content.uri}
+                  slug={content.slug}
+                  width={content.thumbnails.featuredImage.width}
+                  height={content.thumbnails.featuredImage.height}
+                  isFeatured
+                  {...content.thumbnails.featuredImage}
+                />
+              )}
+              {content.thumbnails.gallery.map((image) => (
+                <Image
+                  key={image.jpg}
+                  alt={content.title}
+                  uri={content.uri}
+                  width={image.width}
+                  height={image.height}
+                  isThumbnail
+                  {...image}
+                />
+              ))}
+            </article>
+          </section>
+        ))}
+      </>
+    )
+  );
 };
 
 SlidesPosts.propTypes = sliders;
-
-SlidesPosts.defaultProps = {
-  title: 'Recent Posts',
-};
 
 export default SlidesPosts;

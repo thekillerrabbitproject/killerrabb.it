@@ -10,7 +10,8 @@
     "plugin:import/recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "next/core-web-vitals"
   ],
 
   "parserOptions": {
@@ -21,7 +22,7 @@
     "sourceType": "module"
   },
 
-  "plugins": ["@emotion", "react", "simple-import-sort"],
+  "plugins": ["react", "simple-import-sort"],
 
   "rules": {
     "arrow-body-style": 2,
@@ -31,7 +32,7 @@
     "import/no-named-as-default": 0,
     "import/no-unresolved": 2,
     "max-lines": [2, { "max": 250 }],
-    "no-console": 2,
+    "no-console": ["error", { "allow": ["error"] }],
     "no-restricted-imports": 2,
     "no-undef": 2,
     "no-unused-vars": 2,
@@ -47,7 +48,7 @@
     "react/jsx-fragments": [2, "syntax"],
     "react/jsx-no-useless-fragment": 2,
     "react/jsx-pascal-case": [2, { "allowAllCaps": true }],
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/no-unknown-property": ["error", { "ignore": ["css", "fetchPriority"] }],
     "react/prop-types": 1,
     "react/sort-default-props": 2,
     "simple-import-sort/imports": [
@@ -70,12 +71,12 @@
   "settings": {
     "import/resolver": {
       "alias": [
-        ["@components", "./src/components"],
-        ["@graphql", "./src/graphql"],
-        ["@types", "./src/types"],
-        ["@css", "./src/css"],
-        ["@hooks", "./src/hooks"],
-        ["@utils", "./src/utils"]
+        ["@/components", "./src/components"],
+        ["@/graphql", "./src/graphql"],
+        ["@/types", "./src/types"],
+        ["@/css", "./src/css"],
+        ["@/hooks", "./src/hooks"],
+        ["@/utils", "./src/utils"]
       ]
     }
   }

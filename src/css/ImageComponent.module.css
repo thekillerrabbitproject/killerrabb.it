@@ -1,0 +1,9 @@
+.imageWrapper {
+  max-width: var(--width);
+  height: var(--height);
+  margin-inline-end: 16px;
+
+  display: inline-block;
+  scroll-snap-align: center;
+  position: relative;
+}

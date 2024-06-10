@@ -1,51 +1,53 @@
-import React from 'react';
-import useSiteMetadata from '@hooks/useSiteMetadata';
+import styles from '@/css/Footer.module.css';
+import { query } from '@/graphql/Footer';
+import useSiteMetadata from '@/hooks/useSiteMetadata';
+import client from '@/utils/apollo-client';
 
-import * as ß from './styles';
+import Link from 'next/link';
 
-import { graphql, Link, useStaticQuery } from 'gatsby';
+async function getData() {
+  try {
+    const res = await client.query({
+      query,
+    });
 
-const Footer = () => {
+    const {
+      films: { nodes: filmNodes },
+      models: { nodes: modelsNodes },
+    } = res?.data;
+
+    return {
+      films: filmNodes,
+      models: modelsNodes,
+    };
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const Footer = async () => {
   const { menu } = useSiteMetadata();
-  const data = useStaticQuery(graphql`
-    query FooterQuery {
-      films: allWpFilm(sort: { count: DESC }) {
-        nodes {
-          ...FilmTaxonomy
-          count
-        }
-      }
-      models: allWpModel(sort: { count: DESC }) {
-        nodes {
-          ...ModelTaxonomy
-          count
-        }
-      }
-    }
-  `);
-
-  const {
-    films: { nodes: filmNodes },
-    models: { nodes: modelsNodes },
-  } = data;
+  const { films, models } = await getData();
 
   return (
-    <footer css={ß.footer}>
+    <footer className={styles.footer}>
       <ul>
         <li>menu</li>
         {menu.map((item) => (
           <li key={item.id}>
-            <Link to={item.path}>{item.name}</Link>
+            <Link href={item.path} title={item.name}>
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>
-      <ul>
+      <ul css={styles.list}>
         <li>films</li>
-        {filmNodes.map(
+        {films?.map(
           (film) =>
             film?.count && (
-              <li key={film.slug}>
-                <Link to={film.path} title={film.name}>
+              <li key={film.uri}>
+                <Link href={film.uri} title={film.name}>
                   {film.name}
                 </Link>
               </li>
@@ -54,11 +56,11 @@ const Footer = () => {
       </ul>
       <ul>
         <li>models</li>
-        {modelsNodes.map(
+        {models?.map(
           (model) =>
             model?.count && (
-              <li key={model.slug}>
-                <Link to={model.path} title={model.name}>
+              <li key={model.uri}>
+                <Link href={model.uri} title={model.name}>
                   {model.name}
                 </Link>
               </li>

@@ -1,33 +1,53 @@
-import React from 'react';
-import { sliders } from '@types/index';
+import styles from '@/css/Slides/Videos.module.css';
+import { query } from '@/graphql/Videos';
+import { sliders } from '@/types/index';
+import client from '@/utils/apollo-client';
 
-import * as ß from './styles';
 import VideoTile from './VideoTile';
 
-const SlidesVideos = ({ data, disableSlider, title }) => {
-  const { nodes } = data;
+async function getData(ids = []) {
+  try {
+    const res = await client.query({
+      query,
+      variables: {
+        where: {
+          in: ids,
+        },
+      },
+    });
 
-  const disableSliderCSS = disableSlider && ß.disabledVideoSlider;
+    return res?.data?.videos?.nodes ?? [];
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-  const hasContent = nodes?.length;
+const SlidesVideos = async ({
+  disableSlider = false,
+  title = 'Recent Videos',
+  ids = [],
+}) => {
+  const data = await getData(ids);
+  const hasContent = data?.length > 0;
 
-  return hasContent ? (
-    <>
-      <h2>{title}</h2>
-      <section css={[ß.videoSlider, disableSliderCSS]}>
-        {nodes.map((content, index) => (
-          <VideoTile key={content.path} data={content} isEager={index === 0} />
-        ))}
-      </section>
-    </>
-  ) : null;
+  const cssSliderClassName = disableSlider
+    ? styles.disabledVideoSlider
+    : styles.videoSlider;
+
+  return (
+    hasContent && (
+      <>
+        <h2>{title}</h2>
+        <section className={cssSliderClassName}>
+          {data.map((content) => (
+            <VideoTile key={content.uri} data={content} />
+          ))}
+        </section>
+      </>
+    )
+  );
 };
 
 SlidesVideos.propTypes = sliders;
-
-SlidesVideos.defaultProps = {
-  disableSlider: false,
-  title: 'Recent Videos',
-};
 
 export default SlidesVideos;

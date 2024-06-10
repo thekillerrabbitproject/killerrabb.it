@@ -1,0 +1,14 @@
+.innerSlider {
+  --defaultHeight: 256px;
+  composes: sliderScrollbar from '@/css/sliderScrollbar.module.css';
+  display: block;
+  position: relative;
+  inline-size: 100%;
+  white-space: nowrap;
+  overflow: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  height: var(--defaultHeight);
+  padding-bottom: 24px;
+}
+

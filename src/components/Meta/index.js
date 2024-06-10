@@ -1,28 +1,37 @@
-import React from 'react';
-import { dataAny } from '@types/index';
-import { getFilmString } from '@utils';
+import styles from '@/css/MetaComponent.module.css';
+import { meta } from '@/types/index';
+import { getFilmString } from '@/utils';
 
-import * as ß from './styles';
+import Link from 'next/link';
 
-import { Link } from 'gatsby';
-
-const Meta = ({ data }) => (
-  <div css={ß.meta} className={getFilmString(data)}>
-    <div css={ß.metaSlider}>
-      <p>meta</p>
-      <ul>
+const Meta = ({ data, showTitle = false, notSticky = false }) => (
+  <div
+    className={`${styles.meta} ${getFilmString(data, styles)} ${
+      notSticky && styles.metaNotSticky
+    }`}
+  >
+    <div className={styles.metaSlider}>
+      {showTitle && (
+        <h2 className={styles.header}>
+          <Link href={data.uri} title={data.title} className={styles.link}>
+            {data.title}
+          </Link>
+        </h2>
+      )}
+      <p className={styles.paragraph}>meta</p>
+      <ul className={styles.list}>
         {data.films.nodes.map((film) => (
-          <li key={film.path}>
-            <Link to={film.path} title={film.name}>
+          <li key={film.uri} className={styles.listItem}>
+            <Link href={film.uri} title={film.name} className={styles.link}>
               {film.name}
             </Link>
           </li>
         ))}
       </ul>
-      <ul>
+      <ul className={styles.list}>
         {data.models.nodes.map((model) => (
-          <li key={model.path}>
-            <Link to={model.path} title={model.name}>
+          <li key={model.uri} className={styles.listItem}>
+            <Link href={model.uri} title={model.name} className={styles.link}>
               {model.name}
             </Link>
           </li>
@@ -32,6 +41,6 @@ const Meta = ({ data }) => (
   </div>
 );
 
-Meta.propTypes = dataAny;
+Meta.propTypes = meta;
 
 export default Meta;

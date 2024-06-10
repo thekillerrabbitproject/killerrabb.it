@@ -1,31 +1,13 @@
-import React from 'react';
-import Menu from '@components/Menu';
-
-import * as ß from './styles';
-
-import { graphql, useStaticQuery } from 'gatsby';
-
-const query = graphql`
-  query HeaderQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
+import Menu from '@/components/Menu';
+import styles from '@/css/HeaderComponent.module.css';
+import useSiteMetadata from '@/hooks/useSiteMetadata';
 
 const Header = () => {
-  const data = useStaticQuery(query);
-  const {
-    site: {
-      siteMetadata: { title },
-    },
-  } = data;
+  const { title } = useSiteMetadata();
 
   return (
-    <header css={ß.header}>
-      <h1 css={ß.title} data-title={title}>
+    <header className={styles.header}>
+      <h1 className={styles.title} data-title={title}>
         {title}
       </h1>
       <Menu />

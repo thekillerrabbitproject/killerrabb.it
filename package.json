@@ -1,42 +1,39 @@
 {
   "name": "killer-rabbit",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "killer-rabbit",
   "author": "O.",
   "keywords": [
-    "gatsby"
+    "nextjs"
+  ],
+  "browserslist": [
+    "defaults"
   ],
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "lint": "eslint \"**/*.js\"",
-    "prepare": "husky install"
+    "predev": "yarn download:assets",
+    "dev": "next dev",
+    "prebuild": "yarn download:assets",
+    "build": "next build",
+    "start": "npx serve@latest out",
+    "lint": "next lint",
+    "prepare": "husky install",
+    "download:assets": "node download-assets.mjs",
+    "superclean": "rm -rf .next && rm -rf .cache && rm -rf out"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "gatsby": "^5.12.4",
-    "gatsby-plugin-alias-imports": "^1.0.5",
-    "gatsby-plugin-emotion": "^8.12.0",
-    "gatsby-plugin-eslint": "^4.0.4",
-    "gatsby-plugin-image": "^3.12.3",
-    "gatsby-plugin-manifest": "^5.12.3",
-    "gatsby-plugin-sharp": "^5.12.3",
-    "gatsby-plugin-sitemap": "^6.12.3",
-    "gatsby-source-filesystem": "^5.12.1",
-    "gatsby-source-wordpress": "^7.12.3",
-    "gatsby-transformer-sharp": "^5.12.3",
+    "@apollo/client": "^3.10.4",
+    "@next/bundle-analyzer": "^14.2.3",
+    "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
+    "next": "^14.2.3",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@emotion/eslint-plugin": "^11.11.0",
     "eslint": "^8.54.0",
+    "eslint-config-next": "^14.2.3",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -47,9 +44,12 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unicorn": "^49.0.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.4.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
     "prettier": "^3.1.0",
+    "sharp": "^0.33.4",
     "svgo": "^3.0.4"
   },
   "lint-staged": {
@@ -57,5 +57,12 @@
       "eslint --cache --fix"
     ],
     "**/*.svg": "svgo public -r"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
+  },
+  "supportedArchitecture": {
+    "os": ["current"],
+    "cpu": ["current"]
   }
 }

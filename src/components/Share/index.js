@@ -1,8 +1,9 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 
-import { withPrefix } from 'gatsby';
+import styles from '@/css/icon.module.css';
 
-const shareIcon = withPrefix('icons/share.svg');
+import Image from 'next/image';
 
 const Share = () => {
   const [hasShare, setHasShare] = useState(false);
@@ -32,12 +33,13 @@ const Share = () => {
   return (
     hasShare && (
       <a href="#" onClick={onClick}>
-        <img
-          className="icon"
-          src={shareIcon}
-          alt="Share"
+        <Image
+          src="icons/share.svg"
+          unoptimized
           width="24"
           height="24"
+          alt="Share"
+          className={styles.icon}
         />
       </a>
     )

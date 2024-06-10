@@ -15,8 +15,17 @@ export const seo = {
 };
 
 export const slidePostsImage = {
-  image: PropTypes.object,
+  sourceUrl: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
   isFeatured: PropTypes.bool,
+  alt: PropTypes.string.isRequired,
+  uri: PropTypes.string,
+  cssOverride: PropTypes.shape({
+    width: PropTypes.string,
+    height: PropTypes.string,
+  }),
+  className: PropTypes.string,
 };
 
 export const content = {
@@ -30,7 +39,6 @@ export const title = {
 };
 
 export const sliders = {
-  ...dataAny,
   title: PropTypes.string,
   disableSlider: PropTypes.bool,
 };
@@ -39,4 +47,10 @@ export const video = {
   title: PropTypes.string.isRequired,
   videoUrl: PropTypes.string.isRequired,
   cover: PropTypes.object.isRequired,
+};
+
+export const meta = {
+  ...dataAny,
+  showTitle: PropTypes.bool,
+  notSticky: PropTypes.bool,
 };

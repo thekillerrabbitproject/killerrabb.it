@@ -1,32 +1,35 @@
-import React from 'react';
-import { dataAny } from '@types/index';
+import Image from '@/components/Image';
+import styles from '@/css/Slides/Videos.module.css';
+import { dataAny } from '@/types/index';
 
-import * as ß from './styles';
+import Link from 'next/link';
 
-import { Link } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-
-const VideoTile = ({ data, isEager }) => {
-  const image = data.featuredImage.node.localFile;
-
-  return (
-    <article css={ß.videoTile(image.childImageSharp.gatsbyImageData)}>
+const VideoTile = ({ data }) =>
+  data.thumbnails.featuredImage && (
+    <article
+      className={styles.videoTile}
+      key={data.uri}
+      style={{
+        '--width': `${data.thumbnails.featuredImage.width}px`,
+        '--height': `${data.thumbnails.featuredImage.height}px`,
+      }}
+    >
       <Link
-        to={data.path}
+        href={data.uri}
         title={data.title}
-        key={data.path}
-        css={ß.removeDecoration}
+        className={styles.removeDecoration}
       >
-        <h2 css={ß.title}>{data.title}</h2>
-        <GatsbyImage
-          image={getImage(data.featuredImage.node.localFile)}
+        <h2 className={styles.videoTileTitle}>{data.title}</h2>
+        <Image
           alt={data.title}
-          loading={isEager ? 'eager' : 'lazy'}
+          className={styles.videoTileImage}
+          width={data.thumbnails.featuredImage.width}
+          height={data.thumbnails.featuredImage.height}
+          {...data.thumbnails.featuredImage}
         />
       </Link>
     </article>
   );
-};
 
 VideoTile.propTypes = dataAny;
 

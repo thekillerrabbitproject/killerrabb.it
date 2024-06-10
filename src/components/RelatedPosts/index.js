@@ -1,28 +1,21 @@
 import React from 'react';
-import PostSlider from '@components/Slides/Posts';
-import SlidesVideos from '@components/Slides/Videos';
-import { dataAny } from '@types/index';
 
-import * as ß from './styles';
-import { clean } from './utils';
+import PostSlider from '@/components/Slides/Posts';
+import SlidesVideos from '@/components/Slides/Videos';
+import styles from '@/css/RelatedPostsComponent.module.css';
+import { dataAny } from '@/types/index';
 
 const RelatedPosts = ({ data }) => {
-  const posts = clean(data?.posts || []);
-  const videos = clean(data?.videos || []);
+  if (data?.posts) {
+    const ids = data?.posts?.map((post) => post?.id);
 
-  const hasPosts = posts?.length > 0;
-  const hasVideos = videos?.length > 0;
-  const hasPostsOrVideos = hasPosts || hasVideos;
-
-  const postsObj = { nodes: posts };
-  const videosObj = { nodes: videos };
-
-  return hasPostsOrVideos ? (
-    <div css={ß.wrapper}>
-      {hasVideos && <SlidesVideos data={videosObj} title="Related Videos" />}
-      {hasPosts && <PostSlider data={postsObj} title="Related Posts" />}
-    </div>
-  ) : null;
+    return (
+      <div css={styles.wrapper}>
+        <SlidesVideos ids={ids} title="Related Videos" />
+        <PostSlider ids={ids} title="Related Posts" />
+      </div>
+    );
+  }
 };
 
 RelatedPosts.propTypes = dataAny;
