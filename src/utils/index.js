@@ -1,8 +1,4 @@
-import fs from 'fs-extra';
-
-const blurImageCache = JSON.parse(
-  fs.readFileSync('public/static-assets/blur.json'),
-);
+import blurImageCache from '../../public/static-assets/blur.json';
 
 export const isDuplicatedFromGallery = (content) => {
   const {

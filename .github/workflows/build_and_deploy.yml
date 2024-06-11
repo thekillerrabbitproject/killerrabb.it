@@ -22,9 +22,16 @@ jobs:
         with:
           node-version: "20.13.x"
 
-      - run: yarn add sharp --ignore-engines
-      - run: yarn
-      - run: yarn build
+      - name: Install Dependencies
+        run: |
+          yarn add sharp --ignore-engines
+          yarn
+
+      - name: Process Images
+        run: yarn download:assets
+
+      - name: Build Pages
+        run: yarn build
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1

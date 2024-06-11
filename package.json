@@ -13,7 +13,6 @@
   "scripts": {
     "predev": "yarn download:assets",
     "dev": "next dev",
-    "prebuild": "yarn download:assets",
     "build": "next build",
     "start": "npx serve@latest out",
     "lint": "next lint",
