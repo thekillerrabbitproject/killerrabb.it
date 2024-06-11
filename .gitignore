@@ -6,7 +6,7 @@ yarn-error.log
 .next
 .cache/
 out/
-public/static-assets/blur.json
+src/json/*.json
 public/static-assets/shareimages/*
 !public/static-assets/shareimages/.gitkeep
 !public/static-assets/shareimages/share-tkrp*

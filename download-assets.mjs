@@ -14,13 +14,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache({}),
 });
 
-async function getData(slug) {
+async function getData() {
   try {
     const res = await client.query({
       query,
-      variables: {
-        slug,
-      },
     });
 
     return res?.data ?? [];

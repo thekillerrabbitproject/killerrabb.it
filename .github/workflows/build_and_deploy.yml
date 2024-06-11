@@ -1,4 +1,4 @@
-name: Build and Deploy to Gatsby
+name: Build and Deploy to Website
 on:
   push:
     branches:

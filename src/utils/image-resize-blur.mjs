@@ -16,7 +16,7 @@ const getFileExtension = (src) => {
   return ext;
 };
 
-const jsonBlurCache = 'public/static-assets/blur.json';
+const jsonBlurCache = 'src/json/blur.json';
 
 const imageResizeAndBlur = async () => {
   try {

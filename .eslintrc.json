@@ -76,7 +76,8 @@
         ["@/types", "./src/types"],
         ["@/css", "./src/css"],
         ["@/hooks", "./src/hooks"],
-        ["@/utils", "./src/utils"]
+        ["@/utils", "./src/utils"],
+        ["@/json", "./src/json"]
       ]
     }
   }

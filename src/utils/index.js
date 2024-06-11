@@ -1,4 +1,4 @@
-import blurImageCache from '../../public/static-assets/blur.json';
+import blurImageCache from '@/json/blur.json';
 
 export const isDuplicatedFromGallery = (content) => {
   const {
