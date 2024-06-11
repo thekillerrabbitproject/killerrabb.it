@@ -23,6 +23,7 @@
   inline-size: auto;
   height: auto;
   gap: 16px 8px;
+  margin-inline-end: unset;
 }
 
 .videoTile {
@@ -54,5 +55,19 @@
 .videoTileImage {
   width: auto;
   max-width: 100%;
-  height: var(--height);;
+  height: var(--height);
+  margin-inline-end: unset!important;
+}
+
+@media (max-width: 900px) {
+  .disabledVideoSlider .videoTile {
+    margin-inline-end: unset;
+  }
+  .videoTile {
+    max-width: 100%;
+  }
+  .videoTileImage img {
+    width: 100%;
+    object-fit: cover;
+  }
 }
