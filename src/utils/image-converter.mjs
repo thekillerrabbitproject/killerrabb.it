@@ -15,15 +15,17 @@ const getFileName = (src) => {
 
   return fileName;
 };
-
+const convertedImages = [];
 const imageConverter = async () => {
   try {
-    // eslint-disable-next-line no-console
-    console.log('\n- Converting Images and Thumbnails -');
-
     const images = await glob(['public/static-assets/images/**/*.{jpg,jpeg}'], {
       ignore: 'public/static-assets/images/**/*-blur.{jpg,jpeg}',
     });
+
+    // eslint-disable-next-line no-console
+    console.log(
+      `\n- Converting ${images.length} Images and Thumbnails to webp -`,
+    );
 
     for (const image of images) {
       const fileName = getFileName(image);
@@ -32,11 +34,13 @@ const imageConverter = async () => {
       // skip if already exists
       if (fs.existsSync(`${newFilename}`)) continue;
 
-      // eslint-disable-next-line no-console
-      console.log(`Converting \`${fileName}\` to webp`);
-
       await sharp(image).webp(webpConfig).toFile(newFilename);
+      convertedImages.push(newFilename);
     }
+    // eslint-disable-next-line no-console
+    console.log(
+      `\n- From ${images.length} Images and Thumbnails converted ${convertedImages.length} -`,
+    );
   } catch (error) {
     throw error;
   }

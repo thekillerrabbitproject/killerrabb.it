@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import fs from 'fs-extra';
 import path from 'node:path';
 import { Stream } from 'node:stream';
@@ -15,11 +16,13 @@ const externalImagesDownloader = async ({
   destDir,
   remoteImagesDownloadsDelay,
 }) => {
-  // eslint-disable-next-line no-console
-  console.log('\n- Download external images -');
+  console.log(
+    `\n- Download ${manifest.length} external images to ${destDir} -`,
+  );
 
   const promises = [];
   const downloadedImages = [];
+  const reallyDownloadedImages = [];
 
   for (const { slug, imageSrc, overrideName } of manifest) {
     if (imageSrc === undefined) continue;
@@ -28,9 +31,15 @@ const externalImagesDownloader = async ({
 
     const outputPath = path.join(destDir, `${slug}/${filename}`);
 
-    if (fs.existsSync(outputPath)) continue;
+    if (fs.existsSync(outputPath)) {
+      reallyDownloadedImages.push({ imageSrc, slug });
+      continue;
+    }
 
-    if (downloadedImages.includes(imageSrc)) continue;
+    if (downloadedImages.includes(imageSrc)) {
+      reallyDownloadedImages.push({ imageSrc, slug });
+      continue;
+    }
 
     if (remoteImagesDownloadsDelay) {
       await sleep(remoteImagesDownloadsDelay);
@@ -59,18 +68,54 @@ const externalImagesDownloader = async ({
 
         return new Promise((resolve, reject) => {
           readableNodeStream.pipe(fileStream);
-          readableNodeStream.on('error', reject);
-          fileStream.on('finish', () => {
-            // eslint-disable-next-line no-console
-            console.log(`\`${imageSrc}\` has been downloaded.`);
-            resolve();
-          });
+          readableNodeStream.on('error', () => reject({ slug, imageSrc }));
+          fileStream.on('finish', () =>
+            // console.log(`\`${imageSrc}\` has been downloaded.`);
+
+            resolve({ slug, imageSrc }),
+          );
         });
       })(),
     );
   }
 
-  await Promise.all(promises);
+  await Promise.allSettled(promises).then((results) => {
+    for (const result of results) {
+      if (result.status === 'fulfilled') {
+        reallyDownloadedImages.push(result.value);
+      }
+    }
+  });
+
+  console.log(
+    `\n- From ${manifest.length} external images downloaded ${reallyDownloadedImages.length} -`,
+  );
+
+  if (manifest.length !== reallyDownloadedImages.length) {
+    const retryManifest = manifest.filter(function (obj) {
+      return !reallyDownloadedImages.some(function (obj2) {
+        return obj.imageSrc === obj2.imageSrc && obj.slug === obj2.slug;
+      });
+    });
+
+    if (retryManifest.length > 0) {
+      console.log(
+        `\n- Sleep 1sec then retry to download missing ${retryManifest.length} images`,
+      );
+      await sleep(1000);
+      await externalImagesDownloader({
+        manifest: retryManifest,
+        destDir,
+        remoteImagesDownloadsDelay: remoteImagesDownloadsDelay * 2,
+      });
+
+      return;
+    }
+
+    return;
+  }
+
+  return;
 };
 
 export default externalImagesDownloader;

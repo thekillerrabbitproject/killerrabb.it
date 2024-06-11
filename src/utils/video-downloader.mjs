@@ -16,7 +16,9 @@ const externalVideosDownloader = async ({
   remoteVideosDownloadsDelay,
 }) => {
   // eslint-disable-next-line no-console
-  console.log('\n- Download external videos -');
+  console.log(
+    `\n- Download ${manifest.length} external videos to ${destDir} -`,
+  );
 
   const promises = [];
   const downloadedVideos = [];
@@ -61,8 +63,6 @@ const externalVideosDownloader = async ({
           readableNodeStream.pipe(fileStream);
           readableNodeStream.on('error', reject);
           fileStream.on('finish', () => {
-            // eslint-disable-next-line no-console
-            console.log(`\`${videoSrc}\` has been downloaded.`);
             resolve();
           });
         });

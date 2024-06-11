@@ -13,7 +13,7 @@ export const query = gql`
   ${MODEL_TAXONOMY_FRAGMENT}
 
   query PostsQuery($where: RootQueryToPostConnectionWhereArgs) {
-    posts(where: $where, first: 100) {
+    posts(where: $where, first: 999) {
       nodes {
         ...Post
         featuredImageId

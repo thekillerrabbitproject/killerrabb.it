@@ -4,7 +4,7 @@ const { gql } = pkg;
 
 const query = gql`
   query StaticAssets {
-    posts(first: 100) {
+    posts(first: 999) {
       nodes {
         __typename
         title
@@ -30,7 +30,7 @@ const query = gql`
         }
       }
     }
-    videos(first: 100) {
+    videos(first: 999) {
       nodes {
         __typename
         title
@@ -54,14 +54,14 @@ const query = gql`
         }
       }
     }
-    films(first: 100) {
+    films(first: 999) {
       nodes {
         __typename
         title: name
         slug
       }
     }
-    models(first: 100) {
+    models(first: 999) {
       nodes {
         __typename
         title: name

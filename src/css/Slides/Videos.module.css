@@ -63,8 +63,8 @@
   .disabledVideoSlider .videoTile {
     margin-inline-end: unset;
   }
-  .videoTile {
-    max-width: 100%;
+  .videoTile, .videoTileImage {
+    width: 100%;
   }
   .videoTileImage img {
     width: 100%;

@@ -39,22 +39,26 @@ export const getImageLocalSrc = ({
   isThumbnail = false,
   isFeatured = false,
 }) => {
-  const thumbPath = isThumbnail ? 'thumbnails/' : '';
-  const featuredPath = isFeatured ? 'featured/' : '';
-  const newPath = `/static-assets/images/${pathPrefix}${slug}/${thumbPath}${featuredPath}`;
-  const { length, [length - 1]: rawFileName } = sourceUrl.split('/');
-  const [fileName, originalExtension] = rawFileName.split('.');
+  try {
+    const thumbPath = isThumbnail ? 'thumbnails/' : '';
+    const featuredPath = isFeatured ? 'featured/' : '';
+    const newPath = `/static-assets/images/${pathPrefix}${slug}/${thumbPath}${featuredPath}`;
+    const { length, [length - 1]: rawFileName } = sourceUrl.split('/');
+    const [fileName, originalExtension] = rawFileName.split('.');
 
-  const jpg = `${newPath}${fileName}.${originalExtension}`;
-  const webp = `${newPath}${fileName}.webp`;
-  const blur =
-    blurImageCache?.[`public${newPath}${fileName}.${originalExtension}`];
+    const jpg = `${newPath}${fileName}.${originalExtension}`;
+    const webp = `${newPath}${fileName}.webp`;
+    const blur =
+      blurImageCache[`public${newPath}${fileName}.${originalExtension}`];
 
-  return {
-    jpg,
-    webp,
-    blur,
-  };
+    return {
+      jpg,
+      webp,
+      blur,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export const getMetadata = ({ title, slug, postType, metadataBase }) => {

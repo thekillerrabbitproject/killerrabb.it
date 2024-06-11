@@ -20,9 +20,6 @@ const jsonBlurCache = 'src/json/blur.json';
 
 const imageResizeAndBlur = async () => {
   try {
-    // eslint-disable-next-line no-console
-    console.log('\n- Resizing and Blurring Images and Thumbnails -');
-
     if (!fs.existsSync(jsonBlurCache)) {
       fs.writeFileSync(jsonBlurCache, JSON.stringify({}));
     }
@@ -32,6 +29,11 @@ const imageResizeAndBlur = async () => {
     const images = await glob(['public/static-assets/images/**/*.{jpg,jpeg}'], {
       ignore: 'public/static-assets/images/**/*-blur.{jpg,jpeg}',
     });
+
+    // eslint-disable-next-line no-console
+    console.log(
+      `\n- Resizing and Blurring ${images.length} Images and Thumbnails -`,
+    );
 
     for (const image of images) {
       const fileName = getFileName(image);

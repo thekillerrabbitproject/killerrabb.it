@@ -12,7 +12,7 @@ export const query = gql`
   ${MODEL_TAXONOMY_FRAGMENT}
 
   query VideosQuery($where: RootQueryToVideoConnectionWhereArgs) {
-    videos(where: $where, first: 100) {
+    videos(where: $where, first: 999) {
       nodes {
         ...VideoPost
         featuredImage {

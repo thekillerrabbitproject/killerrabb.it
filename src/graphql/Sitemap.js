@@ -2,22 +2,22 @@ import { gql } from '@apollo/client';
 
 const query = gql`
   query SitemapQuery {
-    posts(first: 100) {
+    posts(first: 999) {
       nodes {
         slug
       }
     }
-    videos(first: 100) {
+    videos(first: 999) {
       nodes {
         slug
       }
     }
-    films(first: 100) {
+    films(first: 999) {
       nodes {
         slug
       }
     }
-    models(first: 100) {
+    models(first: 999) {
       nodes {
         slug
       }

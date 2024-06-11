@@ -8,13 +8,13 @@ export const query = gql`
   ${MODEL_TAXONOMY_FRAGMENT}
 
   query FooterQuery {
-    films(where: { orderby: COUNT, hideEmpty: true }, first: 100) {
+    films(where: { orderby: COUNT, hideEmpty: true }, first: 999) {
       nodes {
         ...FilmTaxonomy
         count
       }
     }
-    models(where: { orderby: COUNT, hideEmpty: true }, first: 100) {
+    models(where: { orderby: COUNT, hideEmpty: true }, first: 999) {
       nodes {
         ...ModelTaxonomy
         count
