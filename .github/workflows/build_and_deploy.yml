@@ -27,6 +27,13 @@ jobs:
           yarn add sharp --ignore-engines
           yarn
 
+      - name: Cache Static Assets
+        id: cache-static-assets
+        uses: actions/cache@v4
+        with:
+          path: public/static-assets
+          key: ${{ runner.os }}-static-assets
+
       - name: Process Images
         run: yarn download:assets
 
