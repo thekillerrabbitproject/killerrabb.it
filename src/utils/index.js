@@ -1,5 +1,3 @@
-import blurImageCache from '@/json/blur.json';
-
 export const isDuplicatedFromGallery = (content) => {
   const {
     featuredImageId,
@@ -48,13 +46,10 @@ export const getImageLocalSrc = ({
 
     const jpg = `${newPath}${fileName}.${originalExtension}`;
     const webp = `${newPath}${fileName}.webp`;
-    const blur =
-      blurImageCache[`public${newPath}${fileName}.${originalExtension}`];
 
     return {
       jpg,
       webp,
-      blur,
     };
   } catch (error) {
     throw new Error(error);

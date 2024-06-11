@@ -55,7 +55,7 @@ const imageResizeAndBlur = async () => {
         [`${fileName}${extension}`]: `${base64Image}`,
       };
     }
-    fs.writeFileSync(jsonBlurCache, JSON.stringify(imagesToBeSaved));
+    fs.writeFileSync(jsonBlurCache, JSON.stringify(imagesToBeSaved, null, 2));
   } catch (error) {
     throw error;
   }

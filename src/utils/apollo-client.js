@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
+import blurImageCache from '@/json/blur.json';
 import { getImageLocalSrc } from '@/utils';
 
 const postImagesFields = {
@@ -31,6 +32,10 @@ const postImagesFields = {
             }),
             width: thumb.width,
             height: thumb.height,
+          }))
+          .map((thumb) => ({
+            ...thumb,
+            blur: blurImageCache[`public${thumb.jpg}`],
           }));
 
         const featuredImageThumbnailLocalSrc = {
@@ -46,7 +51,10 @@ const postImagesFields = {
         };
 
         const thumbnails = {
-          featuredImage: featuredImageThumbnailLocalSrc,
+          featuredImage: {
+            ...featuredImageThumbnailLocalSrc,
+            blur: blurImageCache[`public${featuredImageThumbnailLocalSrc.jpg}`],
+          },
           gallery: galleryLocalThumbnailSrc,
         };
 
@@ -73,17 +81,25 @@ const postImagesFields = {
         };
 
         const gallery = readField('gallery', readField('acf'));
-        const galleryFullSizeLocalSrc = gallery.map((gal) => ({
-          ...getImageLocalSrc({
-            sourceUrl: readField('sourceUrl', gal),
-            pathPrefix: 'post/',
-            slug,
-          }),
-          ...readField('mediaDetails', gal),
-        }));
+        const galleryFullSizeLocalSrc = gallery
+          .map((gal) => ({
+            ...getImageLocalSrc({
+              sourceUrl: readField('sourceUrl', gal),
+              pathPrefix: 'post/',
+              slug,
+            }),
+            ...readField('mediaDetails', gal),
+          }))
+          .map((img) => ({
+            ...img,
+            blur: blurImageCache[img.jpg],
+          }));
 
         return {
-          featuredImage: featuredImageFullSizeLocalSrc,
+          featuredImage: {
+            ...featuredImageFullSizeLocalSrc,
+            blur: blurImageCache[`public${featuredImageFullSizeLocalSrc.jpg}`],
+          },
           gallery: galleryFullSizeLocalSrc,
         };
       },
@@ -115,7 +131,10 @@ const videoImagesFields = {
         };
 
         const thumbnails = {
-          featuredImage: featuredImageThumbnailLocalSrc,
+          featuredImage: {
+            ...featuredImageThumbnailLocalSrc,
+            blur: blurImageCache[`public${featuredImageThumbnailLocalSrc.jpg}`],
+          },
         };
 
         return thumbnails;
@@ -140,7 +159,12 @@ const videoImagesFields = {
           height: mediaDetails.height,
         };
 
-        return { featuredImage: featuredImageFullSizeLocalSrc };
+        return {
+          featuredImage: {
+            ...featuredImageFullSizeLocalSrc,
+            blur: blurImageCache[`public${featuredImageFullSizeLocalSrc.jpg}`],
+          },
+        };
       },
     },
   },
