@@ -16,10 +16,18 @@ const getFileExtension = (src) => {
   return ext;
 };
 
+const jsonBlurCache = 'public/static-assets/blur.json';
+
 const imageResizeAndBlur = async () => {
   try {
     // eslint-disable-next-line no-console
     console.log('\n- Resizing and Blurring Images and Thumbnails -');
+
+    if (!fs.existsSync(jsonBlurCache)) {
+      fs.writeFileSync(jsonBlurCache, JSON.stringify({}));
+    }
+
+    let imagesToBeSaved = JSON.parse(fs.readFileSync(jsonBlurCache));
 
     const images = await glob(['public/static-assets/images/**/*.{jpg,jpeg}'], {
       ignore: 'public/static-assets/images/**/*-blur.{jpg,jpeg}',
@@ -28,16 +36,24 @@ const imageResizeAndBlur = async () => {
     for (const image of images) {
       const fileName = getFileName(image);
       const extension = getFileExtension(image);
-      const newFilename = `${fileName}-blur${extension}`;
+      const fileKey = `${fileName}${extension}`;
 
       // skip if already exists
-      if (fs.existsSync(`${newFilename}`)) continue;
+      if (imagesToBeSaved?.[fileKey]) continue;
 
-      // eslint-disable-next-line no-console
-      console.log(`Resizing and blurring \`${fileName}\``);
+      // await sharp(image).resize(48).blur(5).toFile(newFilename);
+      const bufferImage = await sharp(image).resize(48).blur(5).toBuffer();
+      const base64Image = `data:image/${extension.replace(
+        '.',
+        '',
+      )};base64,${bufferImage.toString('base64')}`;
 
-      await sharp(image).resize(48).blur(5).toFile(newFilename);
+      imagesToBeSaved = {
+        ...imagesToBeSaved,
+        [`${fileName}${extension}`]: `${base64Image}`,
+      };
     }
+    fs.writeFileSync(jsonBlurCache, JSON.stringify(imagesToBeSaved));
   } catch (error) {
     throw error;
   }

@@ -1,3 +1,9 @@
+import fs from 'fs-extra';
+
+const blurImageCache = JSON.parse(
+  fs.readFileSync('public/static-assets/blur.json'),
+);
+
 export const isDuplicatedFromGallery = (content) => {
   const {
     featuredImageId,
@@ -45,7 +51,8 @@ export const getImageLocalSrc = ({
 
   const jpg = `${newPath}${fileName}.${originalExtension}`;
   const webp = `${newPath}${fileName}.webp`;
-  const blur = `${newPath}${fileName}-blur.${originalExtension}`;
+  const blur =
+    blurImageCache?.[`public${newPath}${fileName}.${originalExtension}`];
 
   return {
     jpg,
