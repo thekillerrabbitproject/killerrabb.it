@@ -40,9 +40,7 @@ jobs:
         run: yarn download:assets
 
       - name: Build Pages
-        run: |
-          yarn build
-          yarn build
+        run: yarn build && yarn build
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
