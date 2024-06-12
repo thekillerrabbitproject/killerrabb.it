@@ -32,14 +32,6 @@ export const query = gql`
       relatedPosts: related_posts {
         ...VideoRelatedPosts
       }
-      images @client {
-        featuredImage {
-          blur
-          jpg
-          width
-          height
-        }
-      }
     }
   }
 `;

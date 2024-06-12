@@ -5,13 +5,17 @@ import { dataAny } from '@/types/index';
 import Link from 'next/link';
 
 const VideoTile = ({ data }) =>
-  data.thumbnails.featuredImage && (
+  data.featuredImage && (
     <article
       className={styles.videoTile}
       key={data.uri}
       style={{
-        '--width': `${data.thumbnails.featuredImage.width}px`,
-        '--height': `${data.thumbnails.featuredImage.height}px`,
+        '--width': `${
+          data.featuredImage.node.mediaDetails.sizes.at(0).width
+        }px`,
+        '--height': `${
+          data.featuredImage.node.mediaDetails.sizes.at(0).height
+        }px`,
       }}
     >
       <Link
@@ -23,9 +27,13 @@ const VideoTile = ({ data }) =>
         <Image
           alt={data.title}
           className={styles.videoTileImage}
-          width={data.thumbnails.featuredImage.width}
-          height={data.thumbnails.featuredImage.height}
-          {...data.thumbnails.featuredImage}
+          slug={data.slug}
+          pathPrefix="video/"
+          width={data.featuredImage.node.mediaDetails.sizes.at(0).width}
+          height={data.featuredImage.node.mediaDetails.sizes.at(0).height}
+          sourceUrl={data.featuredImage.node.mediaDetails.sizes.at(0).sourceUrl}
+          isFeatured
+          isThumbnail
         />
       </Link>
     </article>

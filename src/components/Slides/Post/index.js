@@ -8,29 +8,33 @@ const PostSlider = ({ data }) => (
     {!isDuplicatedFromGallery(data) && (
       <Image
         alt={data.title}
-        width={data.images.featuredImage.width}
-        height={data.images.featuredImage.height}
         cssOverride={{
-          width: `calc(var(--slider-default-height) / ${data.images.featuredImage.height}px)`,
+          width: `calc(var(--slider-default-height) / ${data.featuredImage.node.mediaDetails.height}px)`,
           height: 'var(--slider-default-height)',
         }}
-        isFeatured
         className={styles.image}
-        {...data.images.featuredImage}
+        slug={data.slug}
+        pathPrefix="post/"
+        width={data.featuredImage.node.mediaDetails.width}
+        height={data.featuredImage.node.mediaDetails.height}
+        sourceUrl={data.featuredImage.node.sourceUrl}
+        isFeatured
       />
     )}
-    {data.images.gallery.map((image, index) => (
+    {data.acf.gallery.map((image, index) => (
       <Image
         key={`${image.id}-${index}`}
         alt={data.title}
-        width={image.width}
-        height={image.height}
         cssOverride={{
-          width: `calc(var(--slider-default-height) / ${image.width}px)`,
+          width: `calc(var(--slider-default-height) / ${image.mediaDetails.width}px)`,
           height: 'var(--slider-default-height)',
         }}
         className={styles.image}
-        {...image}
+        slug={data.slug}
+        pathPrefix="post/"
+        width={image.mediaDetails.width}
+        height={image.mediaDetails.height}
+        sourceUrl={image.sourceUrl}
       />
     ))}
   </div>

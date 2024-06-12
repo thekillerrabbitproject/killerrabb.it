@@ -33,22 +33,6 @@ export const query = gql`
       relatedPosts: related_posts {
         ...PostRelatedPosts
       }
-      images @client {
-        featuredImage {
-          blur
-          jpg
-          webp
-          width
-          height
-        }
-        gallery {
-          blur
-          jpg
-          webp
-          width
-          height
-        }
-      }
     }
   }
 `;

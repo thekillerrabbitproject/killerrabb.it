@@ -1,3 +1,19 @@
+import blurImageCache from '@/json/blur.json';
+
+try {
+  JSON.parse(JSON.stringify(blurImageCache));
+} catch (error) {
+  throw new Error('blurImageCache failed', error);
+}
+
+export const getBlurImage = (image) => {
+  try {
+    return blurImageCache[`public${image}`];
+  } catch (error) {
+    throw new Error(`getBlurImage failed for ${image}`, error);
+  }
+};
+
 export const removeScaled = (name) => name.replace('-scaled', '');
 
 export const isDuplicatedFromGallery = (content) => {
@@ -48,10 +64,12 @@ export const getImageLocalSrc = ({
 
     const jpg = `${newPath}${removeScaled(fileName)}.${originalExtension}`;
     const webp = `${newPath}${removeScaled(fileName)}.webp`;
+    const blur = getBlurImage(jpg);
 
     return {
       jpg,
       webp,
+      blur,
     };
   } catch (error) {
     throw new Error(error);

@@ -28,15 +28,6 @@ export const query = gql`
             ...ModelTaxonomy
           }
         }
-        thumbnails @client {
-          featuredImage {
-            blur
-            webp
-            jpg
-            width
-            height
-          }
-        }
       }
     }
   }

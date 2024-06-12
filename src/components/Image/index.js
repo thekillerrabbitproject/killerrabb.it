@@ -1,5 +1,6 @@
 import styles from '@/css/ImageComponent.module.css';
 import { children, slidePostsImage } from '@/types/index';
+import { getImageLocalSrc } from '@/utils';
 
 import Link from 'next/link';
 
@@ -24,16 +25,24 @@ LinkWrapper.propTypes = {
 const Image = ({
   alt,
   uri,
-  jpg,
-  webp,
+  slug,
+  sourceUrl,
+  pathPrefix = '',
   width,
   height,
   isFeatured = false,
+  isThumbnail = false,
   cssOverride,
   className,
-  blur,
 }) => {
   const featuredClassName = isFeatured ? 'featured' : 'image';
+  const { webp, jpg, blur } = getImageLocalSrc({
+    sourceUrl,
+    slug,
+    pathPrefix,
+    isThumbnail,
+    isFeatured,
+  });
 
   return (
     <div

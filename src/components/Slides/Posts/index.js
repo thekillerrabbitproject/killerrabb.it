@@ -40,21 +40,32 @@ const SlidesPosts = async ({ title = 'Recent Posts', ids = [] }) => {
                   alt={content.title}
                   uri={content.uri}
                   slug={content.slug}
-                  width={content.thumbnails.featuredImage.width}
-                  height={content.thumbnails.featuredImage.height}
+                  pathPrefix="post/"
+                  width={
+                    content.featuredImage.node.mediaDetails.sizes.at(0).width
+                  }
+                  height={
+                    content.featuredImage.node.mediaDetails.sizes.at(0).height
+                  }
+                  sourceUrl={
+                    content.featuredImage.node.mediaDetails.sizes.at(0)
+                      .sourceUrl
+                  }
                   isFeatured
-                  {...content.thumbnails.featuredImage}
+                  isThumbnail
                 />
               )}
-              {content.thumbnails.gallery.map((image) => (
+              {content.acf.gallery.map((image) => (
                 <Image
-                  key={image.jpg}
+                  key={image.id}
                   alt={content.title}
                   uri={content.uri}
-                  width={image.width}
-                  height={image.height}
+                  slug={content.slug}
+                  pathPrefix="post/"
+                  width={image.mediaDetails.sizes.at(0).width}
+                  height={image.mediaDetails.sizes.at(0).height}
+                  sourceUrl={image.mediaDetails.sizes.at(0).sourceUrl}
                   isThumbnail
-                  {...image}
                 />
               ))}
             </article>

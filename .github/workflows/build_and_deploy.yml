@@ -42,9 +42,6 @@ jobs:
       - name: Build Pages
         run: yarn build
 
-      - name: Build Again
-        run: yarn build
-
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
         with:

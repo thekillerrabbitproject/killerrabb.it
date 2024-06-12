@@ -7,7 +7,7 @@ const Video = async ({ data }) => (
     className={styles.video}
     controls
     src={getVideoName(data.slug, data.videoThingy.featuredVideo.mediaItemUrl)}
-    poster={data.images.featuredImage.jpg}
+    poster={data.featuredImage.node.sourceUrl}
     controlsList="nodownload noplaybackrate"
     disablePictureInPicture
     preload="metadata"
