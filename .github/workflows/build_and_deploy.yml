@@ -40,7 +40,12 @@ jobs:
         run: yarn download:assets
 
       - name: Build Pages
-        run: yarn build
+        uses: nick-fields/retry@v3
+        with:
+          retry_wait_seconds: 20000
+          max_attempts: 1
+          retry_on: error
+          command: yarn build
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1

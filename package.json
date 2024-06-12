@@ -18,7 +18,7 @@
     "lint": "next lint",
     "prepare": "husky install",
     "download:assets": "node download-assets.mjs",
-    "superclean": "rm -rf .next && rm -rf .cache && rm -rf out"
+    "superclean": "rm -rf .next && rm -rf .cache && rm -rf out && rm -rf .wordpress-cache"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
