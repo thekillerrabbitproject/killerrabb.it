@@ -1,3 +1,5 @@
+const removeScaled = (name) => name.replace('-scaled', '');
+
 export const isDuplicatedFromGallery = (content) => {
   const {
     featuredImageId,
@@ -44,8 +46,8 @@ export const getImageLocalSrc = ({
     const { length, [length - 1]: rawFileName } = sourceUrl.split('/');
     const [fileName, originalExtension] = rawFileName.split('.');
 
-    const jpg = `${newPath}${fileName}.${originalExtension}`;
-    const webp = `${newPath}${fileName}.webp`;
+    const jpg = `${newPath}${removeScaled(fileName)}.${originalExtension}`;
+    const webp = `${newPath}${removeScaled(fileName)}.webp`;
 
     return {
       jpg,

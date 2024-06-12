@@ -6,6 +6,7 @@ export const FEATURED_IMAGE_THUMBNAIL_FULL_SIZE = gql`
       sourceUrl
       mediaItemId
       mediaDetails {
+        __typename
         height
         width
       }

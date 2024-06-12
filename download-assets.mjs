@@ -56,6 +56,7 @@ const contentFeaturedImages = contents.flatMap((content) => [
   {
     slug: `${content.__typename.toLowerCase()}/${content.slug}/featured`,
     imageSrc: content.featuredImage.node.fullSize,
+    fullsize: true,
   },
 ]);
 
@@ -68,6 +69,7 @@ const postsGalleryImagesThumbnails = postsNodes.flatMap((content) =>
     {
       slug: `${content.__typename.toLowerCase()}/${content.slug}`,
       imageSrc: gallery.fullSize,
+      fullsize: true,
     },
   ]),
 );
@@ -123,7 +125,8 @@ const videos = videosNodes.map((content) => ({
 await externalImagesDownloader({
   manifest: [...postsGalleryImagesThumbnails, ...contentFeaturedImages],
   destDir: './public/static-assets/images',
-  remoteImagesDownloadsDelay: 200,
+  pattern: 'public/static-assets/images/{post,video}/**/*.*',
+  remoteImagesDownloadsDelay: 500,
 });
 
 await externalImagesDownloader({
@@ -132,14 +135,15 @@ await externalImagesDownloader({
     ...categoriesFeaturedImagesShare,
     ...staticPages,
   ],
+  pattern: 'public/static-assets/shareimages/**/*.*',
   destDir: './public/static-assets/shareimages',
-  remoteImagesDownloadsDelay: 200,
+  remoteImagesDownloadsDelay: 500,
 });
 
 await externalVideosDownloader({
   manifest: videos,
   destDir: './public/static-assets/videos',
-  remoteVideosDownloadsDelay: 200,
+  remoteVideosDownloadsDelay: 500,
 });
 
 await imageConverter();

@@ -43,7 +43,6 @@ const imageResizeAndBlur = async () => {
       // skip if already exists
       if (imagesToBeSaved?.[fileKey]) continue;
 
-      // await sharp(image).resize(48).blur(5).toFile(newFilename);
       const bufferImage = await sharp(image).resize(48).blur(5).toBuffer();
       const base64Image = `data:image/${extension.replace(
         '.',

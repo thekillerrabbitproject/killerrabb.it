@@ -1,19 +1,40 @@
 /* eslint-disable no-console */
 import fs from 'fs-extra';
+import { glob } from 'glob';
 import path from 'node:path';
 import { Stream } from 'node:stream';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const getFileName = (src) => {
+const getFileName = (src, fullsize = false) => {
   const { length, [length - 1]: fileName } = src.split('/');
 
-  return fileName;
+  const realname = fullsize ? fileName.replace('-scaled', '') : fileName;
+
+  return realname;
+};
+
+const getPathWithFileName = (src, fullsize = false) => {
+  const filePathArr = src.split('/');
+  filePathArr.pop(); // remove image source
+  const filePath = filePathArr.join('/');
+  const realName = getFileName(src, fullsize);
+
+  return `${filePath}/${realName}`;
+};
+
+const getFlatImages = async (
+  pattern = 'public/static-assets/images/{post,video}/**/*.*',
+) => {
+  const flatImages = await glob([pattern], { ignore: ['**/*.webp'] });
+
+  return flatImages;
 };
 
 const externalImagesDownloader = async ({
   manifest,
   destDir,
+  pattern,
   remoteImagesDownloadsDelay,
 }) => {
   console.log(
@@ -24,10 +45,12 @@ const externalImagesDownloader = async ({
   const downloadedImages = [];
   const reallyDownloadedImages = [];
 
-  for (const { slug, imageSrc, overrideName } of manifest) {
+  if (manifest.length === 0) return;
+
+  for (const { slug, imageSrc, overrideName, fullsize = false } of manifest) {
     if (imageSrc === undefined) continue;
 
-    const filename = overrideName || getFileName(imageSrc);
+    const filename = overrideName || getFileName(imageSrc, fullsize);
 
     const outputPath = path.join(destDir, `${slug}/${filename}`);
 
@@ -51,7 +74,7 @@ const externalImagesDownloader = async ({
 
         await fs.ensureFile(outputPath);
 
-        const body = await fetch(imageSrc)
+        const body = await fetch(getPathWithFileName(imageSrc, fullsize))
           .then((response) => response.body)
           .catch((error) => {
             throw new Error(`Failed to download \`${imageSrc}\`: ${error}`);
@@ -91,10 +114,17 @@ const externalImagesDownloader = async ({
     `\n- From ${manifest.length} external images downloaded ${reallyDownloadedImages.length} -`,
   );
 
-  if (manifest.length !== reallyDownloadedImages.length) {
+  if (
+    manifest.length > 0 &&
+    manifest.length !== reallyDownloadedImages.length
+  ) {
     const retryManifest = manifest.filter(function (obj) {
       return !reallyDownloadedImages.some(function (obj2) {
-        return obj.imageSrc === obj2.imageSrc && obj.slug === obj2.slug;
+        const filename = getFileName(obj2.imageSrc, obj2?.fullsize);
+
+        const outputPath = path.join(destDir, `${obj2.slug}/${filename}`);
+
+        return outputPath === obj2.imageSrc && obj.slug === obj2.slug;
       });
     });
 
@@ -106,6 +136,37 @@ const externalImagesDownloader = async ({
       await externalImagesDownloader({
         manifest: retryManifest,
         destDir,
+        remoteImagesDownloadsDelay: remoteImagesDownloadsDelay * 2,
+      });
+
+      return;
+    }
+
+    return;
+  }
+  const allFlatImages = await getFlatImages(pattern);
+
+  if (manifest.length > 0 && allFlatImages.length !== manifest.length) {
+    const mani = manifest
+      .map((x) => {
+        const filename = getFileName(x.imageSrc, x.fullsize);
+
+        const outputPath = path.join(destDir, `${x.slug}/${filename}`);
+
+        return { ...x, outputPath };
+      })
+      .filter((x) => !allFlatImages.includes(x.outputPath));
+
+    if (mani.length > 0) {
+      console.log(
+        `\n- Sleep again 1sec then retry to download missing ${mani.length} images`,
+      );
+
+      await sleep(1000);
+      await externalImagesDownloader({
+        manifest: mani,
+        destDir,
+        pattern,
         remoteImagesDownloadsDelay: remoteImagesDownloadsDelay * 2,
       });
 

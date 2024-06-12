@@ -7,6 +7,7 @@ export const GALLERY_IMAGES_FULL_SIZE = gql`
       sourceUrl
       mediaItemId
       mediaDetails {
+        __typename
         width
         height
       }

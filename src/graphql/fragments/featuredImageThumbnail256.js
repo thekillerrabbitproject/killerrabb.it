@@ -5,6 +5,7 @@ export const FEATURED_IMAGE_THUMBNAIL_256_FRAGMENT = gql`
     node {
       mediaItemId
       mediaDetails {
+        __typename
         sizes(include: NEXTJS_THUMBNAIL) {
           width
           height

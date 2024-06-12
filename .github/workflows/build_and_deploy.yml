@@ -31,8 +31,10 @@ jobs:
         id: cache-static-assets
         uses: actions/cache@v4
         with:
-          path: public/static-assets
-          key: ${{ runner.os }}-static-assets
+          path: |
+            public/static-assets
+            src/json/blur.json
+          key: static-assets
 
       - name: Process Images
         run: yarn download:assets

@@ -5,6 +5,7 @@ export const GALLERY_IMAGES_THUMBNAIL_256 = gql`
     gallery {
       id
       mediaDetails {
+        __typename
         sizes(include: NEXTJS_THUMBNAIL) {
           width
           height
