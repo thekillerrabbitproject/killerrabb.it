@@ -1,4 +1,4 @@
-const removeScaled = (name) => name.replace('-scaled', '');
+export const removeScaled = (name) => name.replace('-scaled', '');
 
 export const isDuplicatedFromGallery = (content) => {
   const {

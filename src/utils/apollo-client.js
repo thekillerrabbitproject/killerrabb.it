@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 import blurImageCache from '@/json/blur.json';
-import { getImageLocalSrc } from '@/utils';
+import { getImageLocalSrc, removeScaled } from '@/utils';
 
 try {
   JSON.parse(JSON.stringify(blurImageCache));
@@ -212,6 +212,11 @@ const client = new ApolloClient({
       Video: videoImagesFields,
       MediaItem: {
         fields: {
+          sourceUrl: {
+            read(sourceUrl) {
+              return removeScaled(sourceUrl);
+            },
+          },
           mediaDetails: {
             merge: true,
           },
