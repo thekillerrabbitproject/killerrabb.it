@@ -13,7 +13,7 @@ remoteFiles="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
 # remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="public/static-assets"
 
-rsync -Pavn --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
+rsync -Paqn --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
 
 # count=$(jq 'length' "$remoteShareFiles")
 
@@ -23,5 +23,5 @@ rsync -Pavn --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyCh
 #     curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
 # done
 
-ls public/static-assets
+ls public
 
