@@ -23,4 +23,5 @@ rsync -Pavn --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyCh
 #     curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
 # done
 
-ls "$staticAssets"
+ls
+
