@@ -7,12 +7,13 @@
 set -eu
 
 downloadAssetsPreparation="${BASH_SOURCE%/*}/download-assets.mjs"
+node "$downloadAssetsPreparation"
+
 remoteTxtFile="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
 remoteFiles="$(xargs -I{} <  "$remoteTxtFile")"
 remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
-node "$downloadAssetsPreparation"
 
 rsync -Pav -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
 
