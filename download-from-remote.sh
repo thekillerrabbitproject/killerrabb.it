@@ -26,4 +26,4 @@ staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 # ls "$staticAssets"
 
-echo -e "$remoteFiles"
+ls "${BASH_SOURCE%/*}/src/json/"
