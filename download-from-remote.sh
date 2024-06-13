@@ -1,13 +1,20 @@
 #!/bin/bash
 
+source agent-start "$GITHUB_ACTION"
+echo "$INPUT_REMOTE_KEY" | SSH_PASS="$INPUT_REMOTE_KEY_PASS" agent-add
+
+# Add strict errors.
+set -eu
+
 downloadAssetsPreparation="${BASH_SOURCE%/*}/download-assets.mjs"
-remoteFiles="$(xargs -I{} <  "${BASH_SOURCE%/*}"/src/json/rsyncRemoteFiles.txt)"
+remoteTxtFile="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
+remoteFiles="$(xargs -I{} <  "$remoteTxtFile")"
 remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 node "$downloadAssetsPreparation"
 
-rsync -Pav -e "ssh -o StrictHostKeyChecking=no" "$remote_user"@"$remote_host":"$remoteFiles" "$staticAssets"
+rsync -Pav -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
 
 count=$(jq 'length' "$remoteShareFiles")
 
