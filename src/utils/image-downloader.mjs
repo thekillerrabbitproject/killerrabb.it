@@ -2,7 +2,10 @@
 import fs from 'fs-extra';
 import { glob } from 'glob';
 import path from 'node:path';
-import { Stream } from 'node:stream';
+import { Readable } from 'node:stream';
+import { finished } from 'node:stream/promises';
+
+// import { Stream } from 'node:stream';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -29,6 +32,12 @@ const getFlatImages = async (
   const flatImages = await glob([pattern], { ignore: ['**/*.webp'] });
 
   return flatImages;
+};
+
+const downloadFile = async (url, fileName) => {
+  const fileStream = fs.createWriteStream(fileName, { flags: 'wx' });
+  const res = await fetch(url);
+  await finished(Readable.fromWeb(res.body).pipe(fileStream));
 };
 
 const externalImagesDownloader = async ({
@@ -72,32 +81,34 @@ const externalImagesDownloader = async ({
       (async () => {
         downloadedImages.push(imageSrc);
 
-        await fs.ensureFile(outputPath);
+        // await fs.ensureFile(outputPath);
 
-        const body = await fetch(getPathWithFileName(imageSrc, fullsize))
-          .then((response) => response.body)
-          .catch((error) => {
-            throw new Error(`Failed to download \`${imageSrc}\`: ${error}`);
-          });
+        // const body = await fetch(getPathWithFileName(imageSrc, fullsize))
+        //   .then((response) => response.body)
+        //   .catch((error) => {
+        //     throw new Error(`Failed to download \`${imageSrc}\`: ${error}`);
+        //   });
 
-        if (body === null) {
-          throw new Error(
-            `Failed to download \`${imageSrc}\`: reason: body is null`,
-          );
-        }
+        // if (body === null) {
+        //   throw new Error(
+        //     `Failed to download \`${imageSrc}\`: reason: body is null`,
+        //   );
+        // }
 
-        const readableNodeStream = Stream.Readable.fromWeb(body);
-        const fileStream = fs.createWriteStream(outputPath);
+        // const readableNodeStream = Stream.Readable.fromWeb(body);
+        // const fileStream = fs.createFileSync(outputPath);
 
-        return new Promise((resolve, reject) => {
-          readableNodeStream.pipe(fileStream);
-          readableNodeStream.on('error', () => reject({ slug, imageSrc }));
-          fileStream.on('finish', () =>
-            // console.log(`\`${imageSrc}\` has been downloaded.`);
+        // return new Promise((resolve, reject) => {
+        //   readableNodeStream.pipe(fileStream);
+        //   readableNodeStream.on('error', () => reject({ slug, imageSrc }));
+        //   fileStream.on('finish', () =>
+        //     // console.log(`\`${imageSrc}\` has been downloaded.`);
 
-            resolve({ slug, imageSrc }),
-          );
-        });
+        //     resolve({ slug, imageSrc }),
+        //   );
+        // });
+        await sleep(remoteImagesDownloadsDelay);
+        await downloadFile(getPathWithFileName(imageSrc, fullsize), outputPath);
       })(),
     );
   }

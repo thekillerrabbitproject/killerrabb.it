@@ -7,10 +7,6 @@ yarn-error.log
 .cache/
 out/
 src/json/*.json
-public/static-assets/shareimages/*
-!public/static-assets/shareimages/.gitkeep
-!public/static-assets/shareimages/share-tkrp*
-public/static-assets/videos/*
-!public/static-assets/videos/.gitkeep
-public/static-assets/images/*
-!public/static-assets/images/.gitkeep
+src/json/*.txt
+public/static-assets/
+!public/static-assets/.gitkeep

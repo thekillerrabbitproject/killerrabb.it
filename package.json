@@ -17,7 +17,7 @@
     "start": "npx serve@latest out",
     "lint": "next lint",
     "prepare": "husky install",
-    "download:assets": "node download-assets.mjs",
+    "download:assets": "./download-from-remote.sh",
     "superclean": "rm -rf .next && rm -rf .cache && rm -rf out && rm -rf .wordpress-cache"
   },
   "dependencies": {
