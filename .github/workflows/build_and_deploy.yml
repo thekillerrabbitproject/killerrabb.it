@@ -27,14 +27,14 @@ jobs:
           yarn add sharp --ignore-engines
           yarn
 
-      # - name: Cache Static Assets
-      #   id: cache-static-assets
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: |
-      #       public/static-assets
-      #       src/json/blur.json
-      #     key: static-assets
+      - name: Cache Static Assets
+        id: cache-static-assets
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/static-assets
+            src/json/blur.json
+          key: static-assets
 
       - name: Configure SSH
         run: |
