@@ -11,7 +11,6 @@
     "defaults"
   ],
   "scripts": {
-    "predev": "yarn download:assets",
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve@latest out",

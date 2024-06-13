@@ -8,5 +8,13 @@ yarn-error.log
 out/
 src/json/*.json
 src/json/*.txt
-public/static-assets/
+
+public/static-assets/*.*
+public/static-assets/*.mp4
 !public/static-assets/.gitkeep
+
+public/static-assets/shareImages/**/*
+!public/static-assets/shareImages/.gitkeep
+!public/static-assets/shareImages/share-tkrp-no-logo.png
+!public/static-assets/shareImages/share-tkrp.png
+

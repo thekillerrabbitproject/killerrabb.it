@@ -13,8 +13,6 @@ const PostSlider = ({ data }) => (
           height: 'var(--slider-default-height)',
         }}
         className={styles.image}
-        slug={data.slug}
-        pathPrefix="post/"
         width={data.featuredImage.node.mediaDetails.width}
         height={data.featuredImage.node.mediaDetails.height}
         sourceUrl={data.featuredImage.node.sourceUrl}
@@ -30,8 +28,6 @@ const PostSlider = ({ data }) => (
           height: 'var(--slider-default-height)',
         }}
         className={styles.image}
-        slug={data.slug}
-        pathPrefix="post/"
         width={image.mediaDetails.width}
         height={image.mediaDetails.height}
         sourceUrl={image.sourceUrl}

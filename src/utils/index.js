@@ -39,7 +39,7 @@ export const getFilmString = (content, styles) => {
 export const getShareImage = ({ slug, postType }) => {
   const type = postType ? `/${postType.toLowerCase()}/` : '';
 
-  return `/static-assets/shareimages${type}${slug}/share.png`;
+  return `/static-assets/shareImages${type}${slug}/share.png`;
 };
 
 export const getVideoName = (slug, videoSrc) => {
@@ -48,22 +48,14 @@ export const getVideoName = (slug, videoSrc) => {
   return `/static-assets/videos/${slug}/${fileName}`;
 };
 
-export const getImageLocalSrc = ({
-  slug = '',
-  sourceUrl,
-  pathPrefix = '',
-  isThumbnail = false,
-  isFeatured = false,
-}) => {
+export const getImageLocalSrc = ({ sourceUrl }) => {
   try {
-    const thumbPath = isThumbnail ? 'thumbnails/' : '';
-    const featuredPath = isFeatured ? 'featured/' : '';
-    const newPath = `/static-assets/images/${pathPrefix}${slug}/${thumbPath}${featuredPath}`;
+    const newPath = '/static-assets/';
     const { length, [length - 1]: rawFileName } = sourceUrl.split('/');
     const [fileName, originalExtension] = rawFileName.split('.');
 
-    const jpg = `${newPath}${removeScaled(fileName)}.${originalExtension}`;
-    const webp = `${newPath}${removeScaled(fileName)}.webp`;
+    const jpg = `${newPath}${fileName}.${originalExtension}`;
+    const webp = `${newPath}${fileName}.webp`;
     const blur = getBlurImage(jpg);
 
     return {

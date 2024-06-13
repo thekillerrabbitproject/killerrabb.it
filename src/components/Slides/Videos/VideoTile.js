@@ -27,13 +27,10 @@ const VideoTile = ({ data }) =>
         <Image
           alt={data.title}
           className={styles.videoTileImage}
-          slug={data.slug}
-          pathPrefix="video/"
           width={data.featuredImage.node.mediaDetails.sizes.at(0).width}
           height={data.featuredImage.node.mediaDetails.sizes.at(0).height}
           sourceUrl={data.featuredImage.node.mediaDetails.sizes.at(0).sourceUrl}
           isFeatured
-          isThumbnail
         />
       </Link>
     </article>

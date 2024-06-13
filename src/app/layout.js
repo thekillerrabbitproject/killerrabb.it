@@ -95,7 +95,7 @@ export const metadata = {
     },
   },
   other: {
-    image: `${SITE_METADATA.siteUrl}/static-assets/shareimages/share-tkrp.png`,
+    image: `${SITE_METADATA.siteUrl}/static-assets/shareImages/share-tkrp.png`,
   },
   openGraph: {
     title: SITE_METADATA.title,
@@ -104,13 +104,13 @@ export const metadata = {
     url: SITE_METADATA.siteUrl,
     locale: 'en_US',
     type: 'website',
-    images: ['/static-assets/shareimages/share-tkrp.png'],
+    images: ['/static-assets/shareImages/share-tkrp.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
-    image: '/static-assets/shareimages/share-tkrp.png',
+    image: '/static-assets/shareImages/share-tkrp.png',
     url: SITE_METADATA.siteUrl,
     creator: '@persocon',
   },

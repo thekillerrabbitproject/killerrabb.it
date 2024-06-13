@@ -25,23 +25,16 @@ LinkWrapper.propTypes = {
 const Image = ({
   alt,
   uri,
-  slug,
   sourceUrl,
-  pathPrefix = '',
   width,
   height,
   isFeatured = false,
-  isThumbnail = false,
   cssOverride,
   className,
 }) => {
   const featuredClassName = isFeatured ? 'featured' : 'image';
   const { webp, jpg, blur } = getImageLocalSrc({
     sourceUrl,
-    slug,
-    pathPrefix,
-    isThumbnail,
-    isFeatured,
   });
 
   return (

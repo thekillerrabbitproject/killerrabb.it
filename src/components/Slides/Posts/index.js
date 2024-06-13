@@ -39,8 +39,6 @@ const SlidesPosts = async ({ title = 'Recent Posts', ids = [] }) => {
                 <Image
                   alt={content.title}
                   uri={content.uri}
-                  slug={content.slug}
-                  pathPrefix="post/"
                   width={
                     content.featuredImage.node.mediaDetails.sizes.at(0).width
                   }
@@ -52,7 +50,6 @@ const SlidesPosts = async ({ title = 'Recent Posts', ids = [] }) => {
                       .sourceUrl
                   }
                   isFeatured
-                  isThumbnail
                 />
               )}
               {content.acf.gallery.map((image) => (
@@ -60,12 +57,9 @@ const SlidesPosts = async ({ title = 'Recent Posts', ids = [] }) => {
                   key={image.id}
                   alt={content.title}
                   uri={content.uri}
-                  slug={content.slug}
-                  pathPrefix="post/"
                   width={image.mediaDetails.sizes.at(0).width}
                   height={image.mediaDetails.sizes.at(0).height}
                   sourceUrl={image.mediaDetails.sizes.at(0).sourceUrl}
-                  isThumbnail
                 />
               ))}
             </article>
