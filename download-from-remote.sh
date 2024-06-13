@@ -13,6 +13,8 @@ remoteFiles="$(cat "${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt")"
 # remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
+ssh "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST" -f "ls -lah"
+
 
 # rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
 
