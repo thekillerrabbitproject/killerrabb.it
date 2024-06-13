@@ -45,7 +45,7 @@ export const getShareImage = ({ slug, postType }) => {
 export const getVideoName = (slug, videoSrc) => {
   const { length, [length - 1]: fileName } = videoSrc.split('/');
 
-  return `/static-assets/videos/${slug}/${fileName}`;
+  return `/static-assets/${fileName}`;
 };
 
 export const getImageLocalSrc = ({ sourceUrl }) => {
