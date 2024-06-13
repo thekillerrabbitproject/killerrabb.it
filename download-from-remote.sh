@@ -10,20 +10,22 @@ downloadAssetsPreparation="${BASH_SOURCE%/*}/download-assets.mjs"
 node "$downloadAssetsPreparation"
 
 remoteFiles="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
-# remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
+remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="public/static-assets"
 
 rsync -Paq --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
 
-# count=$(jq 'length' "$remoteShareFiles")
+count=$(jq 'length' "$remoteShareFiles")
 
-# for ((i=0; i<count; i++)); do
-#     src=$(jq -r '.['$i'].src' "$remoteShareFiles")
-#     slug=$(jq -r '.['$i'].slug' "$remoteShareFiles")
-#     curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
-# done
+for ((i=0; i<count; i++)); do
+    src=$(jq -r '.['$i'].src' "$remoteShareFiles")
+    slug=$(jq -r '.['$i'].slug' "$remoteShareFiles")
+    curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
+done
 
 ls -lah public
 
 ls -lah "$staticAssets"
+
+ls -lah "$staticAssets/shareImages"
 
