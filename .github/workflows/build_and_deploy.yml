@@ -42,8 +42,8 @@ jobs:
           echo "$DEPLOY_KEY" > ~/.ssh/tkrp.key
           chmod 600 ~/.ssh/tkrp.key
           cat >>~/.ssh/config <<END
-          Host $DEPLOY_HOST
-            HostName $DEPLOY_HOST
+          Host $WORDPRESS_HOST
+            HostName $WORDPRESS_HOST
             User $DEPLOY_USER
             IdentityFile ~/.ssh/tkrp.key
             StrictHostKeyChecking no
@@ -51,12 +51,12 @@ jobs:
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          WORDPRESS_HOST: ${{ secrets.WORDPRESS_HOST }}
 
       - name: Process Images
         run: yarn download:assets
         env:
-          INPUT_REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          INPUT_REMOTE_HOST: ${{ secrets.WORDPRESS_HOST }}
           INPUT_REMOTE_USER: ${{ secrets.DEPLOY_USER }}
           INPUT_REMOTE_KEY: ${{ secrets.DEPLOY_KEY }}
 
