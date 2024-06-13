@@ -15,14 +15,16 @@ remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 
-rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
+# rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
 
-count=$(jq 'length' "$remoteShareFiles")
+# count=$(jq 'length' "$remoteShareFiles")
 
-for ((i=0; i<count; i++)); do
-    src=$(jq -r '.['$i'].src' "$remoteShareFiles")
-    slug=$(jq -r '.['$i'].slug' "$remoteShareFiles")
-    curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
-done
+# for ((i=0; i<count; i++)); do
+#     src=$(jq -r '.['$i'].src' "$remoteShareFiles")
+#     slug=$(jq -r '.['$i'].slug' "$remoteShareFiles")
+#     curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
+# done
 
-ls "$staticAssets"
+# ls "$staticAssets"
+
+echo "$remoteTxtFile"
