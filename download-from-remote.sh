@@ -9,8 +9,7 @@ set -eu
 downloadAssetsPreparation="${BASH_SOURCE%/*}/download-assets.mjs"
 node "$downloadAssetsPreparation"
 
-remoteTxtFile="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
-remoteFiles="$(xargs -I{} <  "$remoteTxtFile")"
+remoteFiles="$(xargs -I{} <  "${BASH_SOURCE%/*}"/src/json/rsyncRemoteFiles.txt)"
 remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
@@ -27,4 +26,4 @@ staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 # ls "$staticAssets"
 
-echo "$remoteFiles"
+echo -e "$remoteFiles"
