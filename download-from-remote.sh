@@ -9,7 +9,7 @@ set -eu
 downloadAssetsPreparation="${BASH_SOURCE%/*}/download-assets.mjs"
 node "$downloadAssetsPreparation"
 
-remoteFiles="cat ${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
+remoteFiles="$(cat "${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt")"
 # remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
