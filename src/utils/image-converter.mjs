@@ -20,16 +20,15 @@ const getFileName = (src) => {
 };
 
 const getWebpImages = async () => {
-  const webpImages = await glob(['public/static-assets/images/**/*.webp']);
+  const webpImages = await glob(['public/static-assets/**/*.webp']);
 
   return webpImages;
 };
 
 const getFlatImages = async () => {
-  const flatImages = await glob(
-    ['public/static-assets/images/{post,video}/**/*.*'],
-    { ignore: ['**/*.webp'] },
-  );
+  const flatImages = await glob(['public/static-assets/*.*'], {
+    ignore: ['**/*.webp', 'public/static-assets/shareImages/**/*'],
+  });
 
   return flatImages;
 };

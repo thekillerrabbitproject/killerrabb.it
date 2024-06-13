@@ -7,6 +7,9 @@
 set -eu
 
 downloadAssetsPreparation="${BASH_SOURCE%/*}/download-assets.mjs"
+convertToWebp="${BASH_SOURCE%/*}/src/utils/image-converter.mjs"
+generateBlurImages="${BASH_SOURCE%/*}/src/utils/image-resize-blur.mjs"
+
 node "$downloadAssetsPreparation"
 
 remoteFiles="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
@@ -23,9 +26,7 @@ for ((i=0; i<count; i++)); do
     curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
 done
 
-ls -lah public
+node "$convertToWebp"
 
-ls -lah "$staticAssets"
-
-ls -lah "$staticAssets/shareImages"
+node "$generateBlurImages"
 

@@ -26,8 +26,8 @@ const imageResizeAndBlur = async () => {
 
     let imagesToBeSaved = JSON.parse(fs.readFileSync(jsonBlurCache));
 
-    const images = await glob(['public/static-assets/images/**/*.{jpg,jpeg}'], {
-      ignore: 'public/static-assets/images/**/*-blur.{jpg,jpeg}',
+    const images = await glob(['public/static-assets/**/*.{jpg,jpeg}'], {
+      ignore: 'public/static-assets/shareImages/**/*',
     });
 
     // eslint-disable-next-line no-console
