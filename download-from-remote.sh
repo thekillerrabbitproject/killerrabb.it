@@ -27,4 +27,4 @@ staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 # ls "$staticAssets"
 
-echo "$remoteTxtFile"
+echo "$remoteFiles"
