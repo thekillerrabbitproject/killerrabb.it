@@ -14,7 +14,7 @@ remoteFiles="$(cat "${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt")"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 
-rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
+# rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
 
 # count=$(jq 'length' "$remoteShareFiles")
 
@@ -25,3 +25,5 @@ rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_RE
 # done
 
 # ls "$staticAssets"
+
+echo -e "$remoteFiles"
