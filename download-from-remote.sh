@@ -26,4 +26,4 @@ staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 # ls "$staticAssets"
 
-ls "${BASH_SOURCE%/*}/src/json/"
+cat "${BASH_SOURCE%/*}"/src/json/rsyncRemoteFiles.txt
