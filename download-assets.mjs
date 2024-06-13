@@ -1,13 +1,9 @@
 import pkg from '@apollo/client';
 
 import query from './src/graphql/Downloader/StaticAssets.mjs';
-// import imageConverter from './src/utils/image-converter.mjs';
-// import externalImagesDownloader from './src/utils/image-downloader.mjs';
-// import imageResizeAndBlur from './src/utils/image-resize-blur.mjs';
 import shareService from './src/utils/shareimage.mjs';
 
 import fs from 'fs-extra';
-// import externalVideosDownloader from './src/utils/video-downloader.mjs';
 
 const { ApolloClient, InMemoryCache } = pkg;
 
@@ -123,34 +119,6 @@ const videos = videosNodes.map((content) => ({
   slug: content.slug,
   src: content.videoThingy.featuredVideo.mediaItemUrl,
 }));
-
-// await externalImagesDownloader({
-//   manifest: [...postsGalleryImagesThumbnails, ...contentFeaturedImages],
-//   destDir: './public/static-assets/images',
-//   pattern: 'public/static-assets/images/{post,video}/**/*.*',
-//   remoteImagesDownloadsDelay: 500,
-// });
-
-// await externalImagesDownloader({
-//   manifest: [
-//     ...contentFeaturedImagesShare,
-//     ...categoriesFeaturedImagesShare,
-//     ...staticPagesShare,
-//   ],
-//   pattern: 'public/static-assets/shareimages/**/*.*',
-//   destDir: './public/static-assets/shareimages',
-//   remoteImagesDownloadsDelay: 500,
-// });
-
-// await externalVideosDownloader({
-//   manifest: videos,
-//   destDir: './public/static-assets/videos',
-//   remoteVideosDownloadsDelay: 500,
-// });
-
-// await imageConverter();
-
-// await imageResizeAndBlur();
 
 const getFileName = ({ src, fullsize = false }) => {
   const { length, [length - 1]: fileName, ...rest } = src.split('/');

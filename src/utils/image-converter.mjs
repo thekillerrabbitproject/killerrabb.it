@@ -26,7 +26,7 @@ const getWebpImages = async () => {
 };
 
 const getFlatImages = async () => {
-  const flatImages = await glob(['public/static-assets/*.*'], {
+  const flatImages = await glob(['public/static-assets/*.{jpg,jpeg}'], {
     ignore: ['**/*.webp', 'public/static-assets/shareImages/**/*'],
   });
 
@@ -102,4 +102,4 @@ const imageConverter = async () => {
   }
 };
 
-export default imageConverter;
+await imageConverter();

@@ -60,4 +60,4 @@ const imageResizeAndBlur = async () => {
   }
 };
 
-export default imageResizeAndBlur;
+await imageResizeAndBlur();
