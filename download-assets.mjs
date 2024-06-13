@@ -172,7 +172,7 @@ fs.writeFileSync(remoteFilesJson, JSON.stringify(remoteFiles, null, 2));
 
 const rsyncString = remoteFiles
   .map((obj) => obj.src.replace('https://www.tkrp.net/', 'tkrp.net/'))
-  .join(' ');
+  .join('\n');
 
 const rsyncTxt = 'src/json/rsyncRemoteFiles.txt';
 
