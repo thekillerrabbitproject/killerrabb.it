@@ -11,7 +11,7 @@ node "$downloadAssetsPreparation"
 
 remoteFiles="${BASH_SOURCE%/*}/src/json/rsyncRemoteFiles.txt"
 # remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
-staticAssets="${BASH_SOURCE%/*}/public/static-assets"
+staticAssets="public/static-assets"
 
 rsync -Pavn --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
 
@@ -23,5 +23,5 @@ rsync -Pavn --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyCh
 #     curl -s -L "$src" --create-dirs -o "$staticAssets/shareImages/$slug/share.png"
 # done
 
-ls
+ls public/static-assets
 
