@@ -58,7 +58,6 @@ jobs:
         env:
           INPUT_REMOTE_HOST: ${{ secrets.WORDPRESS_HOST }}
           INPUT_REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-          INPUT_REMOTE_KEY: ${{ secrets.DEPLOY_KEY }}
 
 
       # - name: Build Pages

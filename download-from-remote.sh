@@ -15,7 +15,7 @@ remoteShareFiles="${BASH_SOURCE%/*}/src/json/remoteShareFiles.json"
 staticAssets="${BASH_SOURCE%/*}/public/static-assets"
 
 
-rsync -Pav -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
+rsync -Pavn -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST":"$remoteFiles" "$staticAssets"
 
 count=$(jq 'length' "$remoteShareFiles")
 
@@ -26,6 +26,3 @@ for ((i=0; i<count; i++)); do
 done
 
 ls "$staticAssets"
-
-ls "$staticAssets/shareImages"
-
