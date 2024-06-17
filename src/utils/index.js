@@ -70,6 +70,8 @@ export const getImageLocalSrc = ({ sourceUrl }) => {
 
 export const getMetadata = ({ title, slug, postType, metadataBase }) => {
   const shareImage = getShareImage({ slug, postType });
+  const lowerCasePostType = postType ? postType.toLowerCase() : 'post';
+  const canonicalPrefix = lowerCasePostType === 'post' ? '' : lowerCasePostType;
 
   return {
     title,
@@ -80,7 +82,7 @@ export const getMetadata = ({ title, slug, postType, metadataBase }) => {
       image: `${metadataBase.toString().replace(/\/$/, '')}${shareImage}`,
     },
     alternates: {
-      canonical: slug,
+      canonical: `${canonicalPrefix}/${slug}`,
     },
   };
 };
