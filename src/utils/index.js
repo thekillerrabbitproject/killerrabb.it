@@ -83,6 +83,7 @@ export const getMetadata = ({ title, slug, postType, metadataBase }) => {
       type: 'website',
     },
     twitter: {
+      card: 'summary_large_image',
       url: canonical,
     },
     other: {
