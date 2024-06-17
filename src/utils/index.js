@@ -73,16 +73,23 @@ export const getMetadata = ({ title, slug, postType, metadataBase }) => {
   const lowerCasePostType = postType ? postType.toLowerCase() : 'post';
   const canonicalPrefix = lowerCasePostType === 'post' ? '' : lowerCasePostType;
 
+  const canonical = `${canonicalPrefix}/${slug}`;
+
   return {
     title,
     openGraph: {
       images: [shareImage],
+      url: canonical,
+      type: 'website',
+    },
+    twitter: {
+      url: canonical,
     },
     other: {
       image: `${metadataBase.toString().replace(/\/$/, '')}${shareImage}`,
     },
     alternates: {
-      canonical: `${canonicalPrefix}/${slug}`,
+      canonical,
     },
   };
 };
