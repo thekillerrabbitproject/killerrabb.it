@@ -5,6 +5,7 @@ import { children } from '@/types';
 
 import '@/css/global.css';
 import localFont from 'next/font/local';
+import { ViewTransitions } from 'next-view-transitions';
 
 const vcrFont = localFont({
   src: './fonts/vcr-osd-mono.woff2',
@@ -52,18 +53,20 @@ const robotoFont = localFont({
 });
 
 const RootLayout = ({ children }) => (
-  <html lang="en" className={`${vcrFont.variable} ${robotoFont.variable}`}>
-    <head>
-      <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    </head>
-    <body suppressHydrationWarning>
-      <Header />
-      <main>
-        {children}
-        <Footer />
-      </main>
-    </body>
-  </html>
+  <ViewTransitions>
+    <html lang="en" className={`${vcrFont.variable} ${robotoFont.variable}`}>
+      <head>
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+      </head>
+      <body suppressHydrationWarning>
+        <Header />
+        <main>
+          {children}
+          <Footer />
+        </main>
+      </body>
+    </html>
+  </ViewTransitions>
 );
 
 RootLayout.propTypes = children;

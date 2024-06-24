@@ -2,7 +2,7 @@ import styles from '@/css/ImageComponent.module.css';
 import { children, slidePostsImage } from '@/types/index';
 import { getImageLocalSrc } from '@/utils';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 const LinkWrapper = ({ href, title, children }) => {
   if (href) {

@@ -1,7 +1,7 @@
 import styles from '@/css/MenuComponent.module.css';
 import useSiteMetadata from '@/hooks/useSiteMetadata';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 const Menu = () => {
   const { menu } = useSiteMetadata();

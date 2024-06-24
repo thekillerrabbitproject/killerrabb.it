@@ -2,7 +2,7 @@ import styles from '@/css/MetaComponent.module.css';
 import { meta } from '@/types/index';
 import { getFilmString } from '@/utils';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 const Meta = ({ data, showTitle = false, notSticky = false }) => (
   <div

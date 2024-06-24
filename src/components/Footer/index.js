@@ -3,7 +3,7 @@ import { query } from '@/graphql/Footer';
 import useSiteMetadata from '@/hooks/useSiteMetadata';
 import client from '@/utils/apollo-client';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 async function getData() {
   try {

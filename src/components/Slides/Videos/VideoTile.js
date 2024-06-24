@@ -2,7 +2,7 @@ import Image from '@/components/Image';
 import styles from '@/css/Slides/Videos.module.css';
 import { dataAny } from '@/types/index';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 const VideoTile = ({ data }) =>
   data.featuredImage && (
