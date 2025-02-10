@@ -10,6 +10,7 @@ env:
 
 jobs:
   test_thingy:
+    runs-on: ubuntu-latest
     if: |
       ${{ github.actor != 'dependabot[bot]' }} && github.event.number
     steps:
