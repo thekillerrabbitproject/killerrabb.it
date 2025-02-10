@@ -1,6 +1,5 @@
 name: Build and Deploy to Website
 on:
-  pull_request:
   push:
     branches:
       - master
@@ -13,13 +12,13 @@ jobs:
   test_thingy:
     runs-on: ubuntu-latest
     if: |
-      ${{ github.actor != 'dependabot[bot]' }} && ${{ github.event.pull_request.merged == false }}
+      ${{ github.actor != 'dependabot[bot]' }} && ${{ github.event.number > 0 }}
     steps:
-      - name: what is ${{ github.event.pull_request.merged }}
+      - name: what is ${{ github.event.number }}
         env:
-            PR_EVENT: ${{ github.event.pull_request.merged }}
+            PR_NUMBER: ${{ github.event.number }}
         run: |
-          echo HMMM PR: "${PR_EVENT}"
+          echo HMMM PR: "${PR_NUMBER}""
 
   # build_and_deploy:
   #   name: Build & Deploy
