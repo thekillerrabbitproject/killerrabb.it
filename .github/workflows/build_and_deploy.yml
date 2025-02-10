@@ -1,6 +1,9 @@
 name: Build and Deploy to Website
 on:
   pull_request:
+    branches:
+      - '*'
+      - '!dependabot/**'
   push:
     branches:
       - master
@@ -12,8 +15,7 @@ env:
 jobs:
   test_thingy:
     runs-on: ubuntu-latest
-    if: |
-      ${{ github.actor != 'dependabot[bot]' }} || ${{ !contains(fromJSON('["push"]'), github.event_name) }}
+    if: ${{ !contains(fromJSON('["push"]'), github.event_name) }}
     steps:
       - name: what is ${{ github.event_name }}
         env:
