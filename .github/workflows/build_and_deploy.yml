@@ -1,9 +1,8 @@
 name: Build and Deploy to Website
 on:
   pull_request:
-    branches:
-      - '*'
-      - '!dependabot/**'
+    branches-ignore:
+      - 'dependabot/**'
   push:
     branches:
       - master
