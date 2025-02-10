@@ -13,11 +13,11 @@ jobs:
   test_thingy:
     runs-on: ubuntu-latest
     if: |
-      ${{ github.actor != 'dependabot[bot]' }} && ${{ github.event.issue.pull_request }}
+      ${{ github.actor != 'dependabot[bot]' }} && ${{ github.event.pull_request.merged == false }}
     steps:
-      - name: what is ${{ github.event.issue.pull_request }}
+      - name: what is ${{ github.event.pull_request.merged }}
         env:
-            PR_EVENT: ${{ github.event.issue.pull_request }}
+            PR_EVENT: ${{ github.event.pull_request.merged }}
         run: |
           echo HMMM PR: "${PR_EVENT}"
 
