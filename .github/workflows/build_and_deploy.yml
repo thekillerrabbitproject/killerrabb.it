@@ -1,10 +1,11 @@
 name: Build and Deploy to Website
 on:
   pull_request:
+    branches:
+      - '!dependabot/**'
   push:
     branches:
       - master
-      - '!dependabot/**'
   workflow_dispatch:
 
 env:
