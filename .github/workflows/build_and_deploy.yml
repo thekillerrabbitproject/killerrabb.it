@@ -13,7 +13,7 @@ jobs:
   test_thingy:
     runs-on: ubuntu-latest
     if: |
-      ${{ github.actor != 'dependabot[bot]' }} && github.event_name != "push"
+      ${{ github.actor != 'dependabot[bot]' }} && ${{ contains(fromJSON('["pull_request"]'), github.event_name) }}
     steps:
       - name: what is ${{ github.event_name }}
         env:
