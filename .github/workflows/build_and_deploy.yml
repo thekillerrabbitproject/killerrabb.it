@@ -13,11 +13,11 @@ jobs:
   test_thingy:
     runs-on: ubuntu-latest
     if: |
-      ${{ github.actor != 'dependabot[bot]' }} && ${{ fromJSON(github.event.number) }} && ${{ fromJSON(github.event.number) > 0 }}
+      ${{ github.actor != 'dependabot[bot]' }} && github.event_name === "pull_request"
     steps:
-      - name: what is ${{ fromJSON(github.event.number) }}
+      - name: what is ${{ github.event_name }}
         env:
-            PR_NUMBER: ${{ fromJSON(github.event.number) }}
+            PR_NUMBER: ${{ github.event_name }}
         run: |
           echo HMMM PR: "${PR_NUMBER}"
 
