@@ -17,7 +17,8 @@ jobs:
       - name: what is ${{ github.event.number }}
         env:
             PR_NUMBER: ${{ github.event.number }}
-        run: echo $PR_NUMBER
+        run: |
+          echo HMMM PR: "${PR_NUMBER}""
 
   # build_and_deploy:
   #   name: Build & Deploy
