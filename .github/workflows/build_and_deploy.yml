@@ -9,65 +9,74 @@ env:
   NEXT_TELEMETRY_DISABLED: 1
 
 jobs:
-  build_and_deploy:
-    name: Build & Deploy
-    # 2. Using the latest Ubuntu image
-    runs-on: ubuntu-latest
-
+  test_thingy:
+    if: |
+      ${{ github.actor != 'dependabot[bot]' }} && github.event.number
     steps:
-      # Check out the current repository code
-      - uses: actions/checkout@v4
-      # 3. https://github.com/actions/setup-node#usage
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20.13.x"
-
-      - name: Install Dependencies
-        run: |
-          yarn add sharp --ignore-engines
-          yarn
-
-      - name: Cache Static Assets
-        id: cache-static-assets
-        uses: actions/cache@v4
-        with:
-          path: |
-            public/static-assets
-            src/json/blur.json
-          key: static-assets
-
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$DEPLOY_KEY" > ~/.ssh/tkrp.key
-          chmod 600 ~/.ssh/tkrp.key
-          cat >>~/.ssh/config <<END
-          Host $WORDPRESS_HOST
-            HostName $WORDPRESS_HOST
-            User $DEPLOY_USER
-            IdentityFile ~/.ssh/tkrp.key
-            StrictHostKeyChecking no
-          END
+      - name: what is ${{ github.event.number }}
         env:
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          WORDPRESS_HOST: ${{ secrets.WORDPRESS_HOST }}
+            PR_NUMBER: ${{ github.event.number }}
+        run: echo $PR_NUMBER
 
-      - name: Process Images
-        run: yarn download:assets
-        env:
-          INPUT_REMOTE_HOST: ${{ secrets.WORDPRESS_HOST }}
-          INPUT_REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+  # build_and_deploy:
+  #   name: Build & Deploy
+  #   # 2. Using the latest Ubuntu image
+  #   runs-on: ubuntu-latest
 
-      - name: Build Pages
-        run: yarn build
+  #   steps:
+  #     # Check out the current repository code
+  #     - uses: actions/checkout@v4
+  #     # 3. https://github.com/actions/setup-node#usage
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "20.13.x"
 
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.2.1
-        with:
-          switches: -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no"
-          path: out/
-          remote_path: ${{ secrets.DEPLOY_PATH }}
-          remote_host: ${{ secrets.DEPLOY_HOST }}
-          remote_user: ${{ secrets.DEPLOY_USER }}
-          remote_key: ${{ secrets.DEPLOY_KEY }}
+  #     - name: Install Dependencies
+  #       run: |
+  #         yarn add sharp --ignore-engines
+  #         yarn
+
+  #     - name: Cache Static Assets
+  #       id: cache-static-assets
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: |
+  #           public/static-assets
+  #           src/json/blur.json
+  #         key: static-assets
+
+  #     - name: Configure SSH
+  #       run: |
+  #         mkdir -p ~/.ssh/
+  #         echo "$DEPLOY_KEY" > ~/.ssh/tkrp.key
+  #         chmod 600 ~/.ssh/tkrp.key
+  #         cat >>~/.ssh/config <<END
+  #         Host $WORDPRESS_HOST
+  #           HostName $WORDPRESS_HOST
+  #           User $DEPLOY_USER
+  #           IdentityFile ~/.ssh/tkrp.key
+  #           StrictHostKeyChecking no
+  #         END
+  #       env:
+  #         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+  #         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+  #         WORDPRESS_HOST: ${{ secrets.WORDPRESS_HOST }}
+
+  #     - name: Process Images
+  #       run: yarn download:assets
+  #       env:
+  #         INPUT_REMOTE_HOST: ${{ secrets.WORDPRESS_HOST }}
+  #         INPUT_REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+
+  #     - name: Build Pages
+  #       run: yarn build
+
+  #     - name: rsync deployments
+  #       uses: burnett01/rsync-deployments@5.2.1
+  #       with:
+  #         switches: -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no"
+  #         path: out/
+  #         remote_path: ${{ secrets.DEPLOY_PATH }}
+  #         remote_host: ${{ secrets.DEPLOY_HOST }}
+  #         remote_user: ${{ secrets.DEPLOY_USER }}
+  #         remote_key: ${{ secrets.DEPLOY_KEY }}
