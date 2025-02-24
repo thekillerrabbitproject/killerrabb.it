@@ -35,6 +35,12 @@
   content: '\25B8';
   margin-right: 8px;
 }
+/* https://www.compart.com/en/unicode/search?q=moon#characters */
+.list:first-of-type .listItem:first-of-type::before {
+  content: '\263E';
+  font-style: normal;
+  font-size: 14px;
+}
 
 .link {
   text-decoration: none;

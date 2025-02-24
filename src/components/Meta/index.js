@@ -18,21 +18,20 @@ const Meta = ({ data, showTitle = false, notSticky = false }) => (
           </Link>
         </h2>
       )}
-      <p className={styles.paragraph}>meta</p>
-      <ul className={styles.list}>
-        {data.films.nodes.map((film) => (
-          <li key={film.uri} className={styles.listItem}>
-            <Link href={film.uri} title={film.name} className={styles.link}>
-              {film.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
       <ul className={styles.list}>
         {data.models.nodes.map((model) => (
           <li key={model.uri} className={styles.listItem}>
             <Link href={model.uri} title={model.name} className={styles.link}>
               {model.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <ul className={styles.list}>
+        {data.films.nodes.map((film) => (
+          <li key={film.uri} className={styles.listItem}>
+            <Link href={film.uri} title={film.name} className={styles.link}>
+              {film.name}
             </Link>
           </li>
         ))}
