@@ -31,6 +31,10 @@
   text-transform: lowercase;
 }
 
+.listItem {
+  display: flex;
+}
+
 .listItem::before {
   content: '\25B8';
   margin-right: 8px;
@@ -43,6 +47,7 @@
   color: transparent;
   background: linear-gradient(to right, var(--color) 100%, var(--color) 0%);
   background-clip: text;
+  align-self: anchor-center;
 }
 
 .link {
