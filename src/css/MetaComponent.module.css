@@ -37,9 +37,12 @@
 }
 /* https://www.compart.com/en/unicode/search?q=moon#characters */
 .list:first-of-type .listItem:first-of-type::before {
-  content: '\263E';
+  content: '\1F319';
   font-style: normal;
   font-size: 14px;
+  color: transparent;
+  background: linear-gradient(to right, var(--color) 100%, var(--color) 0%);
+  background-clip: text;
 }
 
 .link {
@@ -48,11 +51,13 @@
 }
 
 .color {
-  color: var(--color-negative);
+  --color: var(--color-negative);
+  color: var(--color);
 }
 
 .black-white {
-  color: var(--black-and-white-negative);
+  --color: var(--black-and-white-negative);
+  color: var(--color);
 }
 
 .metaNotSticky {
