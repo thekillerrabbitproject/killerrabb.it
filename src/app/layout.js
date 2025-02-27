@@ -109,14 +109,6 @@ export const metadata = {
     type: 'website',
     images: ['/static-assets/shareImages/share-tkrp.png'],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: SITE_METADATA.title,
-    description: SITE_METADATA.description,
-    image: '/static-assets/shareImages/share-tkrp.png',
-    url: SITE_METADATA.siteUrl,
-    creator: '@persocon',
-  },
 };
 
 export default RootLayout;

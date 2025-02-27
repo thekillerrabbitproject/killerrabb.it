@@ -82,10 +82,6 @@ export const getMetadata = ({ title, slug, postType, metadataBase }) => {
       url: canonical,
       type: 'website',
     },
-    twitter: {
-      card: 'summary_large_image',
-      url: canonical,
-    },
     other: {
       image: `${metadataBase.toString().replace(/\/$/, '')}${shareImage}`,
     },
