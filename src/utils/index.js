@@ -77,12 +77,10 @@ export const getMetadata = ({ title, slug, postType, metadataBase }) => {
 
   return {
     title,
-    openGraph: {
-      images: [shareImage],
-      url: canonical,
-      type: 'website',
-    },
     other: {
+      'og:url': `${metadataBase.toString().replace(/\/$/, '')}${canonical}`,
+      'og:type': 'website',
+      'og:image': `${metadataBase.toString().replace(/\/$/, '')}${shareImage}`,
       image: `${metadataBase.toString().replace(/\/$/, '')}${shareImage}`,
     },
     alternates: {

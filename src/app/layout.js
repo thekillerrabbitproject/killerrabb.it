@@ -99,15 +99,13 @@ export const metadata = {
   },
   other: {
     image: `${SITE_METADATA.siteUrl}/static-assets/shareImages/share-tkrp.png`,
-  },
-  openGraph: {
-    title: SITE_METADATA.title,
-    description: SITE_METADATA.description,
-    siteName: SITE_METADATA.title,
-    url: SITE_METADATA.siteUrl,
-    locale: 'en_US',
-    type: 'website',
-    images: ['/static-assets/shareImages/share-tkrp.png'],
+    'og:image': `${SITE_METADATA.siteUrl}/static-assets/shareImages/share-tkrp.png`,
+    'og:title': SITE_METADATA.title,
+    'og:description': SITE_METADATA.description,
+    'og:siteName': SITE_METADATA.title,
+    'og:url': SITE_METADATA.siteUrl,
+    'og:locale': 'en_US',
+    'og:type': 'website',
   },
 };
 
