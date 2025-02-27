@@ -100,6 +100,9 @@ export const metadata = {
   other: {
     image: `${SITE_METADATA.siteUrl}/static-assets/shareImages/share-tkrp.png`,
     'og:image': `${SITE_METADATA.siteUrl}/static-assets/shareImages/share-tkrp.png`,
+    'og:image:width': 1200,
+    'og:image:height': 630,
+    'og:image:type': 'image/png',
     'og:title': SITE_METADATA.title,
     'og:description': SITE_METADATA.description,
     'og:siteName': SITE_METADATA.title,
