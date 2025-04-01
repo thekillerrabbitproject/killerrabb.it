@@ -11,7 +11,7 @@
     "defaults"
   ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "npx serve@latest out",
     "lint": "next lint",
@@ -21,18 +21,18 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
-    "@next/bundle-analyzer": "^14.2.3",
+    "@next/bundle-analyzer": "15.2.4",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
-    "next": "^14.2.3",
+    "next": "15.2.4",
     "next-view-transitions": "^0.2.0",
     "prop-types": "^15.8.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "eslint": "^8.54.0",
-    "eslint-config-next": "^14.2.3",
+    "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -56,9 +56,6 @@
       "eslint --cache --fix"
     ],
     "**/*.svg": "svgo public -r"
-  },
-  "resolutions": {
-    "string-width": "4.2.3"
   },
   "supportedArchitecture": {
     "os": [

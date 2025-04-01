@@ -32,7 +32,8 @@ async function getData(slug) {
   }
 }
 
-export async function generateMetadata({ params }, parent) {
+export async function generateMetadata(props, parent) {
+  const params = await props.params;
   const { title, slug, __typename: postType } = await getData(params.slug);
 
   const { metadataBase } = await parent;
@@ -57,7 +58,8 @@ export async function generateStaticParams() {
   }
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params;
   const data = await getData(params.slug);
 
   return (

@@ -1,5 +1,7 @@
 import { SITE_METADATA } from '@/hooks/useSiteMetadata/constants';
 
+export const dynamic = 'force-static';
+
 export default function manifest() {
   return {
     name: SITE_METADATA.title,

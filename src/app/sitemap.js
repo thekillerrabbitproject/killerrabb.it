@@ -29,6 +29,8 @@ async function getData(slug) {
   }
 }
 
+export const dynamic = 'force-static';
+
 export default async function sitemap() {
   const { posts, videos, films, models } = await getData();
 
