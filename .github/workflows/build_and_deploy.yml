@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          yarn add sharp --ignore-engines
+          yarn add sharp@0.33.5 --ignore-engines
           yarn
 
       - name: Cache Static Assets
