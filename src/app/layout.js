@@ -8,7 +8,14 @@ import localFont from 'next/font/local';
 import { ViewTransitions } from 'next-view-transitions';
 
 const vcrFont = localFont({
-  src: './fonts/vcr-osd-mono.woff2',
+  src: [
+    {
+      path: './fonts/vcr-osd-mono.ttf',
+    },
+    {
+      path: './fonts/vcr-osd-mono.woff2',
+    },
+  ],
   display: 'swap',
   variable: '--font-vcr',
   adjustFontFallback: false,
@@ -16,6 +23,36 @@ const vcrFont = localFont({
 
 const robotoFont = localFont({
   src: [
+    {
+      path: './fonts/roboto-mono-v23-latin-300.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/roboto-mono-v23-latin-300italic.ttf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: './fonts/roboto-mono-v23-latin-regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/roboto-mono-v23-latin-italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/roboto-mono-v23-latin-700.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './fonts/roboto-mono-v23-latin-700italic.ttf',
+      weight: '700',
+      style: 'italic',
+    },
     {
       path: './fonts/roboto-mono-v23-latin-300.woff2',
       weight: '300',
