@@ -12,7 +12,7 @@
     "safari >= 11"
   ],
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "npx serve@latest out",
     "lint": "next lint",

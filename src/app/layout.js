@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import PolyfillScripts from '@/components/Header/PolyfillScripts';
 import { SITE_METADATA } from '@/hooks/useSiteMetadata/constants';
 import { children } from '@/types';
 
@@ -94,6 +95,7 @@ const RootLayout = ({ children }) => (
     <html lang="en" className={`${vcrFont.variable} ${robotoFont.variable}`}>
       <head>
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <PolyfillScripts />
       </head>
       <body suppressHydrationWarning>
         <Header />
