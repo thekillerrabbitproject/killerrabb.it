@@ -2,16 +2,34 @@
   margin: 16px 0 32px 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
   font-family: var(--font-vcr);
   font-size: 14px;
+}
+
+.footer ul {
+  margin: 0 16px;
+}
+.footer ul:first-of-type {
+  margin-left: 0;
+}
+.footer ul:last-of-type {
+  margin-right: 0;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   font-size: 16px;
+}
+
+.list li {
+  margin: 2px 0;
+}
+.list li:first-of-type {
+  margin-top: 0;
+}
+.list li:last-of-type {
+  margin-bottom: 0;
 }
 
 .listItemHeader {

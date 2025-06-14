@@ -13,7 +13,7 @@ staticAssets="public/static-assets"
 if [[ -z "${LOCAL_KEY}" ]]; then
   rsync -Paq --files-from="$remoteFiles" --no-relative -e "ssh -o StrictHostKeyChecking=no" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
 else
-  rsync -Paq --files-from="$remoteFiles" --no-relative -e "ssh -i ${BASH_SOURCE%/*}/$LOCAL_KEY" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
+  rsync -Paqv --files-from="$remoteFiles" --no-relative -e "ssh -i ${BASH_SOURCE%/*}/$LOCAL_KEY" "$INPUT_REMOTE_USER"@"$INPUT_REMOTE_HOST": "$staticAssets"
 fi
 
 count=$(jq 'length' "$remoteShareFiles")

@@ -54,3 +54,30 @@ export const meta = {
   showTitle: PropTypes.bool,
   notSticky: PropTypes.bool,
 };
+
+export const sectionScroll = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+export const arrows = {
+  carouselRef: PropTypes.shape({
+    current: PropTypes.shape({
+      scrollLeft: PropTypes.number,
+      scrollWidth: PropTypes.number,
+      clientWidth: PropTypes.number,
+      firstElementChild: PropTypes.shape({
+        offsetWidth: PropTypes.number,
+      }),
+      addEventListener: PropTypes.func,
+      removeEventListener: PropTypes.func,
+    }),
+  }),
+};
+export const arrowsPostSlider = {
+  carouselRef: PropTypes.shape({
+    current: PropTypes.shape({
+      children: PropTypes.node,
+    }),
+  }),
+};

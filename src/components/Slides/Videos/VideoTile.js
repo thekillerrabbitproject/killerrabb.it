@@ -18,6 +18,7 @@ const VideoTile = ({ data }) =>
         }px`,
       }}
     >
+
       <Link
         href={data.uri}
         title={data.title}

@@ -3,7 +3,8 @@
   top: 6px;
   left: 0;
   z-index: 1;
-  width: var(--slider-default-width);
+  box-sizing: border-box;
+  width: 100%;
 
   font-family: var(--font-negative);
   mix-blend-mode: screen;

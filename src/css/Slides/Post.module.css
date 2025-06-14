@@ -4,17 +4,20 @@
   gap: 16px;
   margin: 16px 0;
 }
+
 @media (min-width: 990px) {
   .slider {
     composes: sliderScrollbar from '@/css/sliderScrollbar.module.css';
     display: block;
-    position: relative;
     inline-size: 100%;
     white-space: nowrap;
     overflow: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    height: var(--slider-default-height);
+    height: calc(var(--slider-default-height) + 35px);
+  }
+  .wrapper {
+    position: relative;
   }
 }
 

@@ -1,0 +1,38 @@
+.arrows {
+  display: none;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .arrows {
+    display: block;
+    bottom: -18px;
+    right: 10px;
+    text-align: right;
+    position: absolute;
+  }
+}
+
+.button {
+    cursor: pointer;
+    font-family: var(--font-vcr);
+    font-size: 22px;
+    border: none;
+    background-color: transparent;
+    color: var(--color-negative);
+    opacity: 0.7;
+    letter-spacing: -5px;
+    margin: 0 8px;
+    padding: 16px;
+}
+.button:first-of-type {
+  margin-left: 0;
+}
+.button:last-of-type {
+  margin-right: 0;
+}
+.button:disabled {
+  color: var(--primary);
+  opacity: .3;
+  cursor: unset;
+}
+

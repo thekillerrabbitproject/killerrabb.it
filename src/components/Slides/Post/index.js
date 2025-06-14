@@ -3,8 +3,10 @@ import styles from '@/css/Slides/Post.module.css';
 import { dataAny } from '@/types';
 import { isDuplicatedFromGallery } from '@/utils';
 
+import SectionScroll from '../Helpers/SectionScroll';
+
 const PostSlider = ({ data }) => (
-  <div className={styles.slider}>
+  <SectionScroll className={styles.slider} scrollBySingle>
     {!isDuplicatedFromGallery(data) && (
       <Image
         alt={data.title}
@@ -33,7 +35,7 @@ const PostSlider = ({ data }) => (
         sourceUrl={image.sourceUrl}
       />
     ))}
-  </div>
+  </SectionScroll>
 );
 
 PostSlider.propTypes = dataAny;

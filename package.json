@@ -23,13 +23,17 @@
   "dependencies": {
     "@apollo/client": "^3.10.4",
     "@next/bundle-analyzer": "15.2.4",
+    "@next/polyfill-module": "^15.3.3",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "next": "15.2.4",
     "next-view-transitions": "^0.2.0",
     "prop-types": "^15.8.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "scroll-into-view-if-needed": "^3.1.0",
+    "scrollyfills": "^1.0.3",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "eslint": "^8.54.0",

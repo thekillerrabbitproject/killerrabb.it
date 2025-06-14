@@ -1,3 +1,4 @@
+import SectionScroll from '@/components/Slides/Helpers/SectionScroll';
 import styles from '@/css/Slides/Videos.module.css';
 import { query } from '@/graphql/Videos';
 import { sliders } from '@/types/index';
@@ -38,11 +39,11 @@ const SlidesVideos = async ({
     hasContent && (
       <>
         <h2>{title}</h2>
-        <section className={cssSliderClassName}>
+        <SectionScroll className={cssSliderClassName}>
           {data.map((content) => (
             <VideoTile key={content.uri} data={content} />
           ))}
-        </section>
+        </SectionScroll>
       </>
     )
   );
